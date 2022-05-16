@@ -18,22 +18,31 @@ func NewUser() User {
 func (u User) Get(c *gin.Context)  {
 	param := service.GetUserInfoRequest{}
 	response := app.NewResponse(c)
+	var res service.GetUserInfoResponse
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		return
 	}
-
-	svc := service.New(c.Request.Context())
-	p := service.GetUserInfoRequest{UserId:param.UserId, Token: param.Token}
-	user, err := svc.GetUserById(&p)
-	if err != nil {
-		global.Logger.Errorf("svc.GetUserById err: %v", err)
-		response.ToErrorResponse(errcode.ErrorGetUserInfoFail)
+	valid, err := app.ValidToken(param.Token)
+	if !valid {
+		global.Logger.Errorf("app.ValidToken errs: %v", err)
+		res.StatusCode = errcode.ErrorLoginExpire.Code()
+		res.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		response.ToResponse(res)
 		return
 	}
 
-	res := &service.GetUserInfoResponse{
+	svc := service.New(c.Request.Context())
+	user, err := svc.GetUserById(&param)
+	if err != nil {
+		global.Logger.Errorf("svc.GetUserById err: %v", err)
+		response.ToResponse(errcode.ErrorGetUserInfoFail)
+		return
+	}
+
+	res = service.GetUserInfoResponse{
 		User: &service.UserInfo{
 			ID:            user.ID,
 			Name:          user.UserName,

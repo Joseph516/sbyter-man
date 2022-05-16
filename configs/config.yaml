@@ -21,7 +21,7 @@ Database:
   DBType: mysql
   UserName: douyin
   Password: Douyin@123
-  Host: 172.18.165.162:3306
+  Host: 172.31.245.171:3306
   DBName: douyin
   TablePrefix: douyin_
   Charset: utf8
@@ -29,7 +29,7 @@ Database:
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 172.18.165.162:6379
+  Addr: 172.31.245.171:6379
   Password: ""
   DB: 0
 JWT:
