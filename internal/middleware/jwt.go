@@ -3,7 +3,6 @@ package middleware
 import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
-	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
@@ -24,7 +23,6 @@ func JWT() gin.HandlerFunc {
 			ecode = errcode.InvalidParams
 		} else {
 			_, err := app.ParseToken(token)
-			fmt.Println("报错了", err)
 			if err != nil {
 				switch err.(*jwt.ValidationError).Errors {
 				case jwt.ValidationErrorExpired:
