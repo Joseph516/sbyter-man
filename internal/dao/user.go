@@ -4,14 +4,18 @@ import (
 	"douyin_service/internal/model"
 )
 
-func (d *Dao) CreateUser(userName, password string) error {
+func (d *Dao) CreateUser(userName, password string) (uint, error) {
 	user := model.User{
 		UserName:      userName,
 		Password:      password,
 		FollowCount:   0,
 		FollowerCount: 0,
 	}
-	return user.Create(d.engine)
+	err := user.Create(d.engine)
+	if err != nil {
+		return 0, err
+	}
+	return user.ID, nil
 }
 
 // CheckUser 校验用户名和密码
