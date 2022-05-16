@@ -22,7 +22,7 @@ func (u User) TableName() string {
 	return "douyin_user"
 }
 
-func (u User) Create(db *gorm.DB) error {
+func (u *User) Create(db *gorm.DB) error {
 	return db.Create(&u).Error
 }
 

@@ -34,7 +34,8 @@ func NewRouter() *gin.Engine {
 	user := v1.NewUser()
 	apiv1 := r.Group("/douyin/")
 	apiv1.POST("/user/login/", user.Login)
-	apiv1.Use(middleware.JWT())
+	apiv1.POST("/user/register/", user.Register)
+	apiv1.Use()
 	{
 		apiv1.GET("/user/", user.Get)
 	}

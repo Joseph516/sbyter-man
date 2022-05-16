@@ -1,6 +1,9 @@
 package app
 
 import (
+	"douyin_service/global"
+	"douyin_service/pkg/errcode"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"
 	val "github.com/go-playground/validator/v10"
@@ -52,5 +55,16 @@ func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 		return false, errs
 	}
 
+	return true, nil
+}
+
+// ValidToken 校验参数并检查Token
+func ValidToken(token string) (bool,error){
+	flag, err := CheckToken(token)
+	fmt.Println(flag, err)
+	if !flag {
+		global.Logger.Errorf("CheckToken errs: %v", err)
+		return flag, errcode.ErrorLoginExpire
+	}
 	return true, nil
 }
