@@ -6,6 +6,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 // Register 注册用户
@@ -31,8 +32,8 @@ func (u User) Register(c *gin.Context)  {
 		response.ToErrorResponse(errcode.ErrorRegisterFail)
 		return
 	}
-
-	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret)
+	idStr := strconv.Itoa(int(userId))
+	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, idStr)
 	res := &service.RegisterResponse{
 		UserID:         userId,
 		Token:          token,
@@ -56,20 +57,26 @@ func (u User) Login(c *gin.Context)  {
 
 	svc := service.New(c.Request.Context())
 	userId, flag, err := svc.Login(&param)
+	res := &service.LoginResponse{
+		UserID:         userId,
+		Token:          "",
+	}
+	res.StatusCode = errcode.ErrorLoginFail.Code()
+	res.StatusMsg = errcode.ErrorLoginFail.Msg()
 	if err != nil {
 		global.Logger.Errorf("svc.Login err: %v", err)
-		response.ToResponse(errcode.ErrorLoginFail)
+		response.ToResponse(res)
 		return
 	}
 
 	if !flag {
 		global.Logger.Error("用户名/密码错误")
-		response.ToResponse(errcode.ErrorLoginFail)
+		response.ToResponse(res)
 		return
 	}
-
-	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret)
-	res := &service.LoginResponse{
+	idStr := strconv.Itoa(int(userId))
+	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, idStr)
+	res = &service.LoginResponse{
 		UserID:         userId,
 		Token:          token,
 	}

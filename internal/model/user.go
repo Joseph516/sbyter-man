@@ -2,6 +2,7 @@ package model
 
 import (
 	"douyin_service/pkg/app"
+	"douyin_service/pkg/errcode"
 	"gorm.io/gorm"
 )
 
@@ -53,7 +54,7 @@ func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 		return 0, false, err
 	}
 	if (user == User{}) {
-		return 0, false, err
+		return errcode.ErrorUserID, false, err
 	}
 	return user.ID, true, nil
 }

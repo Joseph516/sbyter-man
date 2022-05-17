@@ -109,3 +109,20 @@
 2022/05/16 20:20:31 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.-BindAndCheckToken errs: 错误码：10010002, 错误信息：登录过期","time":1652703631599275400}
 2022/05/16 20:20:58 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1652703658759611500}
 2022/05/16 20:20:58 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.-BindAndCheckToken errs: 错误码：10010002, 错误信息：登录过期","time":1652703658759611500}
+2022/05/17 22:49:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652798964242221400}
+2022/05/17 22:54:27 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799267344352700}
+2022/05/17 22:54:32 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799272652144100}
+2022/05/17 22:55:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799315285850800}
+2022/05/17 22:55:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799318895974800}
+2022/05/17 22:55:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799321371354500}
+2022/05/17 22:55:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799323695284600}
+2022/05/17 22:55:27 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799327019921700}
+2022/05/17 22:56:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799366265819900}
+2022/05/17 22:58:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799522337106500}
+2022/05/17 22:58:55 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799535815959700}
+2022/05/17 22:59:28 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799568675363300}
+2022/05/17 23:00:25 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799625162223200}
+2022/05/17 23:01:20 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799680595055600}
+2022/05/17 23:01:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799681910136300}
+2022/05/17 23:01:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799682651770300}
+2022/05/17 23:01:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799683270382300}
