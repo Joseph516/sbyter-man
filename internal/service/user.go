@@ -27,7 +27,7 @@ type GetUserInfoResponse struct {
 	User *UserInfo `json:"user" binding:"required"`
 }
 
-func (svc *Service) CreateUser(param *CreateUserRequest) error {
+func (svc *Service) CreateUser(param *CreateUserRequest) (uint, error) {
 	return svc.dao.CreateUser(param.UserName, param.Password)
 }
 
