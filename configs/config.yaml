@@ -11,17 +11,14 @@ App:
   LogFileExt: .log
   UploadSavePath: storage/uploads
   UploadServerUrl: http://127.0.0.1:8080/static
-  UploadImageMaxSize: 5000 # MB
-  UploadImageAllowExts:
-      - .jpg
-      - .jpeg
-      - .png
-      - .bmp
+  UploadVideoMaxSize: 500 # MB
+  UploadVideoAllowExts:
+      - .mp4
 Database:
   DBType: mysql
   UserName: douyin
   Password: Douyin@123
-  Host: 172.31.245.171:3306
+  Host: 106.14.89.192:3306
   DBName: douyin
   TablePrefix: douyin_
   Charset: utf8
@@ -29,7 +26,7 @@ Database:
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 172.31.245.171:6379
+  Addr: 106.14.89.192:6379
   Password: ""
   DB: 0
 JWT:

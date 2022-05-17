@@ -19,8 +19,8 @@ type AppSettingS struct {
 	UploadZipsPath       string
 	UploadServerUrl      string
 	UploadServerZipUrl   string
-	UploadImageMaxSize   int
-	UploadImageAllowExts []string
+	UploadVideoMaxSize   int
+	UploadVideoAllowExts []string
 }
 
 type DatabaseSettingS struct {
