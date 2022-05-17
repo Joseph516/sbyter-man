@@ -5,16 +5,17 @@ import (
 	v1 "douyin_service/internal/controller/api/v1"
 	"douyin_service/internal/middleware"
 	"douyin_service/pkg/limiter"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimiterBucketRule{
-	Key: "/auth",
+	Key:          "/auth",
 	FillInterval: time.Second * 10,
-	Capacity: 20,
-	Quantum: 20,
+	Capacity:     20,
+	Quantum:      20,
 })
 
 func NewRouter() *gin.Engine {
@@ -32,12 +33,17 @@ func NewRouter() *gin.Engine {
 	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 
 	user := v1.NewUser()
+	pub := v1.NewPublish()
 	apiv1 := r.Group("/douyin/")
 	apiv1.POST("/user/login/", user.Login)
 	apiv1.POST("/user/register/", user.Register)
 	apiv1.Use()
 	{
 		apiv1.GET("/user/", user.Get)
+
+		// publish
+		apiv1.GET("/publish/list/", pub.List)
+		apiv1.POST("/publish/action/", pub.Action)
 	}
 
 	return r
