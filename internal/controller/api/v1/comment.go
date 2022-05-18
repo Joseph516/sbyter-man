@@ -46,6 +46,6 @@ func (co Comment) List(c *gin.Context) {
 		return
 	}
 	resp.StatusCode = 0
-	resp.StatusMsg = "获取用户的视频发布列表成功"
+	resp.StatusMsg = "获取视频的评论列表成功"
 	response.ToResponse(resp)
 }
