@@ -11,10 +11,10 @@ import (
 )
 
 var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimiterBucketRule{
-	Key: "/auth",
+	Key:          "/auth",
 	FillInterval: time.Second * 10,
-	Capacity: 20,
-	Quantum: 20,
+	Capacity:     20,
+	Quantum:      20,
 })
 
 func NewRouter() *gin.Engine {
@@ -32,12 +32,15 @@ func NewRouter() *gin.Engine {
 	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 
 	user := v1.NewUser()
+	favorite := v1.NewFavorite()
 	apiv1 := r.Group("/douyin/")
 	apiv1.POST("/user/login/", user.Login)
 	apiv1.POST("/user/register/", user.Register)
+	apiv1.POST("/favorite/action", favorite.Action)
 	apiv1.Use()
 	{
 		apiv1.GET("/user/", user.Get)
+		apiv1.GET("favorite/list/", favorite.FavoriteList)
 	}
 
 	return r
