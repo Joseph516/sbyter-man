@@ -5,6 +5,7 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -54,8 +55,57 @@ func (p Publish) List(c *gin.Context) {
 	response.ToResponse(resp)
 }
 
-// Action投稿接口
-// 登录用户选择视频上传
+// Action投稿接口, 登录用户选择视频上传
+// 参数名	参数类型	必填	说明
+// data	file	是	视频数据
+// token	text	是	用户鉴权token
+// title	text	是	视频标题
 func (p Publish) Action(c *gin.Context) {
-	// TODO:
+	data, _ := c.FormFile("data")
+	param := service.PublishActionRequest{
+		Data:  data,
+		Token: c.PostForm("token"),
+		Title: c.PostForm("title"),
+	}
+	response := app.NewResponse(c)
+	valid, errs := app.BindAndValid(c, &param)
+	if !valid {
+		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
+		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		return
+	}
+
+	var resp service.ResponseCommon
+	valid, err := app.ValidToken(param.Token)
+	if !valid {
+		global.Logger.Errorf("app.ValidToken errs: %v", err)
+		resp.StatusCode = errcode.ErrorLoginExpire.Code()
+		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		response.ToResponse(resp)
+		return
+	}
+
+	// TODO：错误校验
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		return
+	}
+	user_id, err := strconv.Atoi(claims.Audience)
+	if err != nil {
+		return
+	}
+
+	// 发布视频
+	svc := service.New(c.Request.Context())
+	err = svc.PublishAction(param.Data, param.Token, param.Title, uint(user_id))
+	if err != nil {
+		global.Logger.Errorf("svc.PublishAction err: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionPublishFail)
+		return
+	}
+
+	resp.StatusCode = 0
+	resp.StatusMsg = "视频发布成功"
+	response.ToResponse(resp)
 }

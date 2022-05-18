@@ -14,7 +14,7 @@ import (
 
 type FileType int
 
-const TypeImage FileType = iota
+const TypeVideo FileType = iota
 
 func GetFileName(name string) string {
 	ext := GetFileExt(name)
@@ -45,8 +45,8 @@ func CheckContainExt(t FileType, name string) bool {
 	ext := GetFileExt(name)
 	ext = strings.ToUpper(ext)
 	switch t {
-	case TypeImage:
-		for _, allowExt := range global.AppSetting.UploadImageAllowExts {
+	case TypeVideo:
+		for _, allowExt := range global.AppSetting.UploadVideoAllowExts {
 			if strings.ToUpper(allowExt) == ext {
 				return true
 			}
@@ -59,8 +59,18 @@ func CheckMaxSize(t FileType, f multipart.File) bool {
 	content, _ := ioutil.ReadAll(f)
 	size := len(content)
 	switch t {
-	case TypeImage:
-		if size >= global.AppSetting.UploadImageMaxSize * 1024 * 1024 {
+	case TypeVideo:
+		if size >= global.AppSetting.UploadVideoMaxSize*1024*1024 {
+			return true
+		}
+	}
+	return false
+}
+
+func CheckMaxSizeByHeader(t FileType, size int) bool {
+	switch t {
+	case TypeVideo:
+		if size >= global.AppSetting.UploadVideoMaxSize*1024*1024 {
 			return true
 		}
 	}
@@ -80,7 +90,7 @@ func CreateSavePath(dst string, perm os.FileMode) error {
 	return nil
 }
 
-func SaveFile(file *multipart.FileHeader, dst string) error  {
+func SaveFile(file *multipart.FileHeader, dst string) error {
 	src, err := file.Open()
 	if err != nil {
 		return err
@@ -95,4 +105,27 @@ func SaveFile(file *multipart.FileHeader, dst string) error  {
 
 	_, err = io.Copy(out, src)
 	return err
+}
+
+// CopyFile将src位置的文件夹拷贝至dst
+func CopyFile(src, dst string) error {
+	out, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+
+	defer out.Close()
+
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer in.Close()
+
+	_, err = io.Copy(out, in)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

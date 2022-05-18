@@ -21,6 +21,10 @@ func (v Video) TableName() string { return "douyin_video" }
 
 func (v Video) ListVideoByUserId(db *gorm.DB) ([]Video, error) {
 	var video []Video
-	err := db.Select("play_url, cover_url, favorite_count, comment_count, title").Where("author_id = ?", v.AuthorId).Find(&video).Error
+	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title").Where("author_id = ?", v.AuthorId).Find(&video).Error
 	return video, err
+}
+
+func (v Video) Create(db *gorm.DB) error {
+	return db.Create(&v).Error
 }
