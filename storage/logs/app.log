@@ -126,3 +126,4 @@
 2022/05/17 23:01:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799681910136300}
 2022/05/17 23:01:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799682651770300}
 2022/05/17 23:01:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799683270382300}
+2022/05/18 14:43:21 {"callers":["F:/douyin/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652856201741200700}
