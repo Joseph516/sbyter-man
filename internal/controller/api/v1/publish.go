@@ -85,20 +85,18 @@ func (p Publish) Action(c *gin.Context) {
 		return
 	}
 
-	// TODO：错误校验
 	// 从token中获取user_id
 	claims, err := app.ParseToken(param.Token)
 	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionPublishFail)
 		return
 	}
-	user_id, err := strconv.Atoi(claims.Audience)
-	if err != nil {
-		return
-	}
+	userId, _ := strconv.Atoi(claims.Audience)
 
 	// 发布视频
 	svc := service.New(c.Request.Context())
-	err = svc.PublishAction(param.Data, param.Token, param.Title, uint(user_id))
+	err = svc.PublishAction(param.Data, param.Token, param.Title, uint(userId))
 	if err != nil {
 		global.Logger.Errorf("svc.PublishAction err: %v", err)
 		response.ToErrorResponse(errcode.ErrorActionPublishFail)

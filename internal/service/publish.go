@@ -3,6 +3,7 @@ package service
 import (
 	"douyin_service/global"
 	"douyin_service/pkg/upload"
+	"douyin_service/pkg/util"
 	"errors"
 	"fmt"
 	"mime/multipart"
@@ -75,9 +76,8 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 }
 
 func (svc *Service) PublishAction(data *multipart.FileHeader, token, title string, userId uint) error {
-	// TODO: 重名文件处理，文件名+时间戳
 	// 上传校验
-	fileName := data.Filename // 不对文件名加密
+	fileName := upload.GetFileNameWithTime(data.Filename) // 防止重名，文件名+时间戳+MD5
 	if !upload.CheckContainExt(upload.TypeVideo, fileName) {
 		return fmt.Errorf("文件格式不支持，仅支持格式: %v", global.AppSetting.UploadVideoAllowExts)
 	}
@@ -99,7 +99,7 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	if err := upload.SaveFile(data, dst); err != nil {
 		return err
 	}
-	playUrl := path.Join(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), fileName)
+	playUrl := util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), fileName)
 
 	// 获取视频封面并上传
 	// TODO:获取视频的封面

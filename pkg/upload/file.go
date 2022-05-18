@@ -10,6 +10,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"time"
 )
 
 type FileType int
@@ -20,6 +21,14 @@ func GetFileName(name string) string {
 	ext := GetFileExt(name)
 	fileName := strings.TrimSuffix(name, ext)
 	fileName = util.EncodeMD5(fileName)
+	return fileName + ext
+}
+
+// GetFileNameWithTime加入时间戳
+func GetFileNameWithTime(name string) string {
+	ext := GetFileExt(name)
+	fileName := strings.TrimSuffix(name, ext)
+	fileName = util.EncodeMD5(fileName + time.Now().String())
 	return fileName + ext
 }
 
