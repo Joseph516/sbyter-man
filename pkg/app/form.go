@@ -44,7 +44,6 @@ func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 		if !ok {
 			return false, errs
 		}
-
 		for key, value := range verrs.Translate(trans) {
 			errs = append(errs, &ValidError{
 				Key:     key,
@@ -59,7 +58,7 @@ func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 }
 
 // ValidToken 校验参数并检查Token
-func ValidToken(token string) (bool,error){
+func ValidToken(token string) (bool, error) {
 	flag, err := CheckToken(token)
 	fmt.Println(flag, err)
 	if !flag {

@@ -13,24 +13,24 @@ App:
   UploadServerUrl: http://127.0.0.1:8080/static
   UploadImageMaxSize: 5000 # MB
   UploadImageAllowExts:
-      - .jpg
-      - .jpeg
-      - .png
-      - .bmp
+    - .jpg
+    - .jpeg
+    - .png
+    - .bmp
 Database:
   DBType: mysql
-  UserName: douyin
-  Password: Douyin@123
-  Host: 172.31.245.171:3306
-  DBName: douyin
+  UserName: root
+  Password: 123456
+  Host: 127.0.0.1:3306
+  DBName: simple_ticktok
   TablePrefix: douyin_
   Charset: utf8
   ParseTime: True
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 172.31.245.171:6379
-  Password: ""
+  Addr: 124.223.44.108:6379
+  Password: zhouzhou233
   DB: 0
 JWT:
   Key: douyin
