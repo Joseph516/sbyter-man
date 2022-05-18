@@ -3,7 +3,6 @@ package upload
 import (
 	"douyin_service/global"
 	"douyin_service/pkg/util"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -33,8 +32,14 @@ func GetFileNameWithTime(name string) string {
 }
 
 func GetFileExt(name string) string {
-	fmt.Println(name)
+	// fmt.Println(name)
 	return path.Ext(name)
+}
+
+func GetFilenameWithoutExt(name string) string {
+	ext := GetFileExt(name)
+	fileName := strings.TrimSuffix(name, ext)
+	return fileName
 }
 
 func GetSavePath() string {

@@ -102,14 +102,12 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	playUrl := util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), fileName)
 
 	// 获取视频封面并上传
-	// TODO:获取视频的封面
-	// coverName := "cover.png"
-	// cdst := path.Join(uploadSavePath, coverName)
-	// if err := upload.SaveFile(data, cdst); err != nil {
-	// 	return err
-	// }
-	// coverUrl := path.Join(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
-	coverUrl := "https://c-ssl.dtstatic.com/uploads/item/201803/13/20180313083933_olurq.thumb.1000_0.jpg"
+	coverName := fmt.Sprintf("%s.png", upload.GetFilenameWithoutExt(fileName))
+	cdst := path.Join(uploadSavePath, coverName)
+	if err := upload.ExactCoverFromVideo(dst, cdst); err != nil {
+		return err
+	}
+	coverUrl := util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
 
 	// 更新数据库
 	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
