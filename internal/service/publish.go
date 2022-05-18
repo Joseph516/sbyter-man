@@ -1,5 +1,16 @@
 package service
 
+import (
+	"douyin_service/global"
+	"douyin_service/pkg/upload"
+	"errors"
+	"fmt"
+	"mime/multipart"
+	"os"
+	"path"
+	"strconv"
+)
+
 type PublishListRequest struct {
 	UserId uint   `form:"user_id"  binding:"required"`
 	Token  string `form:"token" binding:"required"`
@@ -21,6 +32,12 @@ type PublishListResponse struct {
 	VideoList []VideoInfo `json:"video_list"`
 }
 
+type PublishActionRequest struct {
+	Data  *multipart.FileHeader `form:"data" binding:"required"`
+	Token string                `form:"token" binding:"required"`
+	Title string                `form:"title" binding:"required"`
+}
+
 func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err error) {
 	// 根据用户id获取发布视频信息
 	video, err := svc.dao.ListVideoByUserId(userId)
@@ -38,6 +55,7 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 	pubResp.VideoList = make([]VideoInfo, len(video))
 	for i := range video {
 		pubResp.VideoList[i] = VideoInfo{
+			Id: video[i].ID,
 			Author: UserInfo{
 				ID:            user.ID,
 				Name:          user.UserName,
@@ -54,4 +72,47 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 		}
 	}
 	return
+}
+
+func (svc *Service) PublishAction(data *multipart.FileHeader, token, title string, userId uint) error {
+	// TODO: 重名文件处理，文件名+时间戳
+	// 上传校验
+	fileName := data.Filename // 不对文件名加密
+	if !upload.CheckContainExt(upload.TypeVideo, fileName) {
+		return fmt.Errorf("文件格式不支持，仅支持格式: %v", global.AppSetting.UploadVideoAllowExts)
+	}
+	if upload.CheckMaxSizeByHeader(upload.TypeVideo, int(data.Size)) {
+		return fmt.Errorf("请上传文件大小不超过%v的视频", global.AppSetting.UploadVideoMaxSize)
+	}
+	uploadSavePath := path.Join(upload.GetSavePath(), strconv.Itoa(int(userId)))
+	if upload.CheckSavePath(uploadSavePath) {
+		if err := upload.CreateSavePath(uploadSavePath, os.ModePerm); err != nil {
+			return errors.New("无法创建保存文件夹")
+		}
+	}
+	if upload.CheckPermission(uploadSavePath) {
+		return errors.New("保存路径权限不够")
+	}
+
+	// 上传视频
+	dst := path.Join(uploadSavePath, fileName)
+	if err := upload.SaveFile(data, dst); err != nil {
+		return err
+	}
+	playUrl := path.Join(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), fileName)
+
+	// 获取视频封面并上传
+	// TODO:获取视频的封面
+	// coverName := "cover.png"
+	// cdst := path.Join(uploadSavePath, coverName)
+	// if err := upload.SaveFile(data, cdst); err != nil {
+	// 	return err
+	// }
+	// coverUrl := path.Join(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
+	coverUrl := "https://c-ssl.dtstatic.com/uploads/item/201803/13/20180313083933_olurq.thumb.1000_0.jpg"
+
+	// 更新数据库
+	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
+
+	return err
 }

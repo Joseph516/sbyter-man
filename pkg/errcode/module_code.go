@@ -6,5 +6,6 @@ var (
 	ErrorRegisterFail    = NewError(10010003, "注册失败")
 	ErrorGetUserInfoFail = NewError(10010004, "获取用户信息失败")
 	// publish
-	ErrorListPublishFail = NewError(10020001, "获取用户的视频发布列表错误")
+	ErrorListPublishFail   = NewError(10020001, "获取用户的视频发布列表错误")
+	ErrorActionPublishFail = NewError(10020002, "发布视频错误")
 )
