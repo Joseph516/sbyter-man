@@ -34,6 +34,7 @@ func NewRouter() *gin.Engine {
 
 	user := v1.NewUser()
 	pub := v1.NewPublish()
+	fol := v1.NewFollow()
 	apiv1 := r.Group("/douyin/")
 	apiv1.POST("/user/login/", user.Login)
 	apiv1.POST("/user/register/", user.Register)
@@ -45,6 +46,7 @@ func NewRouter() *gin.Engine {
 		apiv1.GET("/publish/list/", pub.List)
 		apiv1.POST("/publish/action/", pub.Action)
 	}
+	apiv1.POST("/relation/action/", fol.Action)
 
 	return r
 }
