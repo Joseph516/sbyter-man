@@ -5,6 +5,7 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,17 +27,18 @@ func (co Comment) List(c *gin.Context) {
 		return
 	}
 	var resp service.CommentListResponse
-	valid, err := app.ValidToken(param.Token)
+	userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		resp.StatusCode = errcode.ErrorLoginExpire.Code()
-		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		resp.StatusCode = tokenErr.Code()
+		resp.StatusMsg = tokenErr.Msg()
 		response.ToResponse(resp)
 		return
 	}
 	//获取评论列表
 	svc := service.New(c.Request.Context())
-	resp, err = svc.GetCommentList(param.VideoId)
+	resp, err := svc.GetCommentList(param.VideoId)
 	if err != nil {
 		global.Logger.Errorf("svc.GetCommentList err: %v", err)
 		response.ToErrorResponse(errcode.ErrorListCommentFail)
@@ -59,17 +61,18 @@ func (co Comment) CommentAction(c *gin.Context) {
 		return
 	}
 	resp := service.ResponseCommon{}
-	valid, err := app.ValidToken(param.Token)
+	userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		resp.StatusCode = errcode.ErrorLoginExpire.Code()
-		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		resp.StatusCode = tokenErr.Code()
+		resp.StatusMsg = tokenErr.Msg()
 		response.ToResponse(resp)
 		return
 	}
 	//提交评论
 	svc := service.New(c.Request.Context())
-	err = svc.CommentAction(&param)
+	err := svc.CommentAction(&param)
 	if err != nil {
 		global.Logger.Errorf("svc.CommentAction err: %v", err)
 		response.ToErrorResponse(errcode.ErrorActionCommentFail)
