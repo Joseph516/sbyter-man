@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"mime/multipart"
 	"os"
+	"os/exec"
 	"path"
 	"strconv"
 )
@@ -104,10 +105,17 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	// 获取视频封面并上传
 	coverName := fmt.Sprintf("%s.png", upload.GetFilenameWithoutExt(fileName))
 	cdst := path.Join(uploadSavePath, coverName)
+	var coverUrl string
 	if err := upload.ExactCoverFromVideo(dst, cdst); err != nil {
-		return err
+		// 提取封面失败
+		if err == exec.ErrNotFound {
+			coverUrl = "https://c-ssl.dtstatic.com/uploads/item/201803/13/20180313083933_olurq.thumb.1000_0.jpg"
+		} else {
+			return err
+		}
+	} else {
+		coverUrl = util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
 	}
-	coverUrl := util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
 
 	// 更新数据库
 	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
