@@ -18,7 +18,7 @@ func GetJWTSecret() []byte {
 	return []byte(global.JWTSetting.Secret)
 }
 
-func GenerateToken(appKey, appSecret string) (string, error) {
+func GenerateToken(appKey, appSecret, aud string) (string, error) {
 	nowTime := time.Now()
 	expireTime := nowTime.Add(global.JWTSetting.Expire)
 	claims := Claims{
@@ -27,6 +27,7 @@ func GenerateToken(appKey, appSecret string) (string, error) {
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
 			Issuer:    global.JWTSetting.Issuer,
+			Audience: aud, // token的受众
 		},
 	}
 
@@ -35,6 +36,7 @@ func GenerateToken(appKey, appSecret string) (string, error) {
 	return token, err
 }
 
+// ParseToken 解析Token
 func ParseToken(token string) (*Claims, error) {
 	tokenClaims, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return GetJWTSecret(), nil
