@@ -1,4 +1,4 @@
-package dao
+package cache
 
 import (
 	"douyin_service/pkg/util"

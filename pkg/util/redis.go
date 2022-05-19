@@ -2,7 +2,7 @@ package util
 
 import "strconv"
 
-//------------ favorite的一些工具函数 ------------
+//------------ reds-favorite的一些工具函数 ------------
 
 const (
 	USERPRIFIX          = "U"
