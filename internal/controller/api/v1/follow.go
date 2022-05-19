@@ -6,6 +6,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 type Follow struct{}
@@ -26,16 +27,19 @@ func (f *Follow)Action(c *gin.Context)  {
 		return
 	}
 	// 验证token
-	valid, err := app.ValidToken(param.Token)
+	userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		response.ToErrorResponse(errcode.UnauthorizedTokenError)
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		res.StatusCode = tokenErr.Code()
+		res.StatusMsg = tokenErr.Msg()
+		response.ToResponse(res)
 		return
 	}
 
 	//更新数据库
 	svc := service.New(c.Request.Context())
-	err = svc.FollowAction(&param)
+	err := svc.FollowAction(&param)
 	if err!=nil{
 		global.Logger.Errorf("svc.FollowAction errs: %v", err)
 		response.ToErrorResponse(errcode.ErrorFollowActionFail)

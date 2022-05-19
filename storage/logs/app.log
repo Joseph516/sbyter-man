@@ -127,6 +127,7 @@
 2022/05/17 23:01:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799682651770300}
 2022/05/17 23:01:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1652799683270382300}
 2022/05/18 14:43:21 {"callers":["F:/douyin/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652856201741200700}
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 2022/05/18 15:42:05 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859725637202400}
 2022/05/18 15:42:12 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859732315886900}
@@ -187,3 +188,39 @@
 2022/05/19 17:45:02 {"callers":["F:/douyin/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000004, 错误信息：鉴权失败，Token错误","time":1652953502913127300}
 2022/05/19 17:45:02 {"callers":["F:/douyin/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652953502913127300}
 >>>>>>> 76d2c9db215ad7f24ebb9decf0f481f407ee450a
+=======
+2022/05/18 15:39:25 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859565948152900}
+2022/05/18 15:39:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859570592001000}
+2022/05/18 15:39:36 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859576117144900}
+2022/05/18 15:39:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859578807552500}
+2022/05/18 15:39:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859582202633500}
+2022/05/18 15:39:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859592559376500}
+2022/05/18 15:40:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859638823774400}
+2022/05/18 15:40:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.UserId' Error:Field validation for 'UserId' failed on the 'required' tag","time":1652859656667543700}
+2022/05/18 15:44:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652859849208543800}
+2022/05/18 15:44:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652859849208543800}
+2022/05/18 15:44:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652859862358097500}
+2022/05/18 15:44:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652859862358097500}
+2022/05/18 15:44:25 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652859865037938500}
+2022/05/18 15:44:25 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652859865037938500}
+>>>>>>> Stashed changes
+2022/05/19 20:54:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652964846579436000}
+2022/05/19 20:54:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964846580642700}
+2022/05/19 20:54:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652964855400159900}
+2022/05/19 20:54:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964855400159900}
+2022/05/19 20:54:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652964858076779600}
+2022/05/19 20:54:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964858076779600}
+2022/05/19 20:54:26 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652964866298662000}
+2022/05/19 20:54:26 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964866308443300}
+2022/05/19 20:54:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652964896940627300}
+2022/05/19 20:54:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964896940627300}
+2022/05/19 20:55:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652964934084730500}
+2022/05/19 20:55:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652964934084840200}
+2022/05/19 20:56:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652965007399206100}
+2022/05/19 20:56:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652965007450211300}
+2022/05/19 21:08:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652965694833504000}
+2022/05/19 21:08:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1652965694833644300}
+2022/05/19 21:08:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1652965699499232900}
+2022/05/19 21:08:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1652965699499470800}
+2022/05/19 21:09:29 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652965769758011100}
+2022/05/19 21:09:29 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652965769758011100}
