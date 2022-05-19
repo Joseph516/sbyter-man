@@ -13,9 +13,29 @@ type CommentListResponse struct {
 
 type CommentInfo struct {
 	Id         uint     `json:"id"`
-	Author     UserInfo `json:"author"` //评论的用户
+	Author     UserInfo `json:"user"` //评论的用户
 	Content    string   `json:"content"`
-	CreateDate int64    `json:"create_date"`
+	CreateDate string   `json:"create_date"`
+}
+
+type CommentActionRequest struct {
+	UserId      int64  `form:"user_id" binding:"required"`
+	Token       string `form:"token" binding:"required"`
+	VideoId     int64  `form:"video_id"  binding:"required"`
+	ActionType  int64  `form:"action_type"  binding:"required"`
+	CommentText string `form:"comment_text"  binding:"-"`
+	CommentId   uint   `form:"comment_id"  binding:"-"`
+}
+
+const PUBCOMMENT int64 = 1
+
+//const DELCOMMENT int64 = 2
+
+func (svc *Service) CommentAction(param *CommentActionRequest) error {
+	if param.ActionType == PUBCOMMENT {
+		return svc.dao.PublishComment(param.VideoId, param.UserId, param.CommentText)
+	}
+	return svc.dao.DeleteComment(param.CommentId)
 }
 
 func (svc *Service) GetCommentList(video_id int64) (comResp CommentListResponse, err error) {
@@ -42,7 +62,7 @@ func (svc *Service) GetCommentList(video_id int64) (comResp CommentListResponse,
 				IsFollow:    false,
 			},
 			Content:    comments[i].Content,
-			CreateDate: comments[i].CreatedAt,
+			CreateDate: comments[i].CreatedAt.Format("01-02"),
 		}
 	}
 	return
