@@ -11,6 +11,7 @@ import (
 	"os/exec"
 	"path"
 	"strconv"
+	"strings"
 )
 
 type PublishListRequest struct {
@@ -108,7 +109,7 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	var coverUrl string
 	if err := upload.ExactCoverFromVideo(dst, cdst); err != nil {
 		// 提取封面失败
-		if err == exec.ErrNotFound {
+		if strings.HasSuffix(err.Error(), exec.ErrNotFound.Error()) {
 			coverUrl = "https://c-ssl.dtstatic.com/uploads/item/201803/13/20180313083933_olurq.thumb.1000_0.jpg"
 		} else {
 			return err
