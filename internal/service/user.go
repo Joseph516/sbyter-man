@@ -10,7 +10,7 @@ type CreateUserRequest struct {
 }
 
 type UserInfo struct {
-	ID            uint    `json:"id"`
+	ID            uint   `json:"id"`
 	Name          string `json:"name"`
 	FollowCount   int64  `json:"follow_count"`
 	FollowerCount int64  `json:"follower_count"`
