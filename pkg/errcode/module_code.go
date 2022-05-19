@@ -8,6 +8,12 @@ var (
 	// publish
 	ErrorListPublishFail   = NewError(10020001, "获取用户的视频发布列表错误")
 	ErrorActionPublishFail = NewError(10020002, "发布视频错误")
+
 	// Follow
-	ErrorFollowActionFail = NewError(10030001, "关注用户失败")
+	ErrorFollowActionFail = NewError(10040001, "关注用户失败")
+
+	// comment
+	ErrorListCommentFail   = NewError(10030001, "获取视频的评论列表错误")
+	ErrorActionCommentFail = NewError(10030002, "评论操作错误")
+
 )
