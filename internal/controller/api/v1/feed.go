@@ -27,11 +27,11 @@ func (f Feed) Feed(c *gin.Context) {
 	}
 
 	var resp service.FeedResponse
-	valid, err := app.ValidToken(param.Token)
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		resp.StatusCode = errcode.ErrorLoginExpire.Code()
-		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		resp.StatusCode = tokenErr.Code()
+		resp.StatusMsg = tokenErr.Msg()
 		response.ToResponse(resp)
 		return
 	}
