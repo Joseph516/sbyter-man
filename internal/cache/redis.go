@@ -1,6 +1,8 @@
-package dao
+package cache
 
 import "github.com/go-redis/redis"
+
+// redis嵌入
 
 type Redis struct {
 	redis *redis.Client
