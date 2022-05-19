@@ -54,7 +54,7 @@ func ParseToken(token string) (*Claims, error) {
 	return nil, err
 }
 
-func CheckToken(token string) (bool, *errcode.Error) {
+func CheckToken(token string, userId string) (bool, *errcode.Error) {
 	var (
 		ecode = errcode.Success
 	)
@@ -62,7 +62,7 @@ func CheckToken(token string) (bool, *errcode.Error) {
 	if token == "" {
 		ecode = errcode.InvalidParams
 	} else {
-		_, err := ParseToken(token)
+		claim, err := ParseToken(token)
 		if err != nil {
 			switch err.(*jwt.ValidationError).Errors {
 			case jwt.ValidationErrorExpired:
@@ -70,6 +70,8 @@ func CheckToken(token string) (bool, *errcode.Error) {
 			default:
 				ecode = errcode.UnauthorizedTokenError
 			}
+		} else if userId != errcode.SkipCheckUserID && claim.Audience != userId { // 防止使用别人的Token
+			ecode = errcode.IllegalToken
 		}
 	}
 
