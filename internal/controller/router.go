@@ -36,6 +36,7 @@ func NewRouter() *gin.Engine {
 	pub := v1.NewPublish()
 	fol := v1.NewFollow()
 	com := v1.NewComment()
+	feed := v1.NewFeed()
 	apiv1 := r.Group("/douyin/")
 	apiv1.POST("/user/login/", user.Login)
 	apiv1.POST("/user/register/", user.Register)
@@ -49,6 +50,8 @@ func NewRouter() *gin.Engine {
 		//comment
 		apiv1.GET("/comment/list/", com.List)
 		apiv1.POST("/comment/action/", com.CommentAction)
+		// feed
+		apiv1.GET("/feed/", feed.Feed)
 	}
 	apiv1.POST("/relation/action/", fol.Action)
 
