@@ -6,6 +6,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 type User struct {}
@@ -25,11 +26,12 @@ func (u User) Get(c *gin.Context)  {
 		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	valid, err := app.ValidToken(param.Token)
+	userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		res.StatusCode = errcode.ErrorLoginExpire.Code()
-		res.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		res.StatusCode = tokenErr.Code()
+		res.StatusMsg = tokenErr.Msg()
 		response.ToResponse(res)
 		return
 	}
