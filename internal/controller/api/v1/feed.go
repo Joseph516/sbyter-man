@@ -22,17 +22,14 @@ func (f Feed) Feed(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
 
-	var resp service.FeedResponse
 	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
-		resp.StatusCode = tokenErr.Code()
-		resp.StatusMsg = tokenErr.Msg()
-		response.ToResponse(resp)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
 
@@ -47,6 +44,7 @@ func (f Feed) Feed(c *gin.Context) {
 	}
 
 	// 获取视频发布列表
+	var resp service.FeedResponse
 	svc := service.New(c.Request.Context())
 	resp, err = svc.Feed(uint(user_id), param.LastTime)
 	if err != nil {

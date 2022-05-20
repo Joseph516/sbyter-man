@@ -27,22 +27,20 @@ func (p Publish) List(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
 
-	var resp service.PublishListResponse
 	userStr := strconv.Itoa(int(param.UserId))
 	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
-		resp.StatusCode = tokenErr.Code()
-		resp.StatusMsg = tokenErr.Msg()
-		response.ToResponse(resp)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
 
 	// 获取视频发布列表
+	var resp service.PublishListResponse
 	svc := service.New(c.Request.Context())
 	resp, err := svc.PublishList(param.UserId)
 	if err != nil {
@@ -72,17 +70,14 @@ func (p Publish) Action(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
 
-	var resp service.ResponseCommon
 	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
-		resp.StatusCode = tokenErr.Code()
-		resp.StatusMsg = tokenErr.Msg()
-		response.ToResponse(resp)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
 
@@ -96,6 +91,7 @@ func (p Publish) Action(c *gin.Context) {
 	userId, _ := strconv.Atoi(claims.Audience)
 
 	// 发布视频
+	var resp service.ResponseCommon
 	svc := service.New(c.Request.Context())
 	err = svc.PublishAction(param.Data, param.Token, param.Title, uint(userId))
 	if err != nil {
