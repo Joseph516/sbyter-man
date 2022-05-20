@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-func init()  {
+func init() {
 	err := setupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)
@@ -43,10 +43,10 @@ func main() {
 	gin.DefaultWriter = colorable.NewColorableStdout()
 	router := controller.NewRouter()
 	s := &http.Server{
-		Addr: ":" + global.ServerSetting.HttpPort,
-		Handler: router,
-		ReadTimeout: global.ServerSetting.ReadTimeout,
-		WriteTimeout: global.ServerSetting.WriteTimeout,
+		Addr:           ":" + global.ServerSetting.HttpPort,
+		Handler:        router,
+		ReadTimeout:    global.ServerSetting.ReadTimeout,
+		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
 	err := s.ListenAndServe()
@@ -79,10 +79,11 @@ func setupSetting() error {
 		return err
 	}
 	global.Rd = redis.NewClient(&redis.Options{
-		Addr:               global.RedisSetting.Addr,
-		Password:           global.RedisSetting.Password,
-		DB:                 0,
+		Addr:     global.RedisSetting.Addr,
+		Password: global.RedisSetting.Password,
+		DB:       0,
 	})
+
 	err = setting.ReadSection("JWT", &global.JWTSetting)
 	if err != nil {
 		return err
@@ -110,9 +111,9 @@ func setupDBEngine() error {
 
 func setupLogger() error {
 	global.Logger = logger.NewLogger(&lumberjack.Logger{
-		Filename: global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt,
-		MaxSize: 600, // 600MB
-		MaxAge: 10, // 10天
+		Filename:  global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt,
+		MaxSize:   600, // 600MB
+		MaxAge:    10,  // 10天
 		LocalTime: true,
 	}, "", log.LstdFlags).WithCaller(2)
 	return nil

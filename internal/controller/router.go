@@ -33,6 +33,7 @@ func NewRouter() *gin.Engine {
 	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 
 	user := v1.NewUser()
+	favorite := v1.NewFavorite()
 	pub := v1.NewPublish()
 	fol := v1.NewFollow()
 	com := v1.NewComment()
@@ -45,12 +46,18 @@ func NewRouter() *gin.Engine {
 		apiv1.POST("/user/register/", user.Register)
 		apiv1.GET("/user/", user.Get)
 
+		// favor
+		apiv1.GET("favorite/list/", favorite.FavoriteList)
+		apiv1.POST("/favorite/action", favorite.Action)
+
 		// publish
 		apiv1.GET("/publish/list/", pub.List)
 		apiv1.POST("/publish/action/", pub.Action)
+
 		//comment
 		apiv1.GET("/comment/list/", com.List)
 		apiv1.POST("/comment/action/", com.CommentAction)
+
 		// feed
 		apiv1.GET("/feed/", feed.Feed)
 	}

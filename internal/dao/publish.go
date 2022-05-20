@@ -3,8 +3,6 @@ package dao
 import (
 	"douyin_service/internal/model"
 	"time"
-
-	"gorm.io/gorm"
 )
 
 // type PublishDao struct{}
@@ -18,9 +16,6 @@ func (d *Dao) ListVideoByUserId(userId uint) ([]model.Video, error) {
 func (d *Dao) PublishVideo(authorId int64, playUrl, coverUrl, title string) error {
 	now := time.Now()
 	return model.Video{
-		Model: gorm.Model{
-			CreatedAt: now,
-		},
 		AuthorId:      authorId,
 		PlayUrl:       playUrl,
 		CoverUrl:      coverUrl,
@@ -29,4 +24,22 @@ func (d *Dao) PublishVideo(authorId int64, playUrl, coverUrl, title string) erro
 		Title:         title,
 		PublishDate:   now,
 	}.Create(d.engine)
+}
+
+func (d *Dao) QueryVideoById(videoId int64) (model.Video, error) {
+	var video model.Video
+	video, err := video.QueryVideoById(videoId, d.engine)
+	if err != nil {
+		return video, err
+	}
+	return video, nil
+}
+
+func (d *Dao) QueryBatchVideoById(favorList []int64) ([]model.Video, error) {
+	var video model.Video
+	videos, err := video.QueryBatchVdieoById(favorList, d.engine)
+	if err != nil {
+		return nil, err
+	}
+	return videos, nil
 }

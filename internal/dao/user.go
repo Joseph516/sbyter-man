@@ -21,8 +21,8 @@ func (d *Dao) CreateUser(userName, password string) (uint, error) {
 // CheckUser 校验用户名和密码
 func (d *Dao) CheckUser(username, password string) (uint, bool, error) {
 	user := model.User{
-		UserName:      username,
-		Password:      password,
+		UserName: username,
+		Password: password,
 	}
 	return user.CheckUser(d.engine)
 }
@@ -30,8 +30,17 @@ func (d *Dao) CheckUser(username, password string) (uint, bool, error) {
 func (d *Dao) GetUserById(userId uint) (model.User, error) {
 	user := model.User{
 		Model: &model.Model{
-			ID:   userId     ,
+			ID: userId,
 		},
 	}
 	return user.GetUserById(d.engine)
+}
+
+func (d *Dao) GetUsersByIds(userIds []int64) ([]model.User, error) {
+	var user model.User
+	users, err := user.GetUsersByIds(userIds, d.engine)
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
 }

@@ -2,6 +2,7 @@ package service
 
 import (
 	"douyin_service/global"
+	"douyin_service/internal/model"
 	"douyin_service/pkg/upload"
 	"douyin_service/pkg/util"
 	"errors"
@@ -122,4 +123,8 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
 
 	return err
+}
+
+func (svc *Service) QueryBatchVdieoById(favorList []int64) ([]model.Video, error) {
+	return svc.dao.QueryBatchVideoById(favorList)
 }
