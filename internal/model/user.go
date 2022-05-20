@@ -66,3 +66,12 @@ func (u User) GetUserById(db *gorm.DB) (User, error) {
 	}
 	return user, nil
 }
+
+func (u User) GetUsersByIds(userIds []int64, db *gorm.DB) ([]User, error) {
+	users := make([]User, 0)
+	err := db.Where("id IN ?", userIds).Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
