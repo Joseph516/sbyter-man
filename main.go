@@ -36,11 +36,12 @@ func init() {
 // @description 抖音后端服务
 // @termsOfService https://*****
 func main() {
+
+
 	gin.SetMode(global.ServerSetting.RunMode)
 	gin.ForceConsoleColor()
 	gin.DefaultWriter = colorable.NewColorableStdout()
 	router := controller.NewRouter()
-
 	s := &http.Server{
 		Addr:           ":" + global.ServerSetting.HttpPort,
 		Handler:        router,

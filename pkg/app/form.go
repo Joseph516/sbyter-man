@@ -3,7 +3,6 @@ package app
 import (
 	"douyin_service/global"
 	"douyin_service/pkg/errcode"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"
 	val "github.com/go-playground/validator/v10"
@@ -44,6 +43,7 @@ func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 		if !ok {
 			return false, errs
 		}
+
 		for key, value := range verrs.Translate(trans) {
 			errs = append(errs, &ValidError{
 				Key:     key,
@@ -58,12 +58,11 @@ func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 }
 
 // ValidToken 校验参数并检查Token
-func ValidToken(token string) (bool, error) {
-	flag, err := CheckToken(token)
-	fmt.Println(flag, err)
+func ValidToken(token string, userId string) (bool, *errcode.Error){
+	flag, err := CheckToken(token, userId)
 	if !flag {
 		global.Logger.Errorf("CheckToken errs: %v", err)
-		return flag, errcode.ErrorLoginExpire
+		return flag, err
 	}
 	return true, nil
 }

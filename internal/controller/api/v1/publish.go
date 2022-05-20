@@ -32,18 +32,19 @@ func (p Publish) List(c *gin.Context) {
 	}
 
 	var resp service.PublishListResponse
-	valid, err := app.ValidToken(param.Token)
+	userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		resp.StatusCode = errcode.ErrorLoginExpire.Code()
-		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		resp.StatusCode = tokenErr.Code()
+		resp.StatusMsg = tokenErr.Msg()
 		response.ToResponse(resp)
 		return
 	}
 
 	// 获取视频发布列表
 	svc := service.New(c.Request.Context())
-	resp, err = svc.PublishList(param.UserId)
+	resp, err := svc.PublishList(param.UserId)
 	if err != nil {
 		global.Logger.Errorf("svc.PublishList err: %v", err)
 		response.ToErrorResponse(errcode.ErrorListPublishFail)
@@ -76,11 +77,11 @@ func (p Publish) Action(c *gin.Context) {
 	}
 
 	var resp service.ResponseCommon
-	valid, err := app.ValidToken(param.Token)
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		resp.StatusCode = errcode.ErrorLoginExpire.Code()
-		resp.StatusMsg = errcode.ErrorLoginExpire.Msg()
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		resp.StatusCode = tokenErr.Code()
+		resp.StatusMsg = tokenErr.Msg()
 		response.ToResponse(resp)
 		return
 	}
