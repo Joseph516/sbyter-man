@@ -1,7 +1,6 @@
 package service
 
 type ActionRequest struct {
-	UserId     int64  `json:"user_id" form:"user_id" binding:"required"`
 	Token      string `json:"token" form:"token" binding:"required"`
 	VideoId    int64  `json:"video_id" form:"video_id" binding:"required"`
 	ActionType int    `json:"action_type" form:"action_type" binding:"required"`
@@ -21,8 +20,8 @@ type FavoriteListResponse struct {
 	VideoList []VideoInfo `json:"video_list"`
 }
 
-func (svc *Service) Action(param *ActionRequest) error {
-	user := param.UserId
+func (svc *Service) Action(param *ActionRequest, userId int64) error {
+	user := userId
 	video := param.VideoId
 	action := param.ActionType
 	ok, err := svc.dao.IsFavor(user, video)
