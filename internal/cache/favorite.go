@@ -11,12 +11,12 @@ import (
 // Favor userId给videoId点赞
 func (r *Redis) Favor(userId int64, videoId int64) (bool, error) {
 	key := util.UserFavorKey(userId)
-	err := r.redis.SetBit(key, int64(videoId), 1).Err()
+	err := r.redis.SetBit(key, videoId, 1).Err()
 	if err != nil {
 		return false, err
 	}
 	key = util.VideoFavoredKey(videoId)
-	err = r.redis.SetBit(key, int64(userId), 1).Err()
+	err = r.redis.SetBit(key, userId, 1).Err()
 	if err != nil {
 		return false, err
 	}
@@ -26,12 +26,12 @@ func (r *Redis) Favor(userId int64, videoId int64) (bool, error) {
 // CancelFavor userId给videoId取消点赞
 func (r *Redis) CancelFavor(userId int64, videoId int64) (bool, error) {
 	key := util.UserFavorKey(userId)
-	err := r.redis.SetBit(key, int64(videoId), 0).Err()
+	err := r.redis.SetBit(key, videoId, 0).Err()
 	if err != nil {
 		return false, err
 	}
 	key = util.VideoFavoredKey(videoId)
-	err = r.redis.SetBit(key, int64(userId), 0).Err()
+	err = r.redis.SetBit(key, userId, 0).Err()
 	if err != nil {
 		return false, err
 	}
