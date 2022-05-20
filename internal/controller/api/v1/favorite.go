@@ -30,17 +30,23 @@ func (f Favorite) Action(c *gin.Context) {
 		return
 	}
 
-	valid, err := app.ValidToken(param.Token, strconv.Itoa(int(param.UserId)))
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
-		global.Logger.Errorf("app.ValidToken errs: %v", err)
-		res.StatusCode = errcode.ErrorLoginExpire.Code()
-		res.StatusMsg = errcode.ErrorLoginExpire.Msg()
-		response.ToResponse(res)
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
 
 	svc := service.New(c.Request.Context())
-	err2 := svc.Action(&param)
+	err2 := svc.Action(&param, int64(userId))
 	if err2 != nil {
 		global.Logger.Errorf("svc.Action err: %v", err2)
 		response.ToErrorResponse(errcode.ErrorActionFail)
@@ -49,7 +55,6 @@ func (f Favorite) Action(c *gin.Context) {
 	res.StatusCode = 0
 	res.StatusMsg = "操作成功"
 	response.ToResponse(res)
-	return
 }
 
 // FavoriteList 登录用户点赞列表
@@ -84,5 +89,6 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 	res.StatusCode = 0
 	res.StatusMsg = "操作成功"
 	res.VideoList = favoriteList
+	response.ToResponse(res)
 	return
 }
