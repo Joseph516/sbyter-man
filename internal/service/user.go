@@ -34,3 +34,7 @@ func (svc *Service) CreateUser(param *CreateUserRequest) (uint, error) {
 func (svc *Service) GetUserById(param *GetUserInfoRequest) (model.User, error) {
 	return svc.dao.GetUserById(param.UserId)
 }
+
+func (svc *Service) GetUsersByIds(userIds []int64) ([]model.User, error) {
+	return svc.dao.GetUsersByIds(userIds)
+}

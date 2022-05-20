@@ -41,7 +41,7 @@ func NewRouter() *gin.Engine {
 	apiv1.Use()
 	{
 		apiv1.GET("/user/", user.Get)
-		apiv1.GET("favorite/list/", favorite.FavoriteList)
+		//apiv1.GET("favorite/list/", favorite.FavoriteList)
 		apiv1.POST("/favorite/action", favorite.Action)
 
 		// publish
