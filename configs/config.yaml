@@ -29,7 +29,7 @@ Database:
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 124.223.44.108:6379
+  Addr: 127.0.0.1:6379
   Password: zhouzhou233
   DB: 0
 JWT:
