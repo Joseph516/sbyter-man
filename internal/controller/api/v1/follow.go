@@ -9,23 +9,24 @@ import (
 	"strconv"
 )
 
-type User struct {}
+type Follow struct{}
 
-func NewUser() User {
-	return User{}
+func NewFollow() Follow {
+	return Follow{}
 }
 
-// Get 获取用户信息
-func (u User) Get(c *gin.Context)  {
-	param := service.GetUserInfoRequest{}
+func (f *Follow)Action(c *gin.Context)  {
+	// 解析入参
+	param := service.FollowActionRequest{}
 	response := app.NewResponse(c)
-	var res service.GetUserInfoResponse
 	valid, errs := app.BindAndValid(c, &param)
+	res :=service.ResponseCommon{}
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams)
 		return
 	}
+	// 验证token
 	userStr := strconv.Itoa(int(param.UserId))
 	valid, tokenErr := app.ValidToken(param.Token, userStr)
 	if !valid {
@@ -36,25 +37,18 @@ func (u User) Get(c *gin.Context)  {
 		return
 	}
 
+	//更新数据库
 	svc := service.New(c.Request.Context())
-	user, err := svc.GetUserById(&param)
-	if err != nil {
-		global.Logger.Errorf("svc.GetUserById err: %v", err)
-		response.ToResponse(errcode.ErrorGetUserInfoFail)
+	err := svc.FollowAction(&param)
+	if err!=nil{
+		global.Logger.Errorf("svc.FollowAction errs: %v", err)
+		response.ToErrorResponse(errcode.ErrorFollowActionFail)
 		return
 	}
 
-	res = service.GetUserInfoResponse{
-		User: &service.UserInfo{
-			ID:            user.ID,
-			Name:          user.UserName,
-			FollowCount:   user.FollowCount,
-			FollowerCount: user.FollowerCount,
-			IsFollow:      false,
-		},
-	}
 	res.StatusCode = 0
-	res.StatusMsg = "获取信息成功"
+	res.StatusMsg = "关注成功"
 	response.ToResponse(res)
 	return
+
 }

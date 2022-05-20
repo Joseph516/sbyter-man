@@ -26,6 +26,6 @@ go.work
 .AppleDouble
 .LSOverride
 .vscode/*
-
+.idea
 # custom
 /storage/
