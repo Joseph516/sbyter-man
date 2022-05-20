@@ -5,7 +5,6 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -54,7 +53,7 @@ func (f Favorite) Action(c *gin.Context) {
 func (f Favorite) FavoriteList(c *gin.Context) {
 	param := service.FavoriteListRequest{}
 	response := app.NewResponse(c)
-	var res service.ActionResponse
+	var res service.FavoriteListResponse
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
@@ -78,5 +77,5 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 	}
 
 	//TODO:根据favoriteList查询相应的视频。。。
-	fmt.Println(favoriteList)
+
 }
