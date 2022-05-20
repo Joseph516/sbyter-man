@@ -50,18 +50,56 @@ func (svc *Service) Action(param *ActionRequest) error {
 // 根据video和author拼接[]VideoInfo
 func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error) {
 	var videoInfos []VideoInfo
+	//查询videoId
 	videosId, err := svc.dao.QueryFavoriteByUserId(param.UserId)
 	if err != nil {
 		return nil, err
 	}
+	//查询video
 	videos, err := svc.QueryBatchVdieoById(videosId)
+	//筛选video的authorId
 	authorsId := make([]int64, 0)
 	for _, video := range videos {
 		authorsId = append(authorsId, int64(video.ID))
 	}
+	//查询author
 	authors, err := svc.GetUsersByIds(authorsId)
 	if err != nil {
 		return nil, err
 	}
+	//构建{authorId: author}映射
+	authorMap := make(map[int64]*UserInfo, 0)
+	for _, author := range authors {
+		//TODO：是否关注需要调用关注接口查询,先假设这是调用得到的结果。
+		isFollow := false
+		authorMap[int64(author.ID)] = &UserInfo{
+			ID:            author.ID,
+			Name:          author.UserName,
+			FollowCount:   author.FollowCount,
+			FollowerCount: author.FollowerCount,
+			IsFollow:      isFollow,
+		}
+	}
 
+	for _, video := range videos {
+		//调用isFavor接口查询是否点赞了
+		isFavorite, _ := svc.IsFavor(video.AuthorId, int64(video.ID))
+		videoInfo := VideoInfo{
+			Id:            video.ID,
+			Author:        *authorMap[int64(video.ID)],
+			PlayUrl:       video.PlayUrl,
+			CoverUrl:      video.CoverUrl,
+			FavoriteCount: video.FavoriteCount,
+			CommentCount:  video.CommentCount,
+			IsFavorite:    isFavorite,
+			Title:         video.Title,
+		}
+		videoInfos = append(videoInfos, videoInfo)
+	}
+	return videoInfos, nil
+}
+
+// IsFavor 查询是否点赞的功能，暂定只走数据库
+func (svc *Service) IsFavor(userId int64, videoId int64) (bool, error) {
+	return svc.dao.IsFavor(userId, videoId)
 }

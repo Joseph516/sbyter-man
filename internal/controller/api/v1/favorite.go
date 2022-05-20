@@ -6,6 +6,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 type Favorite struct {
@@ -21,14 +22,15 @@ func (f Favorite) Action(c *gin.Context) {
 	param := service.ActionRequest{}
 	response := app.NewResponse(c)
 	var res service.ActionResponse
-	valid, errs := app.BindAndValid(c, &param)
 
+	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	valid, err := app.ValidToken(param.Token)
+
+	valid, err := app.ValidToken(param.Token, strconv.Itoa(int(param.UserId)))
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", err)
 		res.StatusCode = errcode.ErrorLoginExpire.Code()
@@ -36,10 +38,11 @@ func (f Favorite) Action(c *gin.Context) {
 		response.ToResponse(res)
 		return
 	}
+
 	svc := service.New(c.Request.Context())
-	err = svc.Action(&param)
-	if err != nil {
-		global.Logger.Errorf("svc.Action err: %v", err)
+	err2 := svc.Action(&param)
+	if err2 != nil {
+		global.Logger.Errorf("svc.Action err: %v", err2)
 		response.ToErrorResponse(errcode.ErrorActionFail)
 		return
 	}
@@ -54,13 +57,15 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 	param := service.FavoriteListRequest{}
 	response := app.NewResponse(c)
 	var res service.FavoriteListResponse
+
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	valid, err := app.ValidToken(param.Token)
+
+	valid, err := app.ValidToken(param.Token, strconv.Itoa(int(param.UserId)))
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", err)
 		res.StatusCode = errcode.ErrorLoginExpire.Code()
@@ -68,14 +73,16 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 		response.ToResponse(res)
 		return
 	}
+
 	svc := service.New(c.Request.Context())
-	favoriteList, err := svc.FavoriteList(&param)
-	if err != nil {
-		global.Logger.Errorf("svc.GetUserById err: %v", err)
+	favoriteList, err2 := svc.FavoriteList(&param)
+	if err2 != nil {
+		global.Logger.Errorf("svc.GetUserById err: %v", err2)
 		response.ToResponse(errcode.ErrorActionListFail)
 		return
 	}
-
-	//TODO:根据favoriteList查询相应的视频。。。
-
+	res.StatusCode = 0
+	res.StatusMsg = "操作成功"
+	res.VideoList = favoriteList
+	return
 }

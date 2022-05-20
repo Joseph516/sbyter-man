@@ -45,15 +45,19 @@ func NewRouter() *gin.Engine {
 		apiv1.POST("/user/login/", user.Login)
 		apiv1.POST("/user/register/", user.Register)
 		apiv1.GET("/user/", user.Get)
-		//apiv1.GET("favorite/list/", favorite.FavoriteList)
+
+		// favor
+		apiv1.GET("favorite/list/", favorite.FavoriteList)
 		apiv1.POST("/favorite/action", favorite.Action)
 
 		// publish
 		apiv1.GET("/publish/list/", pub.List)
 		apiv1.POST("/publish/action/", pub.Action)
+
 		//comment
 		apiv1.GET("/comment/list/", com.List)
 		apiv1.POST("/comment/action/", com.CommentAction)
+
 		// feed
 		apiv1.GET("/feed/", feed.Feed)
 	}
