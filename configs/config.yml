@@ -16,18 +16,18 @@ App:
     - .mp4
 Database:
   DBType: mysql
-  UserName: root
-  Password: 123456
-  Host: 127.0.0.1:3306
-  DBName: simple_ticktok
+  UserName: ###
+  Password: ###
+  Host: ###
+  DBName: ###
   TablePrefix: douyin_
   Charset: utf8
   ParseTime: True
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 124.223.44.108:6379
-  Password: "zhouzhou233"
+  Addr: ###
+  Password: ###
   DB: 0
 JWT:
   Key: douyin
