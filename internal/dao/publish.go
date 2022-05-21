@@ -2,6 +2,7 @@ package dao
 
 import (
 	"douyin_service/internal/model"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -16,6 +17,9 @@ func (d *Dao) ListVideoByUserId(userId uint) ([]model.Video, error) {
 func (d *Dao) PublishVideo(authorId int64, playUrl, coverUrl, title string) error {
 	now := time.Now()
 	return model.Video{
+		Model: gorm.Model{
+			CreatedAt: now,
+		},
 		AuthorId:      authorId,
 		PlayUrl:       playUrl,
 		CoverUrl:      coverUrl,
@@ -42,4 +46,8 @@ func (d *Dao) QueryBatchVideoById(favorList []int64) ([]model.Video, error) {
 		return nil, err
 	}
 	return videos, nil
+}
+
+func (d *Dao) UpdatesVideo(video model.Video) error {
+	return video.UpdatesVideo(d.engine)
 }

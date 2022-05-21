@@ -16,7 +16,7 @@ func NewPublish() Publish {
 	return Publish{}
 }
 
-// List发布列表
+// List 发布列表
 // 登录用户的视频发布列表，直接列出用户所有投稿过的视频
 // 参数名	位置	参数类型	必填	说明
 // token	query		是	用户鉴权token
@@ -54,7 +54,7 @@ func (p Publish) List(c *gin.Context) {
 	response.ToResponse(resp)
 }
 
-// Action投稿接口, 登录用户选择视频上传
+// Action 投稿接口, 登录用户选择视频上传
 // 参数名	参数类型	必填	说明
 // data	file	是	视频数据
 // token	text	是	用户鉴权token
