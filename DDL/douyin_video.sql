@@ -16,8 +16,8 @@ CREATE TABLE `douyin_video` (
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频标题',
   `comment_count` int DEFAULT '0' COMMENT '视频的评论总数',
   `publish_date` timestamp NULL DEFAULT NULL COMMENT '发布时期',
-  `created_at` int DEFAULT NULL,
-  `updated_at` int DEFAULT NULL,
-  `deleted_at` int DEFAULT NULL,
+  `created_at` timestamp DEFAULT NULL,
+  `updated_at` timestamp DEFAULT NULL,
+  `deleted_at` timestamp DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
