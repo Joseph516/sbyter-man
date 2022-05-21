@@ -1,5 +1,0 @@
-2022/05/19 16:36:42 {"callers":["F:/goproject/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.Action err: Error 1062: Duplicate entry '1-2' for key 'douyin_favorite.user_video_un'","time":1652949402547873400}
-2022/05/19 19:56:37 {"callers":["F:/goproject/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652961397518991400}
-2022/05/19 19:56:37 {"callers":["F:/goproject/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652961397518991400}
-2022/05/19 19:56:49 {"callers":["F:/goproject/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1652961409413179200}
-2022/05/19 19:56:49 {"callers":["F:/goproject/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10010002, 错误信息：登录过期","time":1652961409413179200}

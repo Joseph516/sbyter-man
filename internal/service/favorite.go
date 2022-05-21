@@ -31,11 +31,31 @@ func (svc *Service) Action(param *ActionRequest, userId int64) error {
 	//点赞
 	if action == 1 && !ok {
 		err := svc.dao.FavorAction(user, video)
+		if err != nil {
+			return err
+		}
+		//还需要取video表中修改对应的favorite_count
+		v, err := svc.dao.QueryVideoById(video)
+		if err != nil {
+			return err
+		}
+		v.FavoriteCount++
+		err = svc.dao.UpdatesVideo(v)
 		return err
 	}
 	//取消点赞
 	if action == 2 && ok {
 		err := svc.dao.CancelFavorAction(user, video)
+		if err != nil {
+			return nil
+		}
+		//还需要取video表中修改对应的favorite_count
+		v, err := svc.dao.QueryVideoById(video)
+		if err != nil {
+			return err
+		}
+		v.FavoriteCount--
+		err = svc.dao.UpdatesVideo(v)
 		return err
 	}
 	return nil
@@ -67,11 +87,11 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		return nil, err
 	}
 	//构建{authorId: author}映射
-	authorMap := make(map[int64]*UserInfo, 0)
+	authorMap := make(map[int64]UserInfo, 0)
 	for _, author := range authors {
 		//TODO：是否关注需要调用关注接口查询,先假设这是调用得到的结果。
 		isFollow := false
-		authorMap[int64(author.ID)] = &UserInfo{
+		authorMap[int64(author.ID)] = UserInfo{
 			ID:            author.ID,
 			Name:          author.UserName,
 			FollowCount:   author.FollowCount,
@@ -85,7 +105,7 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		isFavorite, _ := svc.IsFavor(video.AuthorId, int64(video.ID))
 		videoInfo := VideoInfo{
 			Id:            video.ID,
-			Author:        *authorMap[int64(video.ID)],
+			Author:        authorMap[int64(video.ID)],
 			PlayUrl:       video.PlayUrl,
 			CoverUrl:      video.CoverUrl,
 			FavoriteCount: video.FavoriteCount,
