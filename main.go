@@ -36,8 +36,6 @@ func init() {
 // @description 抖音后端服务
 // @termsOfService https://*****
 func main() {
-
-
 	gin.SetMode(global.ServerSetting.RunMode)
 	gin.ForceConsoleColor()
 	gin.DefaultWriter = colorable.NewColorableStdout()
