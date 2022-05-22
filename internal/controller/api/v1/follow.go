@@ -47,7 +47,7 @@ func (f *Follow)Action(c *gin.Context)  {
 	}
 
 	res.StatusCode = 0
-	res.StatusMsg = "关注成功"
+	res.StatusMsg = "操作成功"
 	response.ToResponse(res)
 	return
 

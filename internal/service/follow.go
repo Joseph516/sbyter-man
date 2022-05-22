@@ -1,5 +1,7 @@
 package service
 
+import "douyin_service/pkg/errcode"
+
 type FollowActionRequest struct {
 	UserId int64   `form:"user_id"  binding:"required"`
 	Token  string `form:"token" binding:"required"`
@@ -9,5 +11,12 @@ type FollowActionRequest struct {
 }
 
 func (svc *Service) FollowAction(param *FollowActionRequest) error {
-	return svc.dao.FollowAction(param.UserId, param.ToUserId)
+	switch param.ActionType{
+	case 1:
+		return svc.dao.CreateFollow(param.UserId, param.ToUserId)
+	case 2:
+		return svc.dao.CancelFollow(param.UserId, param.ToUserId)
+	default:
+		return errcode.InvalidParams
+	}
 }
