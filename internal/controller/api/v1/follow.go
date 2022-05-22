@@ -27,8 +27,7 @@ func (f *Follow)Action(c *gin.Context)  {
 		return
 	}
 	// 验证token
-	userStr := strconv.Itoa(int(param.UserId))
-	valid, tokenErr := app.ValidToken(param.Token, userStr)
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
 		res.StatusCode = tokenErr.Code()
@@ -36,10 +35,18 @@ func (f *Follow)Action(c *gin.Context)  {
 		response.ToResponse(res)
 		return
 	}
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
 
 	//更新数据库
 	svc := service.New(c.Request.Context())
-	err := svc.FollowAction(&param)
+	err = svc.FollowAction(&param, int64(userId))
 	if err!=nil{
 		global.Logger.Errorf("svc.FollowAction errs: %v", err)
 		response.ToErrorResponse(errcode.ErrorFollowActionFail)
