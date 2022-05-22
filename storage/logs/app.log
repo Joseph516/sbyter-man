@@ -374,3 +374,7 @@
 2022/05/22 17:05:03 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653210303829667500}
 2022/05/22 17:05:04 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653210304754284900}
 2022/05/22 17:05:07 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653210307392921600}
+2022/05/22 19:25:18 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653218718415120500}
+2022/05/22 19:25:18 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653218718415631000}
+2022/05/22 20:10:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653221441663936800}
+2022/05/22 20:10:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653221441663936800}
