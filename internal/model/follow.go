@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"gorm.io/gorm"
 )
 
@@ -23,12 +22,16 @@ func (f Follow) Delete(db *gorm.DB) error {
 	return db.Where("followed_id = ? And follower_id = ?", f.FollowedId, f.FollowerId).Delete(&f).Error
 }
 
-func (f Follow) IsExist(db *gorm.DB ) (bool, error) {
+func (f Follow) IsExist(db *gorm.DB) (bool, error) {
 	var follows []Follow
 	db.Where("followed_id = ? and follower_id = ?", f.FollowedId, f.FollowerId).Find(&follows)
-	fmt.Println(follows)
 	if len(follows)==0{
 		return false, nil
 	}
 	return true, nil
+}
+
+func (f Follow) QueryFollowList(db *gorm.DB, userId int64)(follows []Follow, err error)  {
+	err =  db.Where("follower_id = ?", userId).Find(&follows).Error
+	return
 }

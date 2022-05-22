@@ -25,3 +25,8 @@ func (d *Dao) CancelFollow(follower, followed int64) error {
 	err := follow.Delete(d.engine)
 	return err
 }
+
+func (d *Dao) FollowList(userId int64) ([]model.Follow, error) {
+	follows, err := model.Follow{}.QueryFollowList(d.engine, userId)
+	return follows, err
+}
