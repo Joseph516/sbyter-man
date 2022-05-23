@@ -48,6 +48,14 @@ func (d *Dao) QueryBatchVideoById(favorList []int64) ([]model.Video, error) {
 	return videos, nil
 }
 
-func (d *Dao) UpdatesVideo(video model.Video) error {
-	return video.UpdatesVideo(d.engine)
+// UpdateFavoriteCnt 更新video的facorite_count
+func (d *Dao) UpdateFavoriteCnt(video model.Video) error {
+	return video.UpdateFavoriteCnt(d.engine)
+}
+
+// QueryFavorCntById 根据Id查询点赞数量
+func (d *Dao) QueryFavorCntById(videoId int64) (int64, error) {
+	var video model.Video
+	video.ID = uint(videoId)
+	return video.QueryFavorCntById(d.engine)
 }
