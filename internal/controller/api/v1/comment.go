@@ -23,20 +23,18 @@ func (co Comment) List(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	var resp service.CommentListResponse
-	userStr := strconv.Itoa(int(param.UserId))
-	valid, tokenErr := app.ValidToken(param.Token, userStr)
+
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
-		resp.StatusCode = tokenErr.Code()
-		resp.StatusMsg = tokenErr.Msg()
-		response.ToResponse(resp)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
 	//获取评论列表
+	var resp service.CommentListResponse
 	svc := service.New(c.Request.Context())
 	resp, err := svc.GetCommentList(param.VideoId)
 	if err != nil {
@@ -57,22 +55,29 @@ func (co Comment) CommentAction(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
+		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	resp := service.ResponseCommon{}
-	userStr := strconv.Itoa(int(param.UserId))
-	valid, tokenErr := app.ValidToken(param.Token, userStr)
+
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
-		resp.StatusCode = tokenErr.Code()
-		resp.StatusMsg = tokenErr.Msg()
-		response.ToResponse(resp)
+		response.ToErrorResponse(tokenErr)
 		return
 	}
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionPublishFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
+	param.UserId = int64(userId)
 	//提交评论
+	var resp service.PublishListResponse
 	svc := service.New(c.Request.Context())
-	err := svc.CommentAction(&param)
+	err = svc.CommentAction(&param)
 	if err != nil {
 		global.Logger.Errorf("svc.CommentAction err: %v", err)
 		response.ToErrorResponse(errcode.ErrorActionCommentFail)

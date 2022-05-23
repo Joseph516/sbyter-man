@@ -15,7 +15,7 @@ func (c Comment) TableName() string {
 
 func (c Comment) ListCommentByVideoId(db *gorm.DB) ([]Comment, error) {
 	var comments []Comment
-	err := db.Select("user_id, content, created_at").Where("video_id = ?", c.VideoId).Find(&comments).Error
+	err := db.Where("video_id = ?", c.VideoId).Find(&comments).Error
 	return comments, err
 }
 

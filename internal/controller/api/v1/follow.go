@@ -27,8 +27,7 @@ func (f *Follow)Action(c *gin.Context)  {
 		return
 	}
 	// 验证token
-	userStr := strconv.Itoa(int(param.UserId))
-	valid, tokenErr := app.ValidToken(param.Token, userStr)
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
 		res.StatusCode = tokenErr.Code()
@@ -36,10 +35,18 @@ func (f *Follow)Action(c *gin.Context)  {
 		response.ToResponse(res)
 		return
 	}
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
 
 	//更新数据库
 	svc := service.New(c.Request.Context())
-	err := svc.FollowAction(&param)
+	err = svc.FollowAction(&param, int64(userId))
 	if err!=nil{
 		global.Logger.Errorf("svc.FollowAction errs: %v", err)
 		response.ToErrorResponse(errcode.ErrorFollowActionFail)
@@ -47,8 +54,47 @@ func (f *Follow)Action(c *gin.Context)  {
 	}
 
 	res.StatusCode = 0
-	res.StatusMsg = "关注成功"
+	res.StatusMsg = "操作成功"
 	response.ToResponse(res)
 	return
 
+}
+
+func (f Follow) FollowerList(c *gin.Context)  {
+	param := service.FollowListRequest{}
+	response := app.NewResponse(c)
+	valid, errs := app.BindAndValid(c, &param)
+	res :=service.FollowListResponse{}
+	if !valid {
+		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
+		response.ToErrorResponse(errcode.InvalidParams)
+		return
+	}
+	// 验证token
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
+	if !valid {
+		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
+		res.StatusCode = tokenErr.Code()
+		res.StatusMsg = tokenErr.Msg()
+		response.ToResponse(res)
+		return
+	}
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
+	//访问数据库
+	svc := service.New(c.Request.Context())
+	res, err = svc.FollowList(int64(userId))
+	if err!=nil{
+		global.Logger.Errorf("FollowerList errs: %v", err.Error())
+		res.StatusCode = -1
+		res.StatusMsg = err.Error()
+	}
+	response.ToResponse(res)
+	return
 }
