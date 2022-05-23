@@ -378,3 +378,19 @@
 2022/05/22 19:25:18 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653218718415631000}
 2022/05/22 20:10:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653221441663936800}
 2022/05/22 20:10:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653221441663936800}
+2022/05/23 10:16:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272212462646500}
+2022/05/23 10:16:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272212478809500}
+2022/05/23 10:16:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272219283342200}
+2022/05/23 10:16:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272219283342200}
+2022/05/23 10:16:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272219291728000}
+2022/05/23 10:16:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272219291728000}
+2022/05/23 10:17:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272221338888300}
+2022/05/23 10:17:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653272221338888300}
+2022/05/23 10:17:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272234021375800}
+2022/05/23 10:17:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653272238572646500}
+2022/05/23 10:20:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653272430264896000}
+2022/05/23 10:20:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272445227443100}
+2022/05/23 10:20:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272453271637700}
+2022/05/23 10:21:05 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272465496936000}
+2022/05/23 10:25:03 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272703755795800}
+2022/05/23 10:25:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653272708148216000}
