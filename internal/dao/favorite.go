@@ -4,6 +4,8 @@ import (
 	"douyin_service/internal/model"
 )
 
+// dao的favorite相关操作（全部走数据库）
+
 func (d *Dao) FavorAction(userId int64, videoId int64) error {
 	favorite := model.Favorite{
 		UserId:  userId,
