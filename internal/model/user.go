@@ -3,6 +3,7 @@ package model
 import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
+	"douyin_service/pkg/util"
 	"gorm.io/gorm"
 )
 
@@ -50,10 +51,13 @@ func (u User) List(db *gorm.DB, pageOffset, pageSize int) ([]*User, error) {
 func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 	var user User
 	var err error
-	if err = db.Where("user_name = ? AND password = ?", u.UserName, u.Password).Find(&user).Error; err != nil {
+	if err = db.Where("user_name = ?", u.UserName).Find(&user).Error; err != nil {
 		return 0, false, err
 	}
 	if (user == User{}) {
+		return errcode.ErrorUserID, false, err
+	}
+	if !util.CheckBcrypt(user.Password, u.Password) { // 核实数据库密码
 		return errcode.ErrorUserID, false, err
 	}
 	return user.ID, true, nil

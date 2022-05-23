@@ -1,7 +1,7 @@
 package service
 
 type CommentListRequest struct {
-	UserId  int64  `form:"user_id"  binding:"required"`
+	UserId  int64  `form:"user_id"  binding:"-"`
 	VideoId int64  `form:"video_id"  binding:"required"`
 	Token   string `form:"token" binding:"required"`
 }
@@ -19,7 +19,7 @@ type CommentInfo struct {
 }
 
 type CommentActionRequest struct {
-	UserId      int64  `form:"user_id" binding:"required"`
+	UserId      int64  `form:"user_id" binding:"-"`
 	Token       string `form:"token" binding:"required"`
 	VideoId     int64  `form:"video_id"  binding:"required"`
 	ActionType  int64  `form:"action_type"  binding:"required"`
