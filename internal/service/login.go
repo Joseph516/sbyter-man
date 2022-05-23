@@ -1,5 +1,10 @@
 package service
 
+import (
+	"douyin_service/pkg/errcode"
+	"douyin_service/pkg/util"
+)
+
 type LoginRequest struct {
 	UserName string `form:"username" binding:"required"`
 	Password string `form:"password" binding:"required"`
@@ -27,9 +32,13 @@ func (svc *Service) Login(param *LoginRequest) (uint, bool, error) {
 }
 
 func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
+	hashPassword, err := util.EncodeBcrypt(param.Password)
+	if err != nil { // 加密失败
+		return errcode.ErrorUserID, false, err
+	}
 	createUserRequest := CreateUserRequest{
 		UserName: param.UserName,
-		Password: param.Password,
+		Password: hashPassword,
 	}
 	uid, err := svc.CreateUser(&createUserRequest)
 	if err != nil {
