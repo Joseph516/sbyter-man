@@ -13,26 +13,39 @@ func (d *Dao)IsFollow(follower, followed int64) (flag bool,err error) {
 	return
 }
 
-func (d *Dao) CreateFollow(follower, followed int64) error {
+func (d *Dao) CreateFollow(follower, followed int64) (flag bool, err error) {
 	follow := model.Follow{
 		FollowedId: followed,
 		FollowerId: follower,
 	}
-	if flag, err:= follow.IsExist(d.engine);flag{
-		return err
+	//如果已经关注了，返回false
+	if flag, err = follow.IsExist(d.engine);flag||err!=nil{
+		flag = false
+		return
 	}
-	err := follow.Create(d.engine)
-	return err
+	//如果还没有关注，添加本条记录，返回true
+	err = follow.Create(d.engine)
+	if err!=nil{
+		return
+	}
+	flag = true
+	return
 }
 
-func (d *Dao) CancelFollow(follower, followed int64) error {
+func (d *Dao) CancelFollow(follower, followed int64) (bool, error) {
 
 	follow := model.Follow{
 		FollowedId: followed,
 		FollowerId: follower,
 	}
+	if flag, err:=follow.IsExist(d.engine);!flag||err!=nil{
+		return false, err
+	}
 	err := follow.Delete(d.engine)
-	return err
+	if err!=nil{
+		return false, err
+	}
+	return true, err
 }
 
 func (d *Dao) FollowList(userId int64) ([]model.Follow, error) {

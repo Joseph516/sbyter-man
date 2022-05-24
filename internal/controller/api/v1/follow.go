@@ -46,7 +46,7 @@ func (f *Follow)Action(c *gin.Context)  {
 
 	//更新数据库
 	svc := service.New(c.Request.Context())
-	err = svc.FollowAction(&param, int64(userId))
+	_, err = svc.FollowAction(&param, int64(userId))
 	if err!=nil{
 		global.Logger.Errorf("svc.FollowAction errs: %v", err)
 		response.ToErrorResponse(errcode.ErrorFollowActionFail)
