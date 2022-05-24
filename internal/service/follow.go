@@ -21,14 +21,14 @@ type FollowListResponse struct {
 	UserList []UserInfo `json:"user_list" binding:"required"`
 }
 
-func (svc *Service) FollowAction(param *FollowActionRequest, userId int64) error {
+func (svc *Service) FollowAction(param *FollowActionRequest, userId int64)(bool, error) {
 	switch param.ActionType{
 	case 1:
 		return svc.dao.CreateFollow(userId, param.ToUserId)
 	case 2:
 		return svc.dao.CancelFollow(userId, param.ToUserId)
 	default:
-		return errcode.InvalidParams
+		return false, errcode.InvalidParams
 	}
 }
 
