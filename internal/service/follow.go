@@ -2,7 +2,6 @@ package service
 
 import (
 	"douyin_service/pkg/errcode"
-	"fmt"
 )
 
 type FollowActionRequest struct {
@@ -37,10 +36,10 @@ func (svc *Service) FollowAction(param *FollowActionRequest, userId int64)(flag 
 	default:
 		return false, errcode.InvalidParams
 	}
-	_, followCount, _ := svc.redis.QueryFollowCnt(userId)
-	fmt.Println("关注人数:",followCount)
-	_, fanCount, _ := svc.redis.QueryFanCnt(param.ToUserId)
-	fmt.Println("粉丝人数:", fanCount)
+	//_, followCount, _ := svc.redis.QueryFollowCnt(userId)
+	//fmt.Println("关注人数:",followCount)
+	//_, fanCount, _ := svc.redis.QueryFanCnt(param.ToUserId)
+	//fmt.Println("粉丝人数:", fanCount)
 	return
 }
 
