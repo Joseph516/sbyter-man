@@ -55,5 +55,5 @@ func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
 	if err != nil {
 		return user.ID, false, err
 	}
-	return  user.ID, true, nil
+	return user.ID, true, nil
 }

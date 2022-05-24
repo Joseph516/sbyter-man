@@ -51,7 +51,7 @@ func (d *Dao) GetUserById(userId uint) (model.User, error) {
 	return user.GetUserById(d.engine)
 }
 
-func (d *Dao) GetUsersByIds(userIds []int64) ([]model.User, error) {
+func (d *Dao) GetUsersByIds(userIds []uint) ([]model.User, error) {
 	var user model.User
 	users, err := user.GetUsersByIds(userIds, d.engine)
 	if err != nil {
