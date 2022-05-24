@@ -4,7 +4,11 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"douyin_service/pkg/util"
+<<<<<<< HEAD
+	"fmt"
+=======
 
+>>>>>>> 1029162c74fcce3e8f40742c52370311825f8c8d
 	"gorm.io/gorm"
 )
 
@@ -17,6 +21,7 @@ type User struct {
 	Avatar          string `json:"avatar"`           // 头像
 	Signature       string `json:"signature"`        // 个性签名
 	BackgroundImage string `json:"background_image"` // 背景图片
+	LoginIP         string `json:"login_ip"`         // 最近登陆的IP地址
 }
 
 type UserSwagger struct {
@@ -64,6 +69,9 @@ func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 	if !util.CheckBcrypt(user.Password, u.Password) { // 核实数据库密码
 		return errcode.ErrorUserID, false, err
 	}
+	if u.LoginIP != user.LoginIP {
+		return user.ID, false, errcode.ErrorLoginDanger
+	}
 	return user.ID, true, nil
 }
 
@@ -82,4 +90,10 @@ func (u User) GetUsersByIds(userIds []uint, db *gorm.DB) ([]User, error) {
 		return nil, err
 	}
 	return users, nil
+}
+
+func (u User) UpdateIP(db *gorm.DB) error {
+	err := db.Model(&User{}).Where("id = ?", u.ID).Update("login_ip", u.LoginIP).Error
+	fmt.Println("err: ", err)
+	return err
 }

@@ -53,6 +53,8 @@ func RandomSign() (string, error) {
 
 	return rainbowFart.Text, nil
 }
+
+//RandomBackground 获得一张随机背景图
 func RandomBackground() (string, error) {
 	url := "https://tuapi.eees.cc/api.php?category={fengjing}&type=json"
 	resp, err := http.Get(url)

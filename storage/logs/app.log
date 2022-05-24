@@ -394,6 +394,100 @@
 2022/05/23 10:21:05 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272465496936000}
 2022/05/23 10:25:03 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653272703755795800}
 2022/05/23 10:25:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653272708148216000}
+<<<<<<< HEAD
+2022/05/23 17:33:00 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653298380729303400}
+2022/05/23 17:33:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653298392536899900}
+2022/05/23 17:34:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653298447437487400}
+2022/05/23 21:46:37 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313597494210600}
+2022/05/23 21:46:37 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313597510021700}
+2022/05/23 21:46:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313599943732200}
+2022/05/23 21:46:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313599943732200}
+2022/05/23 21:46:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313599947544700}
+2022/05/23 21:46:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653313599947544700}
+2022/05/23 21:46:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653313602824377000}
+2022/05/23 21:46:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653313602824754700}
+2022/05/23 21:46:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653313613844914800}
+2022/05/23 21:46:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653313619681341400}
+2022/05/23 21:47:37 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653313657595757800}
+2022/05/23 21:50:50 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653313850789724200}
+2022/05/23 21:50:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653313856955676800}
+2022/05/23 21:51:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653313861180065500}
+2022/05/23 21:51:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653313861180214100}
+2022/05/23 21:51:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653313871640418300}
+2022/05/23 21:58:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653314304208913600}
+2022/05/23 22:02:31 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653314551407241000}
+2022/05/23 22:02:32 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653314552230959200}
+2022/05/23 22:02:32 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653314552231593400}
+2022/05/23 22:02:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653314572758903300}
+2022/05/23 22:09:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653314983231575900}
+2022/05/23 22:09:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653314983252813700}
+2022/05/23 22:09:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653314983599481200}
+2022/05/23 22:09:55 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653314995302293600}
+2022/05/23 22:10:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653315001079588000}
+2022/05/23 22:10:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: Error 1146: Table 'douyin.douyin_favorite' doesn't exist","time":1653315008715006500}
+2022/05/23 22:19:50 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653315590000455700}
+2022/05/23 22:20:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653315606352691800}
+2022/05/23 22:20:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653315611596329400}
+2022/05/24 21:22:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398539776505600}
+2022/05/24 21:22:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398539904545000}
+2022/05/24 21:22:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398541763986600}
+2022/05/24 21:22:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398541763986600}
+2022/05/24 21:22:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398541792188800}
+2022/05/24 21:22:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653398541792188800}
+2022/05/24 21:22:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653398544386914800}
+2022/05/24 21:22:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653398544387372300}
+2022/05/24 21:35:51 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653399351795379200}
+2022/05/24 21:36:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653399368309407800}
+2022/05/24 21:36:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653399368310367700}
+2022/05/24 21:44:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653399893592731500}
+2022/05/24 21:45:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653399912376859900}
+2022/05/24 21:45:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1653399934964014900}
+2022/05/24 21:45:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1653399934964088300}
+2022/05/24 21:46:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653399975525854500}
+2022/05/24 21:47:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653400038732726700}
+2022/05/24 22:17:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653401876592076700}
+2022/05/24 22:17:57 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"cxtksofwlawfdidg\": mail: missing '@' or angle-addr","time":1653401877082020200}
+2022/05/24 22:19:20 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653401960058445500}
+2022/05/24 22:19:20 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"cxtksofwlawfdidg\": mail: missing '@' or angle-addr","time":1653401960470848700}
+2022/05/24 22:20:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402011865521400}
+2022/05/24 22:20:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"cxtksofwlawfdidg\": mail: missing '@' or angle-addr","time":1653402012271921500}
+2022/05/24 22:21:03 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402063387245700}
+2022/05/24 22:21:03 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"cxtksofwlawfdidg\": mail: missing '@' or angle-addr","time":1653402063741987400}
+2022/05/24 22:23:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402222256694700}
+2022/05/24 22:23:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"cxtksofwlawfdidg\": mail: missing '@' or angle-addr","time":1653402222644345600}
+2022/05/24 22:24:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402261598910200}
+2022/05/24 22:26:16 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402376613614100}
+2022/05/24 22:27:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402442533488100}
+2022/05/24 22:28:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402521060482800}
+2022/05/24 22:31:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653402683448333100}
+2022/05/24 23:05:55 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653404755356258900}
+2022/05/24 23:07:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653404855016665600}
+2022/05/24 23:09:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653404978044793700}
+2022/05/24 23:09:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653404985624907300}
+2022/05/24 23:11:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405064372078800}
+2022/05/24 23:11:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405072678987600}
+2022/05/24 23:11:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405074393288300}
+2022/05/24 23:11:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405075976258500}
+2022/05/24 23:11:17 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405077341339900}
+2022/05/24 23:11:18 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405078567127000}
+2022/05/24 23:11:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405079470931000}
+2022/05/24 23:11:20 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405080277524700}
+2022/05/24 23:11:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405081036559200}
+2022/05/24 23:11:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405081870284000}
+2022/05/24 23:12:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405134447116300}
+2022/05/24 23:16:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405390191891900}
+2022/05/24 23:16:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"app.BindAndValid errs: ","time":1653405394745697800}
+2022/05/24 23:17:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653405465627322800}
+2022/05/24 23:23:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653405818349370900}
+2022/05/24 23:26:28 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653405988447032900}
+2022/05/24 23:43:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653407015572228200}
+2022/05/24 23:44:57 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653407097470119000}
+2022/05/24 23:45:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.UpdateUserLoginIP: unsupported data type: map[login_ip:192.168.1.171]: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")","time":1653407108050199900}
+2022/05/24 23:45:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.UpdateUserLoginIP: unsupported data type: map[login_ip:192.168.1.171]: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")","time":1653407119175247000}
+2022/05/24 23:46:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653407207547355700}
+2022/05/24 23:46:57 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.UpdateUserLoginIP: unsupported data type: map[login_ip:192.168.1.171]: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")","time":1653407217611725000}
+2022/05/24 23:47:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 25 main.init.0"],"level":"error","message":"svc.UpdateUserLoginIP: unsupported data type: map[login_ip:192.168.1.171]: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")","time":1653407268220757900}
+=======
 2022/05/24 17:31:28 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653384688708609000}
 2022/05/24 17:31:28 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653384688714083100}
 2022/05/24 17:31:35 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653384695450848100}
@@ -445,3 +539,4 @@
 2022/05/24 17:40:29 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653385229580051100}
 2022/05/24 17:40:29 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 24 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653385229580870000}
 2022/05/24 20:11:34 {"callers":["E:/code/GitDepository/sbyter-man/main.go: 27 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653394294362934100}
+>>>>>>> 1029162c74fcce3e8f40742c52370311825f8c8d
