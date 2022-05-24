@@ -139,7 +139,7 @@ func (svc *Service) IsFavor(userId int64, videoId int64) (bool, error) {
 	return svc.redis.IsFavor(userId, videoId)
 }
 
-// QueryFavorCnt 获取video的点赞数量
+// QueryFavorCnt 获取video的点赞数量(先查数据库再查缓存)
 func (svc *Service) QueryFavorCnt(video int64) (int64, error) {
 	ok, cnt, err := svc.redis.QueryFavorCnt(video)
 	if err != nil {
