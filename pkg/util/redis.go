@@ -48,3 +48,11 @@ func GetListFromBitMap(bitmap []byte) []uint {
 	}
 	return res
 }
+
+func FollowCountKey(id uint) string {
+	return strconv.Itoa(int(id)) + "_FOLLOW_COUNT"
+}
+
+func FanCountKey(id uint) string {
+	return strconv.Itoa(int(id)) + "_FAN_COUNT"
+}

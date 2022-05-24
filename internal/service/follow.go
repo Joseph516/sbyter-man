@@ -12,7 +12,7 @@ type FollowActionRequest struct {
 }
 
 type FollowListRequest struct {
-	//UserId int64   `form:"user_id"  binding:"required"`
+	//UserId uint   `form:"user_id"  binding:"required"`
 	Token string `form:"token" binding:"required"`
 }
 
@@ -21,15 +21,26 @@ type FollowListResponse struct {
 	UserList []UserInfo `json:"user_list" binding:"required"`
 }
 
-func (svc *Service) FollowAction(param *FollowActionRequest, userId uint) (bool, error) {
+func (svc *Service) FollowAction(param *FollowActionRequest, userId uint) (flag bool, err error) {
 	switch param.ActionType {
 	case 1:
-		return svc.dao.CreateFollow(userId, param.ToUserId)
+		flag, err = svc.dao.CreateFollow(userId, param.ToUserId)
+		if flag {
+			svc.redis.FollowAction(param.ToUserId, userId)
+		}
 	case 2:
-		return svc.dao.CancelFollow(userId, param.ToUserId)
+		flag, err = svc.dao.CancelFollow(userId, param.ToUserId)
+		if flag {
+			svc.redis.CancelFollowAction(param.ToUserId, userId)
+		}
 	default:
 		return false, errcode.InvalidParams
 	}
+	//_, followCount, _ := svc.redis.QueryFollowCnt(userId)
+	//fmt.Println("关注人数:",followCount)
+	//_, fanCount, _ := svc.redis.QueryFanCnt(param.ToUserId)
+	//fmt.Println("粉丝人数:", fanCount)
+	return
 }
 
 func (svc *Service) FollowList(userId uint) (res FollowListResponse, err error) {
