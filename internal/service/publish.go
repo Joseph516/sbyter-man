@@ -125,6 +125,6 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	return err
 }
 
-func (svc *Service) QueryBatchVdieoById(favorList []int64) ([]model.Video, error) {
+func (svc *Service) QueryBatchVdieoById(favorList []uint) ([]model.Video, error) {
 	return svc.dao.QueryBatchVideoById(favorList)
 }

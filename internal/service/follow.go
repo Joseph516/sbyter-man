@@ -5,15 +5,15 @@ import (
 )
 
 type FollowActionRequest struct {
-	//UserId int64   `form:"user_id"  binding:"required"`
-	Token  string `form:"token" binding:"required"`
-	ToUserId int64 `form:"to_user_id" binding:"required"`
-	ActionType int64 `form:"action_type" binding:"required"`
+	//UserId uint   `form:"user_id"  binding:"required"`
+	Token      string `form:"token" binding:"required"`
+	ToUserId   uint   `form:"to_user_id" binding:"required"`
+	ActionType int64  `form:"action_type" binding:"required"`
 }
 
 type FollowListRequest struct {
 	//UserId int64   `form:"user_id"  binding:"required"`
-	Token  string `form:"token" binding:"required"`
+	Token string `form:"token" binding:"required"`
 }
 
 type FollowListResponse struct {
@@ -21,28 +21,28 @@ type FollowListResponse struct {
 	UserList []UserInfo `json:"user_list" binding:"required"`
 }
 
-func (svc *Service) FollowAction(param *FollowActionRequest, userId int64) error {
-	switch param.ActionType{
+func (svc *Service) FollowAction(param *FollowActionRequest, userId uint) (bool, error) {
+	switch param.ActionType {
 	case 1:
 		return svc.dao.CreateFollow(userId, param.ToUserId)
 	case 2:
 		return svc.dao.CancelFollow(userId, param.ToUserId)
 	default:
-		return errcode.InvalidParams
+		return false, errcode.InvalidParams
 	}
 }
 
-func (svc *Service) FollowList(userId int64) (res FollowListResponse,err error) {
+func (svc *Service) FollowList(userId uint) (res FollowListResponse, err error) {
 	follows, err := svc.dao.FollowList(userId)
-	if err != nil{
+	if err != nil {
 		return
 	}
-	for i :=range follows{
+	for i := range follows {
 		f := follows[i]
 		id := f.FollowedId
 		var userInfo UserInfo
 		userM, UserErr := svc.dao.GetUserById(uint(id))
-		if UserErr!=nil{
+		if UserErr != nil {
 			err = UserErr
 			return
 		}

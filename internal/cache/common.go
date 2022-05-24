@@ -16,6 +16,11 @@ func (r *Redis) Set(key string, value interface{}, expiration time.Duration) err
 	return r.redis.Set(key, value, expiration).Err()
 }
 
+// Get 获取key对于的value
+func (r *Redis) Get(key string) (string, error) {
+	return r.redis.Get(key).Result()
+}
+
 // Expire 设置（更新）key的过期时间
 func (r *Redis) Expire(key string, expiration time.Duration) error {
 	return r.redis.Expire(key, expiration).Err()
@@ -28,4 +33,13 @@ func (r *Redis) DeleteOneCache(key string) (bool, error) {
 		return false, err
 	}
 	return true, nil
+}
+
+// GetCacheKeys 获取给定形式的key
+func (r *Redis) GetCacheKeys(pattern string) ([]string, error) {
+	result, err := r.redis.Keys(pattern).Result()
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }

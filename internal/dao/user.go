@@ -2,16 +2,29 @@ package dao
 
 import (
 	"douyin_service/internal/model"
+	"douyin_service/pkg/errcode"
+	"douyin_service/pkg/util"
 )
 
 func (d *Dao) CreateUser(userName, password string) (uint, error) {
+	sign, err := util.RandomSign()
+	if err != nil {
+		return errcode.ErrorUserID, err
+	}
+	img, err := util.RandomBackground()
+	if err != nil {
+		return errcode.ErrorUserID, err
+	}
 	user := model.User{
 		UserName:      userName,
 		Password:      password,
 		FollowCount:   0,
 		FollowerCount: 0,
+		Avatar:          util.RandomAvatar(userName),
+		Signature:       sign,
+		BackgroundImage: img,
 	}
-	err := user.Create(d.engine)
+	err = user.Create(d.engine)
 	if err != nil {
 		return 0, err
 	}
