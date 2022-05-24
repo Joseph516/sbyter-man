@@ -4,6 +4,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"douyin_service/pkg/util"
+
 	"gorm.io/gorm"
 )
 
@@ -71,7 +72,7 @@ func (u User) GetUserById(db *gorm.DB) (User, error) {
 	return user, nil
 }
 
-func (u User) GetUsersByIds(userIds []int64, db *gorm.DB) ([]User, error) {
+func (u User) GetUsersByIds(userIds []uint, db *gorm.DB) ([]User, error) {
 	users := make([]User, 0)
 	err := db.Where("id IN ?", userIds).Find(&users).Error
 	if err != nil {

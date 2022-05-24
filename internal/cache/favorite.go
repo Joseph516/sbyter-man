@@ -9,14 +9,14 @@ import (
 // 缓存的favorite-crud
 
 // FavorAction userId给videoId点赞
-func (r *Redis) FavorAction(userId int64, videoId int64) error {
+func (r *Redis) FavorAction(userId uint, videoId int64) error {
 	key := util.UserFavorKey(userId)
 	err := r.redis.SetBit(key, videoId, 1).Err()
 	return err
 }
 
 // CancelFavorAction CancelFavor userId给videoId取消点赞
-func (r *Redis) CancelFavorAction(userId int64, videoId int64) error {
+func (r *Redis) CancelFavorAction(userId uint, videoId int64) error {
 	key := util.UserFavorKey(userId)
 	err := r.redis.SetBit(key, videoId, 0).Err()
 	return err
@@ -55,7 +55,7 @@ func (r *Redis) DecrFavorCnt(videoId int64) int64 {
 }
 
 // IsFavor userId是否给videoId点赞
-func (r *Redis) IsFavor(userId int64, videoId int64) (bool, error) {
+func (r *Redis) IsFavor(userId uint, videoId int64) (bool, error) {
 	key := util.UserFavorKey(userId)
 	result, err := r.redis.GetBit(key, int64(videoId)).Result()
 	if err != nil {
@@ -65,7 +65,7 @@ func (r *Redis) IsFavor(userId int64, videoId int64) (bool, error) {
 }
 
 // FavorList 获取userId点赞列表(userId点赞了什么)
-func (r *Redis) FavorList(userId int64) ([]int64, error) {
+func (r *Redis) FavorList(userId uint) ([]int64, error) {
 	key := util.UserFavorKey(userId)
 	result, err := r.redis.Get(key).Result()
 	if err != nil {

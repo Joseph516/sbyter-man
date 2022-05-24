@@ -18,7 +18,7 @@ type ActionResponse struct {
 }
 
 type FavoriteListRequest struct {
-	UserId int64  `json:"user_id" form:"user_id" binding:"required"`
+	UserId uint   `json:"user_id" form:"user_id" binding:"required"`
 	Token  string `json:"token" form:"token" binding:"required"`
 }
 
@@ -30,7 +30,7 @@ type FavoriteListResponse struct {
 var lock sync.Mutex
 
 // Action 点赞
-func (svc *Service) Action(param *ActionRequest, userId int64) error {
+func (svc *Service) Action(param *ActionRequest, userId uint) error {
 	user := userId
 	video := param.VideoId
 	action := param.ActionType
@@ -75,9 +75,9 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 	//TODO：限制查询个数
 	videos, err := svc.QueryBatchVdieoById(videosId)
 	//筛选video的authorId
-	authorsId := make([]int64, 0)
+	authorsId := make([]uint, 0)
 	for _, video := range videos {
-		authorsId = append(authorsId, int64(video.ID))
+		authorsId = append(authorsId, video.AuthorId)
 	}
 	//查询author
 	//TODO：限制查询个数
@@ -86,11 +86,11 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		return nil, err
 	}
 	//构建{authorId: author}映射
-	authorMap := make(map[int64]UserInfo, 0)
+	authorMap := make(map[uint]UserInfo, 0)
 	for _, author := range authors {
 		//TODO：是否关注需要调用关注接口查询,先假设这是调用得到的结果。
 		isFollow := false
-		authorMap[int64(author.ID)] = UserInfo{
+		authorMap[author.ID] = UserInfo{
 			ID:            author.ID,
 			Name:          author.UserName,
 			FollowCount:   author.FollowCount,
@@ -105,7 +105,7 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		isFavorite, _ := svc.IsFavor(video.AuthorId, int64(video.ID))
 		videoInfo := VideoInfo{
 			Id:            video.ID,
-			Author:        authorMap[int64(video.ID)],
+			Author:        authorMap[video.AuthorId],
 			PlayUrl:       video.PlayUrl,
 			CoverUrl:      video.CoverUrl,
 			FavoriteCount: video.FavoriteCount,
@@ -120,7 +120,7 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 
 // IsFavor 查询是否点赞的功能
 // 由于用户对哪些视频点赞使用bitmap存储到redis中，因此直接在redis查询。
-func (svc *Service) IsFavor(userId int64, videoId int64) (bool, error) {
+func (svc *Service) IsFavor(userId uint, videoId int64) (bool, error) {
 	return svc.redis.IsFavor(userId, videoId)
 }
 

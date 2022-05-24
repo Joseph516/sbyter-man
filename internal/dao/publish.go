@@ -2,8 +2,9 @@ package dao
 
 import (
 	"douyin_service/internal/model"
-	"gorm.io/gorm"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 // type PublishDao struct{}
@@ -11,10 +12,10 @@ import (
 // var publishDao *PublishDao
 
 func (d *Dao) ListVideoByUserId(userId uint) ([]model.Video, error) {
-	return model.Video{AuthorId: int64(userId)}.ListVideoByUserId(d.engine)
+	return model.Video{AuthorId: userId}.ListVideoByUserId(d.engine)
 }
 
-func (d *Dao) PublishVideo(authorId int64, playUrl, coverUrl, title string) error {
+func (d *Dao) PublishVideo(authorId uint, playUrl, coverUrl, title string) error {
 	now := time.Now()
 	return model.Video{
 		Model: gorm.Model{
