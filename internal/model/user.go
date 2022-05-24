@@ -10,10 +10,13 @@ import (
 
 type User struct {
 	*Model
-	UserName      string `json:"user_name"`
-	Password      string `json:"password"`
-	FollowCount   int64  `json:"follow_count"`
-	FollowerCount int64  `json:"follower_count"`
+	UserName        string `json:"user_name"`
+	Password        string `json:"password"`
+	FollowCount     int64  `json:"follow_count"`
+	FollowerCount   int64  `json:"follower_count"`
+	Avatar          string `json:"avatar"`           // 头像
+	Signature       string `json:"signature"`        // 个性签名
+	BackgroundImage string `json:"background_image"` // 背景图片
 }
 
 type UserSwagger struct {

@@ -10,7 +10,7 @@ import (
 
 // QueryVideoByVideoId 返回缓存中的video
 // 返回（是否存在，缓存的key，key对应的值，err）
-func (r *Redis) QueryVideoByVideoId(videoId int64) (bool, string, model.Video, error) {
+func (r *Redis) QueryVideoByVideoId(videoId uint) (bool, string, model.Video, error) {
 	key := util.VideoKey(videoId)
 	var video model.Video
 	exist, err := r.IsExist(key)

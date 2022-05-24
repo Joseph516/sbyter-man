@@ -31,7 +31,7 @@ func (d *Dao) PublishVideo(authorId uint, playUrl, coverUrl, title string) error
 	}.Create(d.engine)
 }
 
-func (d *Dao) QueryVideoById(videoId int64) (model.Video, error) {
+func (d *Dao) QueryVideoById(videoId uint) (model.Video, error) {
 	var video model.Video
 	video, err := video.QueryVideoById(videoId, d.engine)
 	if err != nil {
@@ -40,7 +40,7 @@ func (d *Dao) QueryVideoById(videoId int64) (model.Video, error) {
 	return video, nil
 }
 
-func (d *Dao) QueryBatchVideoById(favorList []int64) ([]model.Video, error) {
+func (d *Dao) QueryBatchVideoById(favorList []uint) ([]model.Video, error) {
 	var video model.Video
 	videos, err := video.QueryBatchVdieoById(favorList, d.engine)
 	if err != nil {
@@ -55,7 +55,7 @@ func (d *Dao) UpdateFavoriteCnt(video model.Video) error {
 }
 
 // QueryFavorCntById 根据Id查询点赞数量
-func (d *Dao) QueryFavorCntById(videoId int64) (int64, error) {
+func (d *Dao) QueryFavorCntById(videoId uint) (int64, error) {
 	var video model.Video
 	video.ID = uint(videoId)
 	return video.QueryFavorCntById(d.engine)

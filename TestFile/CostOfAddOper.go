@@ -1,64 +1,22 @@
 package main
 
 import (
-	"douyin_service/cronjob"
 	"douyin_service/global"
-	"douyin_service/internal/controller"
 	"douyin_service/internal/model"
 	"douyin_service/pkg/logger"
 	setting2 "douyin_service/pkg/setting"
-	"github.com/gin-gonic/gin"
+	"fmt"
 	"github.com/go-redis/redis"
-	"github.com/mattn/go-colorable"
-	"github.com/robfig/cron/v3"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"gorm.io/gorm"
 	"log"
-	"net/http"
-	"os"
+	"sync"
 	"time"
 )
 
-func init() {
-	err := setupSetting()
-	if err != nil {
-		log.Fatalf("init.setupSetting err: %v", err)
-	}
 
-	err = setupLogger()
-	if err != nil {
-		log.Fatalf("init.setupLogger err: %v", err)
-	}
-	err = setupDBEngine()
-	if err != nil {
-		log.Fatalf("init.setupDBEngine err: %v", err)
-	}
-	err = setupCron()
-	if err != nil {
-		log.Fatalf("init.setupCron err: %v", err)
-	}
-}
 
-// @title 抖音平台
-// @version 1.0
-// @description 抖音后端服务
-// @termsOfService https://*****
-func main() {
-	gin.SetMode(global.ServerSetting.RunMode)
-	gin.ForceConsoleColor()
-	gin.DefaultWriter = colorable.NewColorableStdout()
-	router := controller.NewRouter()
-	s := &http.Server{
-		Addr:           ":" + global.ServerSetting.HttpPort,
-		Handler:        router,
-		ReadTimeout:    global.ServerSetting.ReadTimeout,
-		WriteTimeout:   global.ServerSetting.WriteTimeout,
-		MaxHeaderBytes: 1 << 20,
-	}
-	err := s.ListenAndServe()
-	if err != nil {
-		log.Fatalln(err)
-	}
-}
+
 func setupSetting() error {
 	setting, err := setting2.NewSetting()
 	if err != nil {
@@ -88,7 +46,10 @@ func setupSetting() error {
 		Password: global.RedisSetting.Password,
 		DB:       0,
 	})
-
+	_,err = global.Rd.Ping().Result()
+	if err!=nil{
+		return err
+	}
 	err = setting.ReadSection("JWT", &global.JWTSetting)
 	if err != nil {
 		return err
@@ -124,17 +85,91 @@ func setupLogger() error {
 	return nil
 }
 
-//设置定时任务
-func setupCron() error {
-	dc := cronjob.New()
-	//上一个定时任务未完成不会开启新的任务
-	c := cron.New(cron.WithSeconds(), cron.WithChain(cron.SkipIfStillRunning(cron.VerbosePrintfLogger(log.New(os.Stdout, "cron: ", log.LstdFlags)))))
-	global.Logger.Info("启动点赞数量定时刷新任务")
-	_, err := c.AddFunc(cronjob.FAVORCNTTIME, dc.FlashFavorCnt)
+func init() {
+	err := setupSetting()
 	if err != nil {
-		return err
+		log.Fatalf("init.setupSetting err: %v", err)
 	}
-	//开启
-	c.Start()
+
+	err = setupLogger()
+	if err != nil {
+		log.Fatalf("init.setupLogger err: %v", err)
+	}
+	err = setupDBEngine()
+	if err != nil {
+		log.Fatalf("init.setupDBEngine err: %v", err)
+	}
+}
+
+
+type Num struct {
+	gorm.Model
+	Count int64
+	KeyWord string
+}
+
+func (num Num)TableName() string {
+	return "test_table"
+}
+
+func (num Num) AddBySql(db *gorm.DB, key string, wg *sync.WaitGroup, mux *sync.Mutex)(err error)  {
+	defer wg.Done()
+	var n Num
+	mux.Lock()
+	db.Where("Key_word = ?",key).Debug().First(&n)
+	fmt.Println(n)
+	db.Model(&n).Update("count", n.Count+1)
+	mux.Unlock()
+	return nil
+
+}
+
+func (num Num) AddByRedis(rd *redis.Client, key string, wg *sync.WaitGroup)(err error)  {
+	defer wg.Done()
+	rd.IncrBy(key, 1)
 	return nil
 }
+func AddBySql()  {
+	mux := sync.Mutex{}
+	k := "video"
+	var n Num
+	wg := sync.WaitGroup{}
+
+	for i:=0;i<10;i++ {
+		wg.Add(1)
+		go n.AddBySql(global.DBEngine, k, &wg, &mux)
+	}
+	wg.Wait()
+}
+
+func AddByRedis(k string)  {
+
+	var n Num
+	wg := sync.WaitGroup{}
+
+	for i:=0;i<100;i++ {
+		wg.Add(1)
+		go n.AddByRedis(global.Rd, k, &wg)
+	}
+	wg.Wait()
+}
+
+func main() {
+	//global.DBEngine.AutoMigrate(&Num{})
+	k := "test_favor"
+	//err := global.Rd.Set(k,1, time.Minute*5)
+	//if err!=nil{
+	//	fmt.Println(err)
+	//}
+	t1 := time.Now()
+	AddByRedis(k)
+	t2 := time.Now()
+	during := t2.Nanosecond()-t1.Nanosecond()
+	fmt.Println("耗时：" ,float64(during)/float64(time.Second.Nanoseconds()))
+	count := global.Rd.Get(k)
+	fmt.Println(count)
+
+
+}
+
+

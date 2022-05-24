@@ -15,6 +15,10 @@ type UserInfo struct {
 	FollowCount   int64  `json:"follow_count"`
 	FollowerCount int64  `json:"follower_count"`
 	IsFollow      bool   `json:"is_follow"`
+	Avatar          string `json:"avatar"`           // 头像
+	Signature       string `json:"signature"`        // 个性签名
+	BackgroundImage string `json:"background_image"` // 背景图片
+
 }
 
 type GetUserInfoRequest struct {
