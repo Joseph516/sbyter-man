@@ -15,8 +15,8 @@ const (
 )
 
 // UserFavorKey 拼接userId点赞的key
-func UserFavorKey(userId int64) string {
-	return _USERPRIFIX + strconv.FormatInt(userId, 10)
+func UserFavorKey(userId uint) string {
+	return _USERPRIFIX + strconv.FormatInt(int64(userId), 10)
 }
 
 // VideoFavoredKey 拼接点赞videoId的key

@@ -8,7 +8,7 @@ import (
 
 type Video struct {
 	gorm.Model
-	AuthorId      int64     `json:"author_id"`
+	AuthorId      uint      `json:"author_id"`
 	PlayUrl       string    `json:"play_url"`
 	CoverUrl      string    `json:"cover_url"`
 	FavoriteCount int64     `json:"favorite_count"`

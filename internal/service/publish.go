@@ -120,7 +120,7 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	}
 
 	// 更新数据库
-	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
+	err := svc.dao.PublishVideo(userId, playUrl, coverUrl, title)
 
 	return err
 }
