@@ -34,7 +34,7 @@ func (v Video) Create(db *gorm.DB) error {
 }
 
 func (v Video) UpdateFavoriteCnt(db *gorm.DB) error {
-	return db.Model(&v).Select("favorite_count").Update("favorite_count", v.FavoriteCount).Error
+	return db.Model(&v).Update("favorite_count", v.FavoriteCount).Error
 }
 
 // QueryVideoById 根据videoId查询video信息
