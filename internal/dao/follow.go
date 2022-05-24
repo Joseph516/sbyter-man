@@ -4,6 +4,15 @@ import (
 	"douyin_service/internal/model"
 )
 
+func (d *Dao)IsFollow(follower, followed int64) (flag bool,err error) {
+	follow := model.Follow{
+		FollowedId: followed,
+		FollowerId: follower,
+	}
+	flag, err = follow.IsExist(d.engine)
+	return
+}
+
 func (d *Dao) CreateFollow(follower, followed int64) error {
 	follow := model.Follow{
 		FollowedId: followed,
