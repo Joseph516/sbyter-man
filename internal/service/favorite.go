@@ -1,15 +1,15 @@
 package service
 
 import (
-	"douyin_service/internal/cache"
 	"douyin_service/internal/model"
 	"douyin_service/pkg/util"
+	"fmt"
 	"sync"
 )
 
 type ActionRequest struct {
 	Token      string `json:"token" form:"token" binding:"required"`
-	VideoId    int64  `json:"video_id" form:"video_id" binding:"required"`
+	VideoId    uint   `json:"video_id" form:"video_id" binding:"required"`
 	ActionType int    `json:"action_type" form:"action_type" binding:"required"`
 }
 
@@ -18,7 +18,7 @@ type ActionResponse struct {
 }
 
 type FavoriteListRequest struct {
-	UserId int64  `json:"user_id" form:"user_id" binding:"required"`
+	UserId uint   `json:"user_id" form:"user_id" binding:"required"`
 	Token  string `json:"token" form:"token" binding:"required"`
 }
 
@@ -30,7 +30,7 @@ type FavoriteListResponse struct {
 var lock sync.Mutex
 
 // Action 点赞
-func (svc *Service) Action(param *ActionRequest, userId int64) error {
+func (svc *Service) Action(param *ActionRequest, userId uint) error {
 	user := userId
 	video := param.VideoId
 	action := param.ActionType
@@ -73,11 +73,12 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 	}
 	//查询video
 	//TODO：限制查询个数
+	fmt.Println(videosId)
 	videos, err := svc.QueryBatchVdieoById(videosId)
 	//筛选video的authorId
-	authorsId := make([]int64, 0)
+	authorsId := make([]uint, 0)
 	for _, video := range videos {
-		authorsId = append(authorsId, int64(video.ID))
+		authorsId = append(authorsId, video.AuthorId)
 	}
 	//查询author
 	//TODO：限制查询个数
@@ -86,29 +87,43 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		return nil, err
 	}
 	//构建{authorId: author}映射
-	authorMap := make(map[int64]UserInfo, 0)
+	authorMap := make(map[uint]UserInfo, 0)
 	for _, author := range authors {
 		//TODO：是否关注需要调用关注接口查询,先假设这是调用得到的结果。
-		isFollow := false
-		authorMap[int64(author.ID)] = UserInfo{
-			ID:            author.ID,
-			Name:          author.UserName,
-			FollowCount:   author.FollowCount,
-			FollowerCount: author.FollowerCount,
-			IsFollow:      isFollow,
+		isFollow, err := svc.dao.IsFollow(param.UserId, author.ID)
+		if err != nil {
+			return nil, err
+		}
+		authorMap[author.ID] = UserInfo{
+			ID:              author.ID,
+			Name:            author.UserName,
+			FollowCount:     author.FollowCount,
+			FollowerCount:   author.FollowerCount,
+			IsFollow:        isFollow,
+			Avatar:          author.Avatar,
+			Signature:       author.Signature,
+			BackgroundImage: author.BackgroundImage,
 		}
 	}
 
 	for _, video := range videos {
 		//调用isFavor接口查询是否点赞了
-		//TODO:如果缓存中有对应的点赞数量的话，缓存中的值是最新的，需要更改。
-		isFavorite, _ := svc.IsFavor(video.AuthorId, int64(video.ID))
+		isFavorite, _ := svc.IsFavor(video.AuthorId, video.ID)
+		//video是从数据库查的，为了保证最新的点赞数量，应该先从缓存查
+		favoriteCnt := video.FavoriteCount
+		ok, cnt, err := svc.redis.QueryFavorCnt(video.ID)
+		if err != nil {
+			return nil, err
+		}
+		if !ok {
+			favoriteCnt = cnt
+		}
 		videoInfo := VideoInfo{
 			Id:            video.ID,
-			Author:        authorMap[int64(video.ID)],
+			Author:        authorMap[video.AuthorId],
 			PlayUrl:       video.PlayUrl,
 			CoverUrl:      video.CoverUrl,
-			FavoriteCount: video.FavoriteCount,
+			FavoriteCount: favoriteCnt,
 			CommentCount:  video.CommentCount,
 			IsFavorite:    isFavorite,
 			Title:         video.Title,
@@ -120,12 +135,28 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 
 // IsFavor 查询是否点赞的功能
 // 由于用户对哪些视频点赞使用bitmap存储到redis中，因此直接在redis查询。
-func (svc *Service) IsFavor(userId int64, videoId int64) (bool, error) {
+func (svc *Service) IsFavor(userId uint, videoId uint) (bool, error) {
 	return svc.redis.IsFavor(userId, videoId)
 }
 
+// QueryFavorCnt 获取video的点赞数量
+func (svc *Service) QueryFavorCnt(video uint) (int64, error) {
+	ok, cnt, err := svc.redis.QueryFavorCnt(video)
+	if err != nil {
+		return 0, err
+	}
+	if ok {
+		return cnt, err
+	}
+	cnt, err = svc.dao.QueryFavorCntById(video)
+	if err != nil {
+		return 0, err
+	}
+	return cnt, nil
+}
+
 // afterFavoriteAction 执行favoriteAction之后更改缓存和数据库中favorite_count的操作
-func (svc *Service) afterFavoriteAction(video int64, action int) error {
+func (svc *Service) afterFavoriteAction(video uint, action int) error {
 	//先在缓存中尝试查找
 	var (
 		err   error
@@ -157,7 +188,7 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 			} else {
 				cnt--
 			}
-			err = svc.redis.Set(key, cnt, cache.VIDEO_EXPIRE)
+			err = svc.redis.Set(key, cnt, 0)
 			if err != nil {
 				return err
 			}
@@ -168,11 +199,6 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 			} else {
 				cnt = svc.redis.DecrFavorCnt(video)
 			}
-			//更新缓存时间
-			err = svc.redis.Expire(key, cache.VIDEO_EXPIRE)
-			if err != nil {
-				return err
-			}
 		}
 		lock.Unlock()
 	} else {
@@ -181,17 +207,12 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 		} else {
 			cnt = svc.redis.DecrFavorCnt(video)
 		}
-		err = svc.redis.Expire(key, cache.VIDEO_EXPIRE)
-		if err != nil {
-			return err
-		}
 	}
 
 	var newVideo model.Video
 	newVideo.ID = uint(video)
 	newVideo.FavoriteCount = cnt
-	//更新数据库
-	//TODO:每次更新一次缓存中的值就写回到数据库，很危险的操作。频繁的更新缓存只有最后一次的值是有效的，考虑在缓存即将结束的时候刷回数据库
-	err = svc.dao.UpdateFavoriteCnt(newVideo)
+	//更新数据库，已经交给定时任务
+
 	return nil
 }

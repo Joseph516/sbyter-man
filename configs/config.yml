@@ -10,7 +10,7 @@ App:
   LogFileName: app
   LogFileExt: .log
   UploadSavePath: storage/uploads
-  UploadServerUrl: http://127.0.0.1:8000/static
+  UploadServerUrl: http://172.27.124.6/
   UploadVideoMaxSize: 500 # MB
   UploadVideoAllowExts:
     - .mp4
