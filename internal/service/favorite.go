@@ -139,16 +139,16 @@ func (svc *Service) IsFavor(userId int64, videoId int64) (bool, error) {
 	return svc.redis.IsFavor(userId, videoId)
 }
 
-// QueryFavorCnt 获取video的点赞数量(先查数据库再查缓存)
-func (svc *Service) QueryFavorCnt(video int64) (int64, error) {
-	ok, cnt, err := svc.redis.QueryFavorCnt(video)
+// QueryFavorCnt 获取video的点赞数量(先查缓存再查数据库)
+func (svc *Service) QueryFavorCnt(videoId int64) (int64, error) {
+	ok, cnt, err := svc.redis.QueryFavorCnt(videoId)
 	if err != nil {
 		return 0, err
 	}
 	if ok {
 		return cnt, err
 	}
-	cnt, err = svc.dao.QueryFavorCntById(video)
+	cnt, err = svc.dao.QueryFavorCntById(videoId)
 	if err != nil {
 		return 0, err
 	}
@@ -156,7 +156,7 @@ func (svc *Service) QueryFavorCnt(video int64) (int64, error) {
 }
 
 // afterFavoriteAction 执行favoriteAction之后更改缓存和数据库中favorite_count的操作
-func (svc *Service) afterFavoriteAction(video int64, action int) error {
+func (svc *Service) afterFavoriteAction(videoId int64, action int) error {
 	//先在缓存中尝试查找
 	var (
 		err   error
@@ -164,8 +164,8 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 		cnt   int64
 		key   string
 	)
-	key = util.VideoFavorCntKey(video)
-	exist, cnt, err = svc.redis.QueryFavorCnt(video)
+	key = util.VideoFavorCntKey(videoId)
+	exist, cnt, err = svc.redis.QueryFavorCnt(videoId)
 	if err != nil {
 		return err
 	}
@@ -173,13 +173,13 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 		//保证只有一个请求是数据库的
 		lock.Lock()
 		//再查一次缓存
-		exist, cnt, err = svc.redis.QueryFavorCnt(video)
+		exist, cnt, err = svc.redis.QueryFavorCnt(videoId)
 		if err != nil {
 			return err
 		}
 		if !exist {
 			//走数据库
-			cnt, err = svc.dao.QueryFavorCntById(video)
+			cnt, err = svc.dao.QueryFavorCntById(videoId)
 			if err != nil {
 				return err
 			}
@@ -195,22 +195,22 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 		} else {
 			//走缓存
 			if action == 1 {
-				cnt = svc.redis.IncrFavorCnt(video)
+				cnt = svc.redis.IncrFavorCnt(videoId)
 			} else {
-				cnt = svc.redis.DecrFavorCnt(video)
+				cnt = svc.redis.DecrFavorCnt(videoId)
 			}
 		}
 		lock.Unlock()
 	} else {
 		if action == 1 {
-			cnt = svc.redis.IncrFavorCnt(video)
+			cnt = svc.redis.IncrFavorCnt(videoId)
 		} else {
-			cnt = svc.redis.DecrFavorCnt(video)
+			cnt = svc.redis.DecrFavorCnt(videoId)
 		}
 	}
 
 	var newVideo model.Video
-	newVideo.ID = uint(video)
+	newVideo.ID = uint(videoId)
 	newVideo.FavoriteCount = cnt
 	//更新数据库，已经交给定时任务
 
