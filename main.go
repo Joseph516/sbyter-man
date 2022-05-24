@@ -4,6 +4,7 @@ import (
 	"douyin_service/global"
 	"douyin_service/internal/controller"
 	"douyin_service/internal/model"
+	"douyin_service/pkg/email"
 	"douyin_service/pkg/logger"
 	setting2 "douyin_service/pkg/setting"
 	"github.com/gin-gonic/gin"
@@ -29,6 +30,7 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
+	setupEmail()
 }
 
 // @title 抖音平台
@@ -115,4 +117,16 @@ func setupLogger() error {
 		LocalTime: true,
 	}, "", log.LstdFlags).WithCaller(2)
 	return nil
+}
+
+func setupEmail() {
+	smtpInfo := email.SMTPInfo{
+		Host:     global.EmailSetting.Host,
+		Port:     global.EmailSetting.Port,
+		IsSSL:    global.EmailSetting.IsSSL,
+		UserName: global.EmailSetting.UserName,
+		Password: global.EmailSetting.Password,
+		From:     global.EmailSetting.From,
+	}
+	global.Email = email.NewEmail(&smtpInfo)
 }

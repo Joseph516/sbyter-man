@@ -5,6 +5,7 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
+	"douyin_service/pkg/util"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
@@ -19,6 +20,7 @@ func (u User) Register(c *gin.Context)  {
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
+	param.LoginIP = c.ClientIP() // 注册ip
 	svc := service.New(c)
 	userId, flag, err := svc.Register(&param)
 	if err != nil {
@@ -54,7 +56,7 @@ func (u User) Login(c *gin.Context)  {
 		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-
+	param.LoginIP = c.ClientIP()
 	svc := service.New(c.Request.Context())
 	userId, flag, err := svc.Login(&param)
 	res := &service.LoginResponse{
@@ -65,6 +67,16 @@ func (u User) Login(c *gin.Context)  {
 	res.StatusMsg = errcode.ErrorLoginFail.Msg()
 	if err != nil {
 		global.Logger.Errorf("svc.Login err: %v", err)
+		if err == errcode.ErrorLoginDanger { // 登录IP异常
+			res.StatusCode = errcode.ErrorLoginDanger.Code()
+			res.StatusMsg = errcode.ErrorLoginDanger.Msg()
+			// 此处将登录IP存入Token，保证不会被篡改Token
+			token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, param.LoginIP)
+			err = util.SendVerifiedEmail([]string{param.UserName}, userId, param.LoginIP, token)
+			if err != nil {
+				global.Logger.Errorf("util.SendVerifiedEmail: %v", err)
+			}
+		}
 		response.ToResponse(res)
 		return
 	}
