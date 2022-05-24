@@ -58,6 +58,8 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 	// 遍历赋值
 	pubResp.VideoList = make([]VideoInfo, len(video))
 	for i := range video {
+		isFavorite, _ := svc.IsFavor(int64(userId), int64(video[i].ID))
+		favoriteCnt, _ := svc.QueryFavorCnt(int64(video[i].ID))
 		pubResp.VideoList[i] = VideoInfo{
 			Id: video[i].ID,
 			Author: UserInfo{
@@ -69,9 +71,9 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 			},
 			PlayUrl:       video[i].PlayUrl,
 			CoverUrl:      video[i].CoverUrl,
-			FavoriteCount: video[i].FavoriteCount,
+			FavoriteCount: favoriteCnt,
 			CommentCount:  video[i].CommentCount,
-			IsFavorite:    video[i].FavoriteCount != 0,
+			IsFavorite:    isFavorite,
 			Title:         video[i].Title,
 		}
 	}
