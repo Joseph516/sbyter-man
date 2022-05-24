@@ -2,6 +2,7 @@ package service
 
 import (
 	"douyin_service/pkg/errcode"
+	"fmt"
 )
 
 type FollowActionRequest struct {
@@ -21,15 +22,26 @@ type FollowListResponse struct {
 	UserList []UserInfo `json:"user_list" binding:"required"`
 }
 
-func (svc *Service) FollowAction(param *FollowActionRequest, userId int64)(bool, error) {
+func (svc *Service) FollowAction(param *FollowActionRequest, userId int64)(flag bool,err error) {
 	switch param.ActionType{
 	case 1:
-		return svc.dao.CreateFollow(userId, param.ToUserId)
+		flag, err = svc.dao.CreateFollow(userId, param.ToUserId)
+		if flag{
+			svc.redis.FollowAction(param.ToUserId, userId)
+		}
 	case 2:
-		return svc.dao.CancelFollow(userId, param.ToUserId)
+		flag, err = svc.dao.CancelFollow(userId, param.ToUserId)
+		if flag{
+			svc.redis.CancelFollowAction(param.ToUserId, userId)
+		}
 	default:
 		return false, errcode.InvalidParams
 	}
+	_, followCount, _ := svc.redis.QueryFollowCnt(userId)
+	fmt.Println("关注人数:",followCount)
+	_, fanCount, _ := svc.redis.QueryFanCnt(param.ToUserId)
+	fmt.Println("粉丝人数:", fanCount)
+	return
 }
 
 func (svc *Service) FollowList(userId int64) (res FollowListResponse,err error) {
