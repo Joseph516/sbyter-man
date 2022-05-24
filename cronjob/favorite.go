@@ -9,7 +9,6 @@ import (
 
 const (
 	FAVORCNTTIME = "0 30 2 1/2 * ?" //每两日的凌晨2点半执行一次
-
 )
 
 // FlashFavorCnt 定时把视频点赞数量刷新到mysql中，并在此时清除redis缓存
@@ -43,7 +42,7 @@ func (dc DouyinCron) FlashFavorCnt() {
 		}
 		global.Logger.Infof("刷新成功，目前数据库值为%d", cnt)
 		//写回后删除对应缓存
-		//刷数据库前，再检查一次缓存是否被更新，如果被更新了，那么不能删除缓存，否则会丢失新的更新
+		//刷数据库后，再检查一次缓存是否被更新，如果被更新了，那么不能删除缓存，否则会丢失新的更新
 		_, cnt2, err := dc.redis.QueryFavorCnt(int64(videoId))
 		if err != nil {
 			global.Logger.Error(err)

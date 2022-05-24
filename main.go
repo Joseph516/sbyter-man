@@ -129,13 +129,11 @@ func setupCron() error {
 	dc := cronjob.New()
 	//上一个定时任务未完成不会开启新的任务
 	c := cron.New(cron.WithSeconds(), cron.WithChain(cron.SkipIfStillRunning(cron.VerbosePrintfLogger(log.New(os.Stdout, "cron: ", log.LstdFlags)))))
-
 	global.Logger.Info("启动点赞数量定时刷新任务")
 	_, err := c.AddFunc(cronjob.FAVORCNTTIME, dc.FlashFavorCnt)
 	if err != nil {
 		return err
 	}
-
 	//开启
 	c.Start()
 	return nil
