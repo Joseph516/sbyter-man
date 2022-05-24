@@ -10,24 +10,24 @@ App:
   LogFileName: app
   LogFileExt: .log
   UploadSavePath: storage/uploads
-  UploadServerUrl: http://192.168.1.107:8000/static
+  UploadServerUrl: http://127.0.0.1:8000/static
   UploadVideoMaxSize: 500 # MB
   UploadVideoAllowExts:
     - .mp4
 Database:
   DBType: mysql
-  UserName: root
-  Password: 123456
-  Host: 127.0.0.1:3306
-  DBName: simple_ticktok
+  UserName: douyin
+  Password: Douyin@123
+  Host: 106.14.89.192:3306
+  DBName: douyin
   TablePrefix: douyin_
   Charset: utf8
   ParseTime: True
   MaxIdleConns: 10
   MaxOpenConns: 30
 Redis:
-  Addr: 124.223.44.108:6379
-  Password: zhouzhou233
+  Addr: 106.14.89.192:6379
+  Password: ""
   DB: 0
 JWT:
   Key: douyin
