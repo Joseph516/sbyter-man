@@ -1,7 +1,6 @@
 package service
 
 import (
-	"douyin_service/internal/cache"
 	"douyin_service/internal/model"
 	"douyin_service/pkg/util"
 	"sync"
@@ -157,7 +156,7 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 			} else {
 				cnt--
 			}
-			err = svc.redis.Set(key, cnt, cache.VIDEO_EXPIRE)
+			err = svc.redis.Set(key, cnt, 0)
 			if err != nil {
 				return err
 			}
@@ -168,11 +167,6 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 			} else {
 				cnt = svc.redis.DecrFavorCnt(video)
 			}
-			//更新缓存时间
-			err = svc.redis.Expire(key, cache.VIDEO_EXPIRE)
-			if err != nil {
-				return err
-			}
 		}
 		lock.Unlock()
 	} else {
@@ -181,17 +175,12 @@ func (svc *Service) afterFavoriteAction(video int64, action int) error {
 		} else {
 			cnt = svc.redis.DecrFavorCnt(video)
 		}
-		err = svc.redis.Expire(key, cache.VIDEO_EXPIRE)
-		if err != nil {
-			return err
-		}
 	}
 
 	var newVideo model.Video
 	newVideo.ID = uint(video)
 	newVideo.FavoriteCount = cnt
-	//更新数据库
-	//TODO:每次更新一次缓存中的值就写回到数据库，很危险的操作。频繁的更新缓存只有最后一次的值是有效的，考虑在缓存即将结束的时候刷回数据库
-	err = svc.dao.UpdateFavoriteCnt(newVideo)
+	//更新数据库，已经交给定时任务
+
 	return nil
 }
