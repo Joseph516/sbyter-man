@@ -9,14 +9,14 @@ import (
 	"strconv"
 )
 
-type User struct {}
+type User struct{}
 
 func NewUser() User {
 	return User{}
 }
 
 // Get 获取用户信息
-func (u User) Get(c *gin.Context)  {
+func (u User) Get(c *gin.Context) {
 	param := service.GetUserInfoRequest{}
 	response := app.NewResponse(c)
 	var res service.GetUserInfoResponse
@@ -46,11 +46,14 @@ func (u User) Get(c *gin.Context)  {
 
 	res = service.GetUserInfoResponse{
 		User: &service.UserInfo{
-			ID:            user.ID,
-			Name:          user.UserName,
-			FollowCount:   user.FollowCount,
-			FollowerCount: user.FollowerCount,
-			IsFollow:      false,
+			ID:              user.ID,
+			Name:            user.UserName,
+			FollowCount:     user.FollowCount,
+			FollowerCount:   user.FollowerCount,
+			IsFollow:        false,
+			Avatar:          user.Avatar,
+			Signature:       user.Signature,
+			BackgroundImage: user.BackgroundImage,
 		},
 	}
 	res.StatusCode = 0
