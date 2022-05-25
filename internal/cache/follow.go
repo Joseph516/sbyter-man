@@ -2,18 +2,42 @@ package cache
 
 import (
 	"douyin_service/pkg/util"
+	"errors"
 	"strconv"
+	"time"
 )
 
 // FollowAction userId给关注指定的up
+// 必须保证此时缓存中有对应的数据
 func (r *Redis) FollowAction(upId int64, fanId int64) error {
-	r.IncrFollowCnt(fanId)
+	upKey := util.FanCountKey(upId)
+	fanKey := util.FollowCountKey(fanId)
+	if flag, _:=r.IsExist(upKey); !flag{
+		// 缓存中没有
+		return errors.New("缓存中没有项:" + upKey)
+	}
+	if flag, _ := r.IsExist(fanKey);!flag{
+		// 缓存中没有
+		return errors.New("缓存中没有项:" + fanKey)
+	}
 	r.IncrFanCnt(upId)
+	r.IncrFollowCnt(fanId)
 	return nil
 }
 
 // CancelFollowAction userId取消关注指定up
+// 必须保证缓存中有该条数据
 func (r *Redis) CancelFollowAction(upId int64, fanId int64) error {
+	upKey := util.FanCountKey(upId)
+	fanKey := util.FollowCountKey(fanId)
+	if flag, _:=r.IsExist(upKey); !flag{
+		// 缓存中没有
+		return errors.New("缓存中没有项:" + upKey)
+	}
+	if flag, _ := r.IsExist(fanKey);!flag{
+		// 缓存中没有
+		return errors.New("缓存中没有项:" + fanKey)
+	}
 	r.DecrFollowCnt(fanId)
 	r.DecrFanCnt(upId)
 	return nil
@@ -69,16 +93,18 @@ func (r *Redis) QueryFanCnt(userId int64) (bool, int64, error) {
 	return true, int64(cnt), nil
 }
 
-// IncrFanCnt  增加up的粉丝数量
+// IncrFanCnt  增加up的粉丝数量并刷新生存周期
 func (r *Redis) IncrFanCnt(userId int64) int64 {
 	key := util.FanCountKey(userId)
 	result := r.redis.Incr(key).Val()
+	r.redis.Expire(key, time.Hour*24)
 	return result
 }
 
-// DecrFanCnt  减少up的粉丝数量
+// DecrFanCnt  减少up的粉丝数量并刷新生存周期
 func (r *Redis) DecrFanCnt(userId int64) int64 {
 	key := util.FanCountKey(userId)
 	result := r.redis.Decr(key).Val()
+	r.redis.Expire(key, time.Hour*24)
 	return result
 }
