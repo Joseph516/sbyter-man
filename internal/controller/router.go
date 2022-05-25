@@ -38,6 +38,7 @@ func NewRouter() *gin.Engine {
 	fol := v1.NewFollow()
 	com := v1.NewComment()
 	feed := v1.NewFeed()
+	notify := v1.NewNotify()
 	apiv1 := r.Group("/douyin/")
 	apiv1.Use()
 	{
@@ -45,6 +46,7 @@ func NewRouter() *gin.Engine {
 		apiv1.POST("/user/login/", user.Login)
 		apiv1.POST("/user/register/", user.Register)
 		apiv1.GET("/user/", user.Get)
+		apiv1.GET("/verify/", notify.Verify)
 
 		// favor
 		apiv1.GET("favorite/list/", favorite.FavoriteList)

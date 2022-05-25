@@ -6,8 +6,8 @@ import (
 
 type Follow struct {
 	gorm.Model
-	FollowedId 	int64
-	FollowerId  int64
+	FollowedId uint
+	FollowerId uint
 }
 
 func (f Follow) TableName() string {
@@ -25,13 +25,13 @@ func (f Follow) Delete(db *gorm.DB) error {
 func (f Follow) IsExist(db *gorm.DB) (bool, error) {
 	var follows []Follow
 	db.Where("followed_id = ? and follower_id = ?", f.FollowedId, f.FollowerId).Find(&follows)
-	if len(follows)==0{
+	if len(follows) == 0 {
 		return false, nil
 	}
 	return true, nil
 }
 
-func (f Follow) QueryFollowList(db *gorm.DB, userId int64)(follows []Follow, err error)  {
-	err =  db.Where("follower_id = ?", userId).Find(&follows).Error
+func (f Follow) QueryFollowList(db *gorm.DB, userId uint) (follows []Follow, err error) {
+	err = db.Where("follower_id = ?", userId).Find(&follows).Error
 	return
 }

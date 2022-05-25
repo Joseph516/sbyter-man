@@ -58,8 +58,8 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 	// 遍历赋值
 	pubResp.VideoList = make([]VideoInfo, len(video))
 	for i := range video {
-		isFavorite, _ := svc.IsFavor(int64(userId), int64(video[i].ID))
-		favoriteCnt, _ := svc.QueryFavorCnt(int64(video[i].ID))
+		isFavorite, _ := svc.IsFavor(userId, video[i].ID)
+		favoriteCnt, _ := svc.QueryFavorCnt(video[i].ID)
 		pubResp.VideoList[i] = VideoInfo{
 			Id: video[i].ID,
 			Author: UserInfo{
@@ -122,11 +122,11 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	}
 
 	// 更新数据库
-	err := svc.dao.PublishVideo(int64(userId), playUrl, coverUrl, title)
+	err := svc.dao.PublishVideo(userId, playUrl, coverUrl, title)
 
 	return err
 }
 
-func (svc *Service) QueryBatchVdieoById(favorList []int64) ([]model.Video, error) {
+func (svc *Service) QueryBatchVdieoById(favorList []uint) ([]model.Video, error) {
 	return svc.dao.QueryBatchVideoById(favorList)
 }
