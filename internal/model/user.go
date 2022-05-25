@@ -4,11 +4,8 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"douyin_service/pkg/util"
-<<<<<<< HEAD
 	"fmt"
-=======
 
->>>>>>> 1029162c74fcce3e8f40742c52370311825f8c8d
 	"gorm.io/gorm"
 )
 
