@@ -5,8 +5,9 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
-	"github.com/gin-gonic/gin"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Favorite struct {
@@ -46,7 +47,7 @@ func (f Favorite) Action(c *gin.Context) {
 	userId, _ := strconv.Atoi(claims.Audience)
 
 	svc := service.New(c.Request.Context())
-	err2 := svc.Action(&param, int64(userId))
+	err2 := svc.Action(&param, uint(userId))
 	if err2 != nil {
 		global.Logger.Errorf("svc.Action err: %v", err2)
 		response.ToErrorResponse(errcode.ErrorActionFail)

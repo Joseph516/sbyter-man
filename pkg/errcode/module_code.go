@@ -1,10 +1,12 @@
 package errcode
 
 var (
-	ErrorLoginFail       = NewError(10010001, "用户名或密码错误")
-	ErrorLoginExpire     = NewError(10010002, "登录过期")
-	ErrorRegisterFail    = NewError(10010003, "注册失败")
-	ErrorGetUserInfoFail = NewError(10010004, "获取用户信息失败")
+	ErrorRegisterFail    = NewError(10010001, "注册失败")
+	ErrorLoginFail       = NewError(10010002, "用户名或密码错误")
+	ErrorLoginExpire     = NewError(10010003, "登录过期")
+	ErrorLoginDanger     = NewError(10010004, "登录IP异常, 请验证邮箱邮件")
+	ErrorGetUserInfoFail = NewError(10010005, "获取用户信息失败")
+	ErrorVerifyExpire     = NewError(10010006, "链接已过期")
 	// publish
 	ErrorListPublishFail   = NewError(10020001, "获取用户的视频发布列表错误")
 	ErrorActionPublishFail = NewError(10020002, "发布视频错误")
