@@ -3,7 +3,6 @@ package service
 import (
 	"douyin_service/internal/model"
 	"douyin_service/pkg/util"
-	"fmt"
 	"sync"
 )
 
@@ -73,7 +72,6 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 	}
 	//查询video
 	//TODO：限制查询个数
-	fmt.Println(videosId)
 	videos, err := svc.QueryBatchVdieoById(videosId)
 	//筛选video的authorId
 	authorsId := make([]uint, 0)
@@ -89,7 +87,6 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 	//构建{authorId: author}映射
 	authorMap := make(map[uint]UserInfo, 0)
 	for _, author := range authors {
-		//TODO：是否关注需要调用关注接口查询,先假设这是调用得到的结果。
 		isFollow, err := svc.dao.IsFollow(param.UserId, author.ID)
 		if err != nil {
 			return nil, err
