@@ -16,6 +16,7 @@ type SMTPInfo struct {
 	UserName string
 	Password string
 	From     string
+	To       []string
 }
 
 func NewEmail(info *SMTPInfo) *Email {
