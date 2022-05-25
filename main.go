@@ -15,7 +15,6 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -138,13 +137,20 @@ func setupEmail() {
 	}
 	global.Email = email.NewEmail(&smtpInfo)
 }
+
 //设置定时任务
 func setupCron() error {
 	dc := cronjob.New()
-	//上一个定时任务未完成不会开启新的任务
-	c := cron.New(cron.WithSeconds(), cron.WithChain(cron.SkipIfStillRunning(cron.VerbosePrintfLogger(log.New(os.Stdout, "cron: ", log.LstdFlags)))))
+	c := cron.New(cron.WithSeconds())
+	// 生成chain
+	favorSkipChain1 := cronjob.SkipIfStillRunningChain()
+
+	// 生成job
+	favorCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashFavorCnt)
 	global.Logger.Info("启动点赞数量定时刷新任务")
-	_, err := c.AddFunc(cronjob.FAVORCNTTIME, dc.FlashFavorCnt)
+
+	//向cron注册经过对应chain修饰的job
+	_, err := c.AddJob(cronjob.FAVORCNTTIME, favorCntFlashJob)
 	if err != nil {
 		return err
 	}
