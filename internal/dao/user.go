@@ -6,7 +6,7 @@ import (
 	"douyin_service/pkg/util"
 )
 
-func (d *Dao) CreateUser(userName, password string) (uint, error) {
+func (d *Dao) CreateUser(userName, password, loginIP string) (uint, error) {
 	sign, err := util.RandomSign()
 	if err != nil {
 		return errcode.ErrorUserID, err
@@ -23,6 +23,7 @@ func (d *Dao) CreateUser(userName, password string) (uint, error) {
 		Avatar:          util.RandomAvatar(userName),
 		Signature:       sign,
 		BackgroundImage: img,
+		LoginIP: loginIP,
 	}
 	err = user.Create(d.engine)
 	if err != nil {
@@ -32,10 +33,11 @@ func (d *Dao) CreateUser(userName, password string) (uint, error) {
 }
 
 // CheckUser 校验用户名和密码
-func (d *Dao) CheckUser(username, password string) (uint, bool, error) {
+func (d *Dao) CheckUser(username, password, loginIP string) (uint, bool, error) {
 	user := model.User{
 		UserName: username,
 		Password: password,
+		LoginIP: loginIP,
 	}
 	return user.CheckUser(d.engine)
 }
@@ -49,11 +51,21 @@ func (d *Dao) GetUserById(userId uint) (model.User, error) {
 	return user.GetUserById(d.engine)
 }
 
-func (d *Dao) GetUsersByIds(userIds []int64) ([]model.User, error) {
+func (d *Dao) GetUsersByIds(userIds []uint) ([]model.User, error) {
 	var user model.User
 	users, err := user.GetUsersByIds(userIds, d.engine)
 	if err != nil {
 		return nil, err
 	}
 	return users, nil
+}
+
+func (d Dao) UpdateUserLoginIP(userId uint, loginIP string) error {
+	user := model.User{
+		Model: &model.Model{
+			ID: userId,
+		},
+		LoginIP: loginIP,
+	}
+	return user.UpdateIP(d.engine)
 }

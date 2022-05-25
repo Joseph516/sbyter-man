@@ -8,7 +8,7 @@ import (
 
 type Video struct {
 	gorm.Model
-	AuthorId      int64     `json:"author_id"`
+	AuthorId      uint      `json:"author_id"`
 	PlayUrl       string    `json:"play_url"`
 	CoverUrl      string    `json:"cover_url"`
 	FavoriteCount int64     `json:"favorite_count"`
@@ -38,7 +38,7 @@ func (v Video) UpdateFavoriteCnt(db *gorm.DB) error {
 }
 
 // QueryVideoById 根据videoId查询video信息
-func (v Video) QueryVideoById(favor int64, db *gorm.DB) (Video, error) {
+func (v Video) QueryVideoById(favor uint, db *gorm.DB) (Video, error) {
 	var video Video
 	err := db.Where("id = ?", favor).Find(&video).Error
 	if err != nil {
@@ -48,7 +48,7 @@ func (v Video) QueryVideoById(favor int64, db *gorm.DB) (Video, error) {
 }
 
 // QueryBatchVdieoById  根据videoId批量查询video信息
-func (v Video) QueryBatchVdieoById(favorList []int64, db *gorm.DB) ([]Video, error) {
+func (v Video) QueryBatchVdieoById(favorList []uint, db *gorm.DB) ([]Video, error) {
 	var videos []Video
 	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title").Where("id IN ?", favorList).
 		Find(&videos).Error

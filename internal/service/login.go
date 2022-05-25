@@ -8,6 +8,7 @@ import (
 type LoginRequest struct {
 	UserName string `form:"username" binding:"required"`
 	Password string `form:"password" binding:"required"`
+	LoginIP string `form:"login_ip"`
 }
 
 type LoginResponse struct {
@@ -19,6 +20,7 @@ type LoginResponse struct {
 type RegisterRequest struct {
 	UserName string `form:"username" binding:"required"`
 	Password string `form:"password" binding:"required"`
+	LoginIP string  `form:"login_ip"`
 }
 
 type RegisterResponse struct {
@@ -28,7 +30,7 @@ type RegisterResponse struct {
 }
 
 func (svc *Service) Login(param *LoginRequest) (uint, bool, error) {
-	return svc.dao.CheckUser(param.UserName, param.Password)
+	return svc.dao.CheckUser(param.UserName, param.Password, param.LoginIP)
 }
 
 func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
@@ -39,6 +41,7 @@ func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
 	createUserRequest := CreateUserRequest{
 		UserName: param.UserName,
 		Password: hashPassword,
+		LoginIP: param.LoginIP,
 	}
 	uid, err := svc.CreateUser(&createUserRequest)
 	if err != nil {
@@ -52,5 +55,5 @@ func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
 	if err != nil {
 		return user.ID, false, err
 	}
-	return  user.ID, true, nil
+	return user.ID, true, nil
 }

@@ -21,18 +21,19 @@ func (dc DouyinCron) FlashFavorCnt() {
 
 	for _, key := range keys {
 		//eg. VC2截取获得videoId = 2
-		videoId, err := strconv.Atoi(key[2:])
+		vId, err := strconv.Atoi(key[2:])
+		videoId := uint(vId)
 		if err != nil {
 			global.Logger.Error(err)
 		}
 		global.Logger.Infof("正在获取%s并启动刷新", key)
-		_, cnt, err := dc.redis.QueryFavorCnt(int64(videoId))
+		_, cnt, err := dc.redis.QueryFavorCnt(videoId)
 		if err != nil {
 			global.Logger.Error(err)
 		}
 
 		var video model.Video
-		video.ID = uint(videoId)
+		video.ID = videoId
 		video.FavoriteCount = cnt
 
 		//写回数据库
@@ -43,7 +44,7 @@ func (dc DouyinCron) FlashFavorCnt() {
 		global.Logger.Infof("刷新成功，目前数据库值为%d", cnt)
 		//写回后删除对应缓存
 		//刷数据库后，再检查一次缓存是否被更新，如果被更新了，那么不能删除缓存，否则会丢失新的更新
-		_, cnt2, err := dc.redis.QueryFavorCnt(int64(videoId))
+		_, cnt2, err := dc.redis.QueryFavorCnt(videoId)
 		if err != nil {
 			global.Logger.Error(err)
 		}
