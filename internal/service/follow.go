@@ -55,6 +55,7 @@ func (svc *Service) LoadFollowCount(userId uint) (int64, error) {
 			return 0, err
 		}
 		svc.redis.SetFollowInfo(fanKey, userInfo.FollowCount)
+
 		//return userInfo.FollowerCount, nil
 	}
 	ret, err := svc.redis.Get(fanKey)
@@ -96,7 +97,7 @@ func (svc *Service) FollowAction(param *FollowActionRequest, userId uint) (flag 
 		return false, errcode.InvalidParams
 	}
 
-	svc.redis.Output()
+	//svc.redis.Output()
 	//_, followCount, _ := svc.redis.QueryFollowCnt(userId)
 	//fmt.Println("关注人数:",followCount)
 	//_, fanCount, _ := svc.redis.QueryFanCnt(param.ToUserId)

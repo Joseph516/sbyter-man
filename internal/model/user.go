@@ -65,9 +65,9 @@ func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 	if !util.CheckBcrypt(user.Password, u.Password) { // 核实数据库密码
 		return errcode.ErrorUserID, false, err
 	}
-	if u.LoginIP != user.LoginIP {
-		return user.ID, false, errcode.ErrorLoginDanger
-	}
+	//if u.LoginIP != user.LoginIP {
+	//	return user.ID, false, errcode.ErrorLoginDanger
+	//}
 	return user.ID, true, nil
 }
 
