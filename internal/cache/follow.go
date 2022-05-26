@@ -110,10 +110,15 @@ func (r *Redis) DecrFanCnt(userId uint) int64 {
 	return result
 }
 
-func (r *Redis) SetFollowInfo(key string, val int64){
-	r.Set(key, val, time.Hour*24)
+// SetFollowInfo 如果没有key，就赋值，返回true，否则，不赋值，返回false
+func (r *Redis) SetFollowInfo(key string, val int64) bool{
+	// 使用set If not exist，保证赋值只进行一次
+	return r.SetIfNotExist(key, val, time.Hour*24)
 }
 
+func (r *Redis) SetIfNotExist(key string, val int64, time2 time.Duration) bool{
+	return r.redis.SetNX(key, val, time2).Val()
+}
 
 func (r *Redis) Output(){
 	vals, _ :=r.redis.Keys("*_COUNT").Result()

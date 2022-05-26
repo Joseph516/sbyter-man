@@ -157,17 +157,19 @@ func AddByRedis(k string)  {
 func main() {
 	//global.DBEngine.AutoMigrate(&Num{})
 	k := "test_favor"
+	e := global.Rd.SetNX(k, 1, time.Minute)
+	fmt.Println(e, ",", e.Val())
 	//err := global.Rd.Set(k,1, time.Minute*5)
 	//if err!=nil{
 	//	fmt.Println(err)
 	//}
-	t1 := time.Now()
-	AddByRedis(k)
-	t2 := time.Now()
-	during := t2.Nanosecond()-t1.Nanosecond()
-	fmt.Println("耗时：" ,float64(during)/float64(time.Second.Nanoseconds()))
-	count := global.Rd.Get(k)
-	fmt.Println(count)
+	//t1 := time.Now()
+	//AddByRedis(k)
+	//t2 := time.Now()
+	//during := t2.Nanosecond()-t1.Nanosecond()
+	//fmt.Println("耗时：" ,float64(during)/float64(time.Second.Nanoseconds()))
+	//count := global.Rd.Get(k)
+	//fmt.Println(count)
 
 
 }
