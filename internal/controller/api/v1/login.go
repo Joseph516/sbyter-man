@@ -2,10 +2,11 @@ package v1
 
 import (
 	"douyin_service/global"
+	"douyin_service/internal/model/message"
+	"douyin_service/internal/producer"
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
-	"douyin_service/pkg/util"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -83,10 +84,13 @@ func (u User) Login(c *gin.Context) {
 				response.ToErrorResponse(errcode.ErrorRegisterFail)
 				return
 			}
-			err = util.SendVerifiedEmail([]string{param.UserName}, userId, param.LoginIP, token)
-			if err != nil {
-				global.Logger.Errorf("util.SendVerifiedEmail: %v", err)
+			email := message.Email{
+				UserName: []string{param.UserName},
+				UserId:   userId,
+				LoginIP:  param.LoginIP,
+				Token:    token,
 			}
+			producer.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
 		}
 		response.ToResponse(res)
 		return

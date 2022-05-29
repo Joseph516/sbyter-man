@@ -18,6 +18,8 @@ type User struct {
 	Signature       string `json:"signature"`        // 个性签名
 	BackgroundImage string `json:"background_image"` // 背景图片
 	LoginIP         string `json:"login_ip"`         // 最近登陆的IP地址
+	TotalFavorited  int64  `json:"total_favorited"`  // 被赞的总次数
+	FavoriteCount   int64  `json:"favorite_count"`   // 喜欢总数量
 }
 
 type UserSwagger struct {
@@ -65,9 +67,9 @@ func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 	if !util.CheckBcrypt(user.Password, u.Password) { // 核实数据库密码
 		return errcode.ErrorUserID, false, err
 	}
-	//if u.LoginIP != user.LoginIP {
-	//	return user.ID, false, errcode.ErrorLoginDanger
-	//}
+	if u.LoginIP != user.LoginIP {
+		return user.ID, false, errcode.ErrorLoginDanger
+	}
 	return user.ID, true, nil
 }
 

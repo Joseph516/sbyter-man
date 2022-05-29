@@ -36,6 +36,14 @@ type DatabaseSettingS struct {
 	MaxOpenConns int
 }
 
+type KafkaSettings struct {
+	Host             string
+	TopicEmail       string // 发送邮件主题
+	TopicCompression string
+	DefaultPartition int
+	ConsumerGroupID  string
+}
+
 type RedisSettingS struct {
 	Addr     string // ip和端口号
 	Password string
