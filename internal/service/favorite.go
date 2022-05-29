@@ -143,7 +143,7 @@ func (svc *Service) QueryFavorCnt(videoId uint) (int64, error) {
 		return 0, err
 	}
 	if ok {
-		return cnt, err
+		return cnt, nil
 	}
 	cnt, err = svc.dao.QueryFavorCntById(videoId)
 	if err != nil {
