@@ -27,7 +27,7 @@ func (d *Dao) CreateUser(userName, password, loginIP string) (uint, error) {
 	}
 	err = user.Create(d.engine)
 	if err != nil {
-		return 0, err
+		return errcode.ErrorUserID, err
 	}
 	return user.ID, nil
 }
