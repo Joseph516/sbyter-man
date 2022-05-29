@@ -30,6 +30,7 @@ type VideoInfo struct {
 	CommentCount  int64    `json:"comment_count"`
 	IsFavorite    bool     `json:"is_favorite"`
 	Title         string   `json:"title"`
+	Tags          string   `json:"tags"`
 }
 
 type PublishListResponse struct {
@@ -76,6 +77,7 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 			CommentCount:  video[i].CommentCount,
 			IsFavorite:    isFavorite,
 			Title:         video[i].Title,
+			Tags:          video[i].Tags,
 		}
 	}
 	return

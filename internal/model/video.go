@@ -22,7 +22,7 @@ func (v Video) TableName() string { return "douyin_video" }
 
 func (v Video) ListVideoByUserId(db *gorm.DB) ([]Video, error) {
 	var video []Video
-	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title").Where("author_id = ?",
+	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title, tags").Where("author_id = ?",
 		v.AuthorId).Find(&video).Error
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (v Video) QueryVideoById(favor uint, db *gorm.DB) (Video, error) {
 // QueryBatchVdieoById  根据videoId批量查询video信息
 func (v Video) QueryBatchVdieoById(favorList []uint, db *gorm.DB) ([]Video, error) {
 	var videos []Video
-	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title").Where("id IN ?", favorList).
+	err := db.Select("id, play_url, cover_url, favorite_count, comment_count, title, tags").Where("id IN ?", favorList).
 		Find(&videos).Error
 	if err != nil {
 		return nil, err
