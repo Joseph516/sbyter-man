@@ -91,5 +91,5 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 	res.StatusMsg = "操作成功"
 	res.VideoList = favoriteList
 	response.ToResponse(res)
-	return
+	// return	//编译器提示，多余的return
 }

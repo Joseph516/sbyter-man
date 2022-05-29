@@ -6,12 +6,13 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"douyin_service/pkg/util"
-	"github.com/gin-gonic/gin"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 // Register 注册用户
-func (u User) Register(c *gin.Context)  {
+func (u User) Register(c *gin.Context) {
 	param := service.RegisterRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
@@ -36,18 +37,23 @@ func (u User) Register(c *gin.Context)  {
 	}
 	idStr := strconv.Itoa(int(userId))
 	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, idStr)
+	if err != nil {
+		global.Logger.Errorf("app.GenerateToken err: %v", err)
+		response.ToErrorResponse(errcode.ErrorRegisterFail)
+		return
+	}
 	res := &service.RegisterResponse{
-		UserID:         userId,
-		Token:          token,
+		UserID: userId,
+		Token:  token,
 	}
 	res.StatusCode = 0
 	res.StatusMsg = "注册成功"
 	response.ToResponse(res)
-	return
+	//return	//多余的return
 }
 
 // Login 登录
-func (u User) Login(c *gin.Context)  {
+func (u User) Login(c *gin.Context) {
 	param := service.LoginRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
@@ -60,8 +66,8 @@ func (u User) Login(c *gin.Context)  {
 	svc := service.New(c.Request.Context())
 	userId, flag, err := svc.Login(&param)
 	res := &service.LoginResponse{
-		UserID:         userId,
-		Token:          "",
+		UserID: userId,
+		Token:  "",
 	}
 	res.StatusCode = errcode.ErrorLoginFail.Code()
 	res.StatusMsg = errcode.ErrorLoginFail.Msg()
@@ -72,6 +78,11 @@ func (u User) Login(c *gin.Context)  {
 			res.StatusMsg = errcode.ErrorLoginDanger.Msg()
 			// 此处将登录IP存入Token，保证不会被篡改Token
 			token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, param.LoginIP)
+			if err != nil {
+				global.Logger.Errorf("app.GenerateToken err: %v", err)
+				response.ToErrorResponse(errcode.ErrorRegisterFail)
+				return
+			}
 			err = util.SendVerifiedEmail([]string{param.UserName}, userId, param.LoginIP, token)
 			if err != nil {
 				global.Logger.Errorf("util.SendVerifiedEmail: %v", err)
@@ -88,14 +99,17 @@ func (u User) Login(c *gin.Context)  {
 	}
 	idStr := strconv.Itoa(int(userId))
 	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, idStr)
+	if err != nil {
+		global.Logger.Errorf("app.GenerateToken err: %v", err)
+		response.ToErrorResponse(errcode.ErrorRegisterFail)
+		return
+	}
 	res = &service.LoginResponse{
-		UserID:         userId,
-		Token:          token,
+		UserID: userId,
+		Token:  token,
 	}
 	res.StatusCode = 0
 	res.StatusMsg = "登录成功"
 	response.ToResponse(res)
-	return
+	//return	//多余的return
 }
-
-

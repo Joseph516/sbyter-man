@@ -15,8 +15,9 @@ type FeedResponse struct {
 	VideoList []VideoInfo `json:"video_list"`
 }
 
-func (svc *Service) Feed(lastTime int64) (pubResp FeedResponse, err error) {
-	// 根据lastTime获取最新的20条视频, len <= 20
+func (svc *Service) Feed(uid uint, lastTime int64) (pubResp FeedResponse, err error) {
+	// 根据lastTime获取最新的20条视频, len <= 20;
+	// 此版本对任意uid都是返回同样的结果
 	videos, err := svc.dao.GetLatestVideos(lastTime)
 	if err != nil {
 		return
@@ -36,19 +37,34 @@ func (svc *Service) Feed(lastTime int64) (pubResp FeedResponse, err error) {
 	// 建立用户id到用户信息的map映射
 	map_user := make(map[uint]UserInfo)
 	for _, user := range users {
+		isFollw := false
+		if uid != 0 {
+			isFollw, err = svc.dao.IsFollow(uid, user.ID)
+			if err != nil {
+				return
+			}
+		}
 		map_user[user.ID] = UserInfo{
 			ID:            user.ID,
 			Name:          user.UserName,
 			FollowCount:   user.FollowCount,
 			FollowerCount: user.FollowerCount,
-			IsFollow:      false,
+			IsFollow:      isFollw,
 		}
 	}
 
 	// 遍历赋值
 	pubResp.VideoList = make([]VideoInfo, len(videos))
 	nextTime := time.Now().Unix()
+
 	for i, video := range videos {
+		isFavor := false
+		if uid != 0 {
+			isFavor, err = svc.dao.IsFavor(uid, video.ID)
+			if err != nil {
+				return
+			}
+		}
 		pubResp.VideoList[i] = VideoInfo{
 			Id:            video.ID,
 			Author:        map_user[video.AuthorId],
@@ -56,7 +72,7 @@ func (svc *Service) Feed(lastTime int64) (pubResp FeedResponse, err error) {
 			CoverUrl:      video.CoverUrl,
 			FavoriteCount: video.FavoriteCount,
 			CommentCount:  video.CommentCount,
-			IsFavorite:    video.FavoriteCount != 0,
+			IsFavorite:    isFavor,
 			Title:         video.Title,
 		}
 		if video.PublishDate.Unix() < nextTime {
