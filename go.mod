@@ -3,6 +3,7 @@ module douyin_service
 go 1.18
 
 require (
+	github.com/Shopify/sarama v1.33.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/locales v0.14.0
@@ -24,7 +25,6 @@ require (
 )
 
 require (
-	github.com/Shopify/sarama v1.33.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect

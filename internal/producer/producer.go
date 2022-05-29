@@ -2,12 +2,13 @@ package producer
 
 import (
 	"douyin_service/global"
-	"github.com/Shopify/sarama"
 	"log"
+
+	"github.com/Shopify/sarama"
 )
 
 // Producer 生产者方法
-func Producer(topic string, message string, limit int)  {
+func Producer(topic string, message string, limit int) {
 	config := sarama.NewConfig()
 	config.Producer.Return.Successes = true
 	config.Producer.Return.Errors = true
@@ -19,9 +20,9 @@ func Producer(topic string, message string, limit int)  {
 	defer producer.Close()
 	for i := 0; i < limit; i++ {
 		msg := &sarama.ProducerMessage{
-			Topic:     topic,
-			Key:       nil,
-			Value:     sarama.StringEncoder(message),
+			Topic: topic,
+			Key:   nil,
+			Value: sarama.StringEncoder(message),
 		}
 		partition, offset, err := producer.SendMessage(msg)
 		if err != nil {
