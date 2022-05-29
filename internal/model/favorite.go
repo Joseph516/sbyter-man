@@ -4,8 +4,8 @@ import "gorm.io/gorm"
 
 type Favorite struct {
 	*Model
-	UserId  int64 `json:"user_id"`
-	VideoId int64 `json:"video_id"`
+	UserId  uint `json:"user_id"`
+	VideoId uint `json:"video_id"`
 }
 
 func (f Favorite) TableName() string {
@@ -41,8 +41,8 @@ func (f Favorite) QueryFavoritedCnt(db *gorm.DB) (int64, error) {
 }
 
 // QueryFavoriteByUserId 查询userId点赞的videoId
-func (f Favorite) QueryFavoriteByUserId(db *gorm.DB) ([]int64, error) {
-	var favorList []int64
+func (f Favorite) QueryFavoriteByUserId(db *gorm.DB) ([]uint, error) {
+	var favorList []uint
 	err := db.Model(&Favorite{}).Select("video_id").Where("user_id = ?", f.UserId).Find(&favorList).Error
 	if err != nil {
 		return nil, err
