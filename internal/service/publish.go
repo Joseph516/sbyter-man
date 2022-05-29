@@ -3,6 +3,7 @@ package service
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model"
+	"douyin_service/pkg/tag"
 	"douyin_service/pkg/upload"
 	"douyin_service/pkg/util"
 	"errors"
@@ -121,8 +122,11 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 		coverUrl = util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
 	}
 
+	// 获取视频标签信息
+	tags, _ := tag.ExtractTagFromText(title)
+
 	// 更新数据库
-	err := svc.dao.PublishVideo(userId, playUrl, coverUrl, title)
+	err := svc.dao.PublishVideoWithTag(userId, playUrl, coverUrl, title, tags)
 
 	return err
 }

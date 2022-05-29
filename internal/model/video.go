@@ -14,6 +14,7 @@ type Video struct {
 	FavoriteCount int64     `json:"favorite_count"`
 	CommentCount  int64     `json:"comment_count"`
 	Title         string    `json:"title"`
+	Tags          string    `json:"tags"`
 	PublishDate   time.Time `json:"publish_date"`
 }
 
