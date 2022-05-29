@@ -118,7 +118,7 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 			return err
 		}
 	} else {
-		coverUrl = util.UrlJoin(global.AppSetting.UploadServerUrl, strconv.Itoa(int(userId)), coverName)
+		coverUrl = util.UrlJoin(global.AppSetting.UploadServerUrl, global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), coverName)
 	}
 
 	// 更新数据库
