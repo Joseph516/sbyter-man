@@ -3,6 +3,7 @@ package main
 import (
 	"douyin_service/cronjob"
 	"douyin_service/global"
+	"douyin_service/internal/consumer"
 	"douyin_service/internal/controller"
 	"douyin_service/internal/model"
 	"douyin_service/pkg/email"
@@ -33,6 +34,11 @@ func init() {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
 
+	err = setupKafka()
+	if err != nil {
+		log.Fatalf("init.setupKafka err: %v", err)
+	}
+
 	setupEmail()
 	err = setupCron()
 	if err != nil {
@@ -56,10 +62,12 @@ func main() {
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
+	go consumer.ConsumeEmail() // 开启一个协程监听kafka邮件消息
 	err := s.ListenAndServe()
 	if err != nil {
 		log.Fatalln(err)
 	}
+
 }
 func setupSetting() error {
 	setting, err := setting2.NewSetting()
@@ -81,6 +89,10 @@ func setupSetting() error {
 		return err
 	}
 
+	err = setting.ReadSection("Kafka", &global.KafkaSetting)
+	if err != nil {
+		return err
+	}
 	err = setting.ReadSection("Redis", &global.RedisSetting)
 	if err != nil {
 		return err
@@ -123,6 +135,15 @@ func setupLogger() error {
 		MaxAge:    10,  // 10天
 		LocalTime: true,
 	}, "", log.LstdFlags).WithCaller(2)
+	return nil
+}
+
+func setupKafka() error {
+	var err error
+	global.Consumer, err = consumer.NewConsumer()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

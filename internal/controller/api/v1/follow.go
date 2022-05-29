@@ -57,7 +57,7 @@ func (f *Follow) Action(c *gin.Context) {
 	res.StatusCode = 0
 	res.StatusMsg = "操作成功"
 	response.ToResponse(res)
-	return
+	//return	//编译器提示，多余的return
 
 }
 
@@ -97,5 +97,5 @@ func (f Follow) FollowerList(c *gin.Context) {
 		res.StatusMsg = err.Error()
 	}
 	response.ToResponse(res)
-	return
+	//return	//编译器提示，多余的return
 }

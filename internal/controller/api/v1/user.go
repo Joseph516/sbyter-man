@@ -5,8 +5,9 @@ import (
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
-	"github.com/gin-gonic/gin"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 type User struct{}
@@ -59,5 +60,5 @@ func (u User) Get(c *gin.Context) {
 	res.StatusCode = 0
 	res.StatusMsg = "获取信息成功"
 	response.ToResponse(res)
-	return
+	//return	//多余的return
 }

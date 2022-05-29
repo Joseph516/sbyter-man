@@ -31,8 +31,8 @@ func (p Publish) List(c *gin.Context) {
 		return
 	}
 
-	userStr := strconv.Itoa(int(param.UserId))
-	valid, tokenErr := app.ValidToken(param.Token, userStr)
+	//userStr := strconv.Itoa(int(param.UserId))
+	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", tokenErr)
 		response.ToErrorResponse(tokenErr)

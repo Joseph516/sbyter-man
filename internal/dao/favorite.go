@@ -6,7 +6,7 @@ import (
 
 // dao的favorite相关操作（全部走数据库）
 
-func (d *Dao) FavorAction(userId int64, videoId int64) error {
+func (d *Dao) FavorAction(userId uint, videoId uint) error {
 	favorite := model.Favorite{
 		UserId:  userId,
 		VideoId: videoId,
@@ -18,7 +18,7 @@ func (d *Dao) FavorAction(userId int64, videoId int64) error {
 	return nil
 }
 
-func (d *Dao) CancelFavorAction(userId int64, videoId int64) error {
+func (d *Dao) CancelFavorAction(userId uint, videoId uint) error {
 	favorite := model.Favorite{
 		UserId:  userId,
 		VideoId: videoId,
@@ -30,7 +30,7 @@ func (d *Dao) CancelFavorAction(userId int64, videoId int64) error {
 	return nil
 }
 
-func (d *Dao) IsFavor(userId int64, videoId int64) (bool, error) {
+func (d *Dao) IsFavor(userId uint, videoId uint) (bool, error) {
 	favorite := model.Favorite{
 		UserId:  userId,
 		VideoId: videoId,
@@ -43,7 +43,7 @@ func (d *Dao) IsFavor(userId int64, videoId int64) (bool, error) {
 
 }
 
-func (d *Dao) QueryFavoritedCnt(videoId int64) (int64, error) {
+func (d *Dao) QueryFavoritedCnt(videoId uint) (int64, error) {
 	favorite := model.Favorite{
 		VideoId: videoId,
 	}
@@ -54,7 +54,7 @@ func (d *Dao) QueryFavoritedCnt(videoId int64) (int64, error) {
 	return cnt, nil
 }
 
-func (d *Dao) QueryFavoriteByUserId(userId int64) ([]int64, error) {
+func (d *Dao) QueryFavoriteByUserId(userId uint) ([]uint, error) {
 	favorite := model.Favorite{
 		UserId: userId,
 	}

@@ -5,7 +5,7 @@ import (
 )
 
 type Follow struct {
-	gorm.Model
+	*Model
 	FollowedId uint
 	FollowerId uint
 }
