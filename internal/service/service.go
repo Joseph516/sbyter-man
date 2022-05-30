@@ -5,12 +5,14 @@ import (
 	"douyin_service/global"
 	"douyin_service/internal/cache"
 	"douyin_service/internal/dao"
+	"douyin_service/internal/middleware"
 )
 
 type Service struct {
 	ctx   context.Context
 	dao   *dao.Dao
 	redis *cache.Redis
+	Kafka *middleware.Kafka
 }
 
 type ResponseCommon struct {
@@ -23,6 +25,7 @@ func New(ctx context.Context) Service {
 		ctx:   ctx,
 		dao:   dao.New(global.DBEngine),
 		redis: cache.NewRedis(global.Rd),
+		Kafka: middleware.NewKafka(global.Consumer, global.SyncProducer),
 	}
 	return svc
 }
