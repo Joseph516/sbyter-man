@@ -3,7 +3,6 @@ package v1
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model/message"
-	"douyin_service/internal/producer"
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
@@ -90,7 +89,7 @@ func (u User) Login(c *gin.Context) {
 				LoginIP:  param.LoginIP,
 				Token:    token,
 			}
-			producer.Producer(svc, global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
+			svc.Kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
 		}
 		response.ToResponse(res)
 		return

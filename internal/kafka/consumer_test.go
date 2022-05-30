@@ -1,4 +1,4 @@
-package consumer
+package kafka
 
 import (
 	"douyin_service/global"
@@ -11,5 +11,6 @@ func TestConsumeEmail(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	ConsumeEmail()
+	kafka := NewKafka(global.Consumer, global.SyncProducer)
+	kafka.ConsumeEmail()
 }
