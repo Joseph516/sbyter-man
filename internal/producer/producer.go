@@ -22,9 +22,9 @@ func NewSyncProducer() (sarama.SyncProducer, error) {
 func Producer(svc service.Service, topic string, message string, limit int)  {
 	for i := 0; i < limit; i++ {
 		msg := &sarama.ProducerMessage{
-			Topic:     topic,
-			Key:       nil,
-			Value:     sarama.StringEncoder(message),
+			Topic: topic,
+			Key:   nil,
+			Value: sarama.StringEncoder(message),
 		}
 		partition, offset, err := svc.Kafka.SyncProducer.SendMessage(msg)
 		if err != nil {

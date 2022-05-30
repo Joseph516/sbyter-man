@@ -39,6 +39,11 @@ func (svc *Service) CommentAction(param *CommentActionRequest) error {
 }
 
 func (svc *Service) GetCommentList(video_id int64) (comResp CommentListResponse, err error) {
+	//根据视频id获取作者id
+	video, err := svc.dao.QueryVideoById(uint(video_id))
+	if err != nil {
+		return
+	}
 	//根据视频id获取评论列表
 	comments, err := svc.dao.ListCommentByVideoId(video_id)
 	if err != nil {
@@ -53,13 +58,18 @@ func (svc *Service) GetCommentList(video_id int64) (comResp CommentListResponse,
 			//这样合适吗？
 			return CommentListResponse{}, err
 		}
+		//根据用户id和视频作者id显查询是否关注
+		isFollow, err := svc.dao.IsFollow(user.ID, video.AuthorId)
+		if err != nil {
+			return CommentListResponse{}, err
+		}
 		comResp.CommentList[i] = CommentInfo{
 			Id: comments[i].ID,
 			Author: UserInfo{
 				ID:          user.ID,
 				Name:        user.UserName,
 				FollowCount: user.FollowCount,
-				IsFollow:    false,
+				IsFollow:    isFollow,
 			},
 			Content:    comments[i].Content,
 			CreateDate: comments[i].CreatedAt.Format("01-02"),
