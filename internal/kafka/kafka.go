@@ -1,4 +1,4 @@
-package middleware
+package kafka
 
 import "github.com/Shopify/sarama"
 

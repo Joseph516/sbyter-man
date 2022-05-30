@@ -1,4 +1,4 @@
-package service
+package kafka
 
 import (
 	"douyin_service/global"
@@ -18,14 +18,14 @@ func NewSyncProducer() (sarama.SyncProducer, error) {
 }
 
 // Producer 生产者方法
-func (svc *Service) Producer(topic string, message string, limit int)  {
+func (k *Kafka) Producer(topic string, message string, limit int)  {
 	for i := 0; i < limit; i++ {
 		msg := &sarama.ProducerMessage{
 			Topic: topic,
 			Key:   nil,
 			Value: sarama.StringEncoder(message),
 		}
-		partition, offset, err := svc.Kafka.SyncProducer.SendMessage(msg)
+		partition, offset, err := k.SyncProducer.SendMessage(msg)
 		if err != nil {
 			log.Println("SendMessage err: ", err)
 			return

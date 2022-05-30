@@ -89,7 +89,7 @@ func (u User) Login(c *gin.Context) {
 				LoginIP:  param.LoginIP,
 				Token:    token,
 			}
-			svc.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
+			svc.Kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
 		}
 		response.ToResponse(res)
 		return

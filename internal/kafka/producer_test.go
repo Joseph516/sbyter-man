@@ -1,8 +1,9 @@
-package service
+package kafka
 
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model/message"
+	"douyin_service/internal/service"
 	"github.com/gin-gonic/gin"
 	"testing"
 )
@@ -14,6 +15,6 @@ func TestProducer(t *testing.T) {
 		LoginIP:  "127.0.0.1",
 		Token:    "123",
 	}
-	svc := New(&gin.Context{})
-	svc.Producer(global.KafkaSetting.TopicEmail, email.String(), 1)
+	kafka := NewKafka(global.Consumer, global.SyncProducer)
+	kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1)
 }
