@@ -1,9 +1,8 @@
-package consumer
+package service
 
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model/message"
-	"douyin_service/internal/service"
 	"douyin_service/pkg/util"
 	"encoding/json"
 	"github.com/Shopify/sarama"
@@ -23,7 +22,7 @@ func NewConsumer() (sarama.Consumer, error) {
 
 
 // ConsumeEmail 消费邮件
-func ConsumeEmail(svc service.Service) {
+func (svc *Service) ConsumeEmail() {
 	consumer := svc.Kafka.Consumer
 	partitionConsumer, err := consumer.ConsumePartition(global.KafkaSetting.TopicEmail, 0, sarama.OffsetNewest)
 	if err != nil {

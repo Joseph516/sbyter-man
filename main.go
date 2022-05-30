@@ -3,10 +3,8 @@ package main
 import (
 	"douyin_service/cronjob"
 	"douyin_service/global"
-	"douyin_service/internal/consumer"
 	"douyin_service/internal/controller"
 	"douyin_service/internal/model"
-	"douyin_service/internal/producer"
 	"douyin_service/internal/service"
 	"douyin_service/pkg/email"
 	"douyin_service/pkg/logger"
@@ -64,7 +62,8 @@ func main() {
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
-	go consumer.ConsumeEmail(service.New(&gin.Context{})) // 开启一个协程监听kafka邮件消息
+	svc := service.New(&gin.Context{})
+	go svc.ConsumeEmail() // 开启一个协程监听kafka邮件消息
 	err := s.ListenAndServe()
 	if err != nil {
 		log.Fatalln(err)
@@ -142,12 +141,12 @@ func setupLogger() error {
 
 func setupKafka() error {
 	var err error
-	global.Consumer, err = consumer.NewConsumer()
+	global.Consumer, err = service.NewConsumer()
 
 	if err != nil {
 		return err
 	}
-	global.SyncProducer, err = producer.NewSyncProducer()
+	global.SyncProducer, err = service.NewSyncProducer()
 	if err != nil {
 		return err
 	}

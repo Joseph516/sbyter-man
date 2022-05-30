@@ -1,7 +1,8 @@
-package consumer
+package service
 
 import (
 	"douyin_service/global"
+	"github.com/gin-gonic/gin"
 	"testing"
 )
 
@@ -11,5 +12,6 @@ func TestConsumeEmail(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	ConsumeEmail()
+	svc := New(&gin.Context{})
+	svc.ConsumeEmail()
 }

@@ -1,8 +1,9 @@
-package producer
+package service
 
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model/message"
+	"github.com/gin-gonic/gin"
 	"testing"
 )
 
@@ -13,5 +14,6 @@ func TestProducer(t *testing.T) {
 		LoginIP:  "127.0.0.1",
 		Token:    "123",
 	}
-	Producer(global.KafkaSetting.TopicEmail, email.String(), 1)
+	svc := New(&gin.Context{})
+	svc.Producer(global.KafkaSetting.TopicEmail, email.String(), 1)
 }

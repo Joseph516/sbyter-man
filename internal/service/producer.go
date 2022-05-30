@@ -1,8 +1,7 @@
-package producer
+package service
 
 import (
 	"douyin_service/global"
-	"douyin_service/internal/service"
 	"github.com/Shopify/sarama"
 	"log"
 )
@@ -19,7 +18,7 @@ func NewSyncProducer() (sarama.SyncProducer, error) {
 }
 
 // Producer 生产者方法
-func Producer(svc service.Service, topic string, message string, limit int)  {
+func (svc *Service) Producer(topic string, message string, limit int)  {
 	for i := 0; i < limit; i++ {
 		msg := &sarama.ProducerMessage{
 			Topic: topic,
