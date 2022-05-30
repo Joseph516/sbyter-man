@@ -64,7 +64,7 @@ func (u User) Login(c *gin.Context) {
 		return
 	}
 	param.LoginIP = c.ClientIP()
-	svc := service.New(c.Request.Context())
+	svc := service.New(c.Request.Context(),)
 	userId, flag, err := svc.Login(&param)
 	res := &service.LoginResponse{
 		UserID: userId,
@@ -90,7 +90,7 @@ func (u User) Login(c *gin.Context) {
 				LoginIP:  param.LoginIP,
 				Token:    token,
 			}
-			producer.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
+			producer.Producer(svc, global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
 		}
 		response.ToResponse(res)
 		return
