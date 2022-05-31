@@ -10,14 +10,15 @@ import (
 	"douyin_service/pkg/email"
 	"douyin_service/pkg/logger"
 	setting2 "douyin_service/pkg/setting"
+	"log"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/mattn/go-colorable"
 	"github.com/robfig/cron/v3"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"log"
-	"net/http"
-	"time"
 )
 
 func init() {
@@ -47,7 +48,6 @@ func init() {
 		log.Fatalf("init.setupCron err: %v", err)
 	}
 
-
 }
 
 // @title 抖音平台
@@ -68,8 +68,8 @@ func main() {
 	}
 
 	svc := service.New(&gin.Context{})
-	go svc.Kafka.ConsumeEmail() // 开启一个协程监听kafka邮件消息
-
+	go svc.Kafka.ConsumeEmail()  // 开启一个协程监听kafka邮件消息
+	go svc.Kafka.ConsumComment() // 开启一个协程监听kafka评论消息
 	err := s.ListenAndServe()
 	if err != nil {
 		log.Fatalln(err)
@@ -191,11 +191,11 @@ func setupCron() error {
 		return err
 	}
 	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, followCntFlashJob)
-	if err!= nil{
+	if err != nil {
 		return err
 	}
 	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, fanCntFlashJob)
-	if err!= nil{
+	if err != nil {
 		return err
 	}
 	//开启

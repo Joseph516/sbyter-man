@@ -39,6 +39,7 @@ type DatabaseSettingS struct {
 type KafkaSettings struct {
 	Host             string
 	TopicEmail       string // 发送邮件主题
+	TopicComment     string //发送评论主题
 	TopicCompression string
 	DefaultPartition int
 	ConsumerGroupID  string
