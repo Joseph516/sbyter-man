@@ -18,25 +18,30 @@ type CommentInfo struct {
 	CreateDate string   `json:"create_date"`
 }
 
-type CommentActionRequest struct {
-	UserId      int64  `form:"user_id" binding:"-"`
-	Token       string `form:"token" binding:"required"`
-	VideoId     int64  `form:"video_id"  binding:"required"`
-	ActionType  int64  `form:"action_type"  binding:"required"`
-	CommentText string `form:"comment_text"  binding:"-"`
-	CommentId   uint   `form:"comment_id"  binding:"-"`
-}
+// type CommentActionRequest struct {
+// 	UserId      int64  `form:"user_id" binding:"-"`
+// 	Token       string `form:"token" binding:"required"`
+// 	VideoId     int64  `form:"video_id"  binding:"required"`
+// 	ActionType  int64  `form:"action_type"  binding:"required"`
+// 	CommentText string `form:"comment_text"  binding:"-"`
+// 	CommentId   uint   `form:"comment_id"  binding:"-"`
+// }
 
-const PUBCOMMENT int64 = 1
+// func (c CommentActionRequest) String() string {
+// 	s, _ := json.Marshal(c)
+// 	return string(s)
+// }
 
-//const DELCOMMENT int64 = 2
+// const PUBCOMMENT int64 = 1
 
-func (svc *Service) CommentAction(param *CommentActionRequest) error {
-	if param.ActionType == PUBCOMMENT {
-		return svc.dao.PublishComment(param.VideoId, param.UserId, param.CommentText)
-	}
-	return svc.dao.DeleteComment(param.CommentId)
-}
+// //const DELCOMMENT int64 = 2
+
+// func (svc *Service) CommentAction(param *CommentActionRequest) error {
+// 	if param.ActionType == PUBCOMMENT {
+// 		return svc.dao.PublishComment(param.VideoId, param.UserId, param.CommentText)
+// 	}
+// 	return svc.dao.DeleteComment(param.CommentId)
+// }
 
 func (svc *Service) GetCommentList(video_id int64) (comResp CommentListResponse, err error) {
 	//根据视频id获取作者id
