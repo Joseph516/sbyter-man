@@ -1,4 +1,4 @@
-package consumer
+package kafka
 
 import (
 	"douyin_service/global"
@@ -22,8 +22,8 @@ func NewConsumer() (sarama.Consumer, error) {
 
 
 // ConsumeEmail 消费邮件
-func ConsumeEmail() {
-	consumer := global.Consumer
+func (k *Kafka) ConsumeEmail() {
+	consumer := k.Consumer
 	partitionConsumer, err := consumer.ConsumePartition(global.KafkaSetting.TopicEmail, 0, sarama.OffsetNewest)
 	if err != nil {
 		log.Fatalln("ConsumePartition err: ", err)
