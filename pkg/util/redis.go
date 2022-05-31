@@ -12,6 +12,8 @@ const (
 	USERFAVORCNTPRIFIX  = "UC"
 	VIDEOFAVORCNTPRIFIX = "VC"
 	VIDEO               = "VI"
+	FOLLOWCOUNTFREFIX   = "FOLLOW_COUNT:"
+	FANCOUNTFREFIX      = "FAN_COUNT:"
 )
 
 // UserFavorKey 拼接userId点赞的key
@@ -50,9 +52,9 @@ func GetListFromBitMap(bitmap []byte) []uint {
 }
 
 func FollowCountKey(id uint) string {
-	return strconv.Itoa(int(id)) + "_FOLLOW_COUNT"
+	return   FOLLOWCOUNTFREFIX + strconv.Itoa(int(id))
 }
 
 func FanCountKey(id uint) string {
-	return strconv.Itoa(int(id)) + "_FAN_COUNT"
+	return FANCOUNTFREFIX +  strconv.Itoa(int(id))
 }

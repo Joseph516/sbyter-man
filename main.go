@@ -40,10 +40,13 @@ func init() {
 	}
 
 	setupEmail()
+
 	err = setupCron()
 	if err != nil {
 		log.Fatalf("init.setupCron err: %v", err)
 	}
+
+
 }
 
 // @title 抖音平台
@@ -62,6 +65,7 @@ func main() {
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
+
 	go consumer.ConsumeEmail() // 开启一个协程监听kafka邮件消息
 	err := s.ListenAndServe()
 	if err != nil {
@@ -165,14 +169,25 @@ func setupCron() error {
 	c := cron.New(cron.WithSeconds())
 	// 生成chain
 	favorSkipChain1 := cronjob.SkipIfStillRunningChain()
+	followSkipChain1 := cronjob.SkipIfStillRunningChain()
 
 	// 生成job
 	favorCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashFavorCnt)
+	followCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFollowCnt)
+	fanCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFanCnt)
 	global.Logger.Info("启动点赞数量定时刷新任务")
 
 	//向cron注册经过对应chain修饰的job
 	_, err := c.AddJob(cronjob.FAVORCNTTIME, favorCntFlashJob)
 	if err != nil {
+		return err
+	}
+	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, followCntFlashJob)
+	if err!= nil{
+		return err
+	}
+	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, fanCntFlashJob)
+	if err!= nil{
 		return err
 	}
 	//开启
