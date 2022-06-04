@@ -19,8 +19,8 @@ func NewPublish() Publish {
 // List 发布列表
 // 登录用户的视频发布列表，直接列出用户所有投稿过的视频
 // 参数名	位置	参数类型	必填	说明
-// token	query		是	用户鉴权token
-// user_id	query		是	用户id
+// token	query		否	用户鉴权token
+// user_id	query		否	用户id
 func (p Publish) List(c *gin.Context) {
 	param := service.PublishListRequest{}
 	response := app.NewResponse(c)
@@ -31,6 +31,16 @@ func (p Publish) List(c *gin.Context) {
 		return
 	}
 
+	if len(param.Token) == 0 {
+		//获取不到token说明处于未登录状态
+		var resp service.PublishListResponse
+		resp.StatusCode = 0
+		resp.StatusMsg = "获取用户的视频发布列表成功"
+		resp.VideoList = nil
+		response.ToResponse(resp)
+		return
+	}
+
 	//userStr := strconv.Itoa(int(param.UserId))
 	valid, tokenErr := app.ValidToken(param.Token, errcode.SkipCheckUserID)
 	if !valid {
@@ -38,7 +48,6 @@ func (p Publish) List(c *gin.Context) {
 		response.ToErrorResponse(tokenErr)
 		return
 	}
-
 	// 获取视频发布列表
 	var resp service.PublishListResponse
 	svc := service.New(c.Request.Context())

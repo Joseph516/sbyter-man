@@ -17,8 +17,8 @@ type ActionResponse struct {
 }
 
 type FavoriteListRequest struct {
-	UserId uint   `json:"user_id" form:"user_id" binding:"required"`
-	Token  string `json:"token" form:"token" binding:"required"`
+	UserId uint   `json:"user_id" form:"user_id"`
+	Token  string `json:"token" form:"token"`
 }
 
 type FavoriteListResponse struct {
@@ -71,7 +71,6 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		return nil, err
 	}
 	//查询video
-	//TODO：限制查询个数
 	videos, err := svc.QueryBatchVdieoById(videosId)
 	//筛选video的authorId
 	authorsId := make([]uint, 0)
@@ -79,7 +78,6 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		authorsId = append(authorsId, video.AuthorId)
 	}
 	//查询author
-	//TODO：限制查询个数
 	authors, err := svc.GetUsersByIds(authorsId)
 	if err != nil {
 		return nil, err

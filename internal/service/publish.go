@@ -16,8 +16,8 @@ import (
 )
 
 type PublishListRequest struct {
-	UserId uint   `form:"user_id"  binding:"required"`
-	Token  string `form:"token" binding:"required"`
+	UserId uint   `form:"user_id"` //考虑到客户端在未登录下仍会尝试调用publish/list,因此将UserId和Token的required标签取消了
+	Token  string `form:"token"`
 }
 
 type VideoInfo struct {
@@ -60,6 +60,7 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 	for i := range video {
 		isFavorite, _ := svc.IsFavor(userId, video[i].ID)
 		favoriteCnt, _ := svc.QueryFavorCnt(video[i].ID)
+		isFollow, _ := svc.dao.IsFollow(userId, video[i].AuthorId)
 		pubResp.VideoList[i] = VideoInfo{
 			Id: video[i].ID,
 			Author: UserInfo{
@@ -67,7 +68,7 @@ func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err e
 				Name:          user.UserName,
 				FollowCount:   user.FollowCount,
 				FollowerCount: user.FollowerCount,
-				IsFollow:      false,
+				IsFollow:      isFollow,
 			},
 			PlayUrl:       video[i].PlayUrl,
 			CoverUrl:      video[i].CoverUrl,
