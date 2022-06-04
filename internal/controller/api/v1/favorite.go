@@ -70,7 +70,14 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-
+	if len(param.Token) == 0 {
+		//获取不到token说明未登录
+		res.StatusCode = 0
+		res.StatusMsg = "操作成功"
+		res.VideoList = nil
+		response.ToResponse(res)
+		return
+	}
 	valid, err := app.ValidToken(param.Token, strconv.Itoa(int(param.UserId)))
 	if !valid {
 		global.Logger.Errorf("app.ValidToken errs: %v", err)
@@ -91,5 +98,4 @@ func (f Favorite) FavoriteList(c *gin.Context) {
 	res.StatusMsg = "操作成功"
 	res.VideoList = favoriteList
 	response.ToResponse(res)
-	// return	//编译器提示，多余的return
 }

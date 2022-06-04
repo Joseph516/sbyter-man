@@ -790,269 +790,270 @@
 2022/05/29 16:40:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653813623303387100}
 2022/05/29 16:40:34 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653813634205047200}
 2022/05/29 16:40:49 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653813649295063200}
-<<<<<<< HEAD
-2022/05/31 15:25:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981921836429100}
-2022/05/31 15:25:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981921836948200}
-2022/05/31 15:25:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981921839708000}
-2022/05/31 15:25:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981921839708000}
-2022/05/31 15:25:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981953807470200}
-2022/05/31 15:25:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981953807470200}
-2022/05/31 15:25:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981953807470200}
-2022/05/31 15:25:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981953807470200}
-2022/05/31 15:26:06 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981966061647300}
-2022/05/31 15:26:06 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981966061647300}
-2022/05/31 15:26:06 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981966061647300}
-2022/05/31 15:26:06 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653981966061647300}
-2022/05/31 15:27:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653982063070595600}
-2022/05/31 15:27:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653982063071962900}
-2022/05/31 15:27:59 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653982079800232800}
-2022/05/31 15:28:05 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653982085844863600}
-2022/05/31 15:30:42 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653982242376434400}
-2022/05/31 15:30:42 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653982242393106200}
-2022/05/31 15:30:50 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653982250657597600}
-2022/05/31 15:31:02 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653982262341695200}
-2022/05/31 15:31:35 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: Error 1062: Duplicate entry 'abc' for key 'douyin_user.douyin_user_UN'","time":1653982295260583500}
-2022/05/31 15:32:00 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: write tcp 10.11.72.12:64680-\u003e106.14.89.192:6379: wsasend: An existing connection was forcibly closed by the remote host.","time":1653982320064724300}
-2022/05/31 15:32:05 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653982325018811200}
-2022/05/31 15:32:11 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982331798720600}
-2022/05/31 15:32:11 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982331798720600}
-2022/05/31 15:32:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982333042582500}
-2022/05/31 15:32:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982333042582500}
-2022/05/31 15:32:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982333966550800}
-2022/05/31 15:32:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982333966629100}
-2022/05/31 15:32:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982334644723300}
-2022/05/31 15:32:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982334644723300}
-2022/05/31 15:32:48 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982368626793700}
-2022/05/31 15:32:48 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982368626793700}
-2022/05/31 15:32:51 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982371215647600}
-2022/05/31 15:32:51 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982371215647600}
-2022/05/31 15:32:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982373145285500}
-2022/05/31 15:32:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982373145285500}
-2022/05/31 15:32:58 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982378785642300}
-2022/05/31 15:32:58 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982378785642300}
-2022/05/31 15:32:59 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982379931340800}
-2022/05/31 15:32:59 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982379931340800}
-2022/05/31 15:33:02 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982382157090400}
-2022/05/31 15:33:02 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982382157090400}
-2022/05/31 15:33:02 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982382843363100}
-2022/05/31 15:33:02 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982382843363100}
-2022/05/31 15:33:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982394785104600}
-2022/05/31 15:33:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982394785104600}
-2022/05/31 15:33:22 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982402980749300}
-2022/05/31 15:33:22 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982402980749300}
-2022/05/31 15:33:25 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982405890614500}
-2022/05/31 15:33:25 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982405890614500}
-2022/05/31 15:33:28 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982408802807500}
-2022/05/31 15:33:28 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982408802807500}
-2022/05/31 15:33:30 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982410570404200}
-2022/05/31 15:33:30 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982410570404200}
-2022/05/31 15:33:31 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982411465669900}
-2022/05/31 15:33:31 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982411465669900}
-2022/05/31 15:33:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982417224635900}
-2022/05/31 15:33:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982417224635900}
-2022/05/31 15:33:38 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982418207668900}
-2022/05/31 15:33:38 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982418207668900}
-2022/05/31 15:35:23 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982523574657800}
-2022/05/31 15:35:23 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982523574657800}
-2022/05/31 15:35:24 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982524770851100}
-2022/05/31 15:35:24 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982524770851100}
-2022/05/31 15:35:28 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982528301196900}
-2022/05/31 15:35:28 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982528301196900}
-2022/05/31 15:36:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982594640875200}
-2022/05/31 15:36:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982594640875200}
-2022/05/31 15:36:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982603469566400}
-2022/05/31 15:36:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982603469566400}
-2022/05/31 15:36:44 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982604694538300}
-2022/05/31 15:36:44 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982604694538300}
-2022/05/31 15:36:48 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982608009204300}
-2022/05/31 15:36:48 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982608009204300}
-2022/05/31 15:36:49 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982609164815100}
-2022/05/31 15:36:49 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982609164815100}
-2022/05/31 15:36:50 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982610116636100}
-2022/05/31 15:36:50 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982610116636100}
-2022/05/31 15:36:51 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982611447080600}
-2022/05/31 15:36:51 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982611447080600}
-2022/05/31 15:36:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982613249382200}
-2022/05/31 15:36:53 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982613249382200}
-2022/05/31 15:36:55 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982615953710100}
-2022/05/31 15:36:55 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982615953710100}
-2022/05/31 15:37:04 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982624005891800}
-2022/05/31 15:37:04 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982624005891800}
-2022/05/31 15:37:05 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982625125013000}
-2022/05/31 15:37:05 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982625125013000}
-2022/05/31 15:37:10 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982630253050900}
-2022/05/31 15:37:10 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982630253050900}
-2022/05/31 15:37:11 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982631351131400}
-2022/05/31 15:37:11 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982631351131400}
-2022/05/31 15:37:12 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982632394901100}
-2022/05/31 15:37:12 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982632394901100}
-2022/05/31 15:37:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982633238830100}
-2022/05/31 15:37:13 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982633238830100}
-2022/05/31 15:37:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982634866627400}
-2022/05/31 15:37:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653982634866627400}
-2022/05/31 15:39:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653982761182181600}
-2022/05/31 15:41:31 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653982891420240300}
-2022/05/31 15:42:12 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653982932855800200}
-2022/05/31 15:43:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983017166903300}
-2022/05/31 15:45:25 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983125887685100}
-2022/05/31 15:46:14 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983174324440100}
-2022/05/31 15:50:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983437286614200}
-2022/05/31 15:52:31 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983551006037000}
-2022/05/31 15:52:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983552004207200}
-2022/05/31 15:52:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983552421636200}
-2022/05/31 15:52:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983553010484700}
-2022/05/31 15:52:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983553387353600}
-2022/05/31 15:52:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983554010127600}
-2022/05/31 15:52:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983554380947800}
-2022/05/31 15:52:35 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983555005772700}
-2022/05/31 15:52:35 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983555372641800}
-2022/05/31 15:52:36 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983556001720600}
-2022/05/31 15:52:36 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983556367577500}
-2022/05/31 15:52:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983557010996800}
-2022/05/31 15:52:37 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983557379592200}
-2022/05/31 15:52:38 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983558009375600}
-2022/05/31 15:52:38 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983558408110900}
-2022/05/31 15:52:39 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983559008285000}
-2022/05/31 15:52:39 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983559380434800}
-2022/05/31 15:52:40 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983560002740900}
-2022/05/31 15:52:40 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983560372056000}
-2022/05/31 15:52:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983561010707800}
-2022/05/31 15:52:41 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983561377505600}
-2022/05/31 15:52:42 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983562001004500}
-2022/05/31 15:52:42 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983562408937700}
-2022/05/31 15:52:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983563009940400}
-2022/05/31 15:52:43 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983563375408000}
-2022/05/31 15:52:44 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983564004599000}
-2022/05/31 15:52:44 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983564372677700}
-2022/05/31 15:55:21 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983721598211100}
-2022/05/31 15:55:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash begin...","time":1653983732010678300}
-2022/05/31 15:55:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983732010678300}
-2022/05/31 15:55:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983732605714400}
-2022/05/31 15:55:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash end","time":1653983733810441000}
-2022/05/31 15:56:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash begin...","time":1653983792000413000}
-2022/05/31 15:56:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983792000413000}
-2022/05/31 15:56:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983792400827100}
-2022/05/31 15:56:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash end","time":1653983793759043500}
-2022/05/31 15:57:36 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983856933229600}
-2022/05/31 15:59:06 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653983946223053800}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash begin...","time":1653983972010660800}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash begin...","time":1653983972010660800}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983972205431200}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983972246998400}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"follow count flash end","time":1653983972497206300}
-2022/05/31 15:59:32 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983972827388000}
-2022/05/31 15:59:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983973232587800}
-2022/05/31 15:59:33 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983973624572500}
-2022/05/31 15:59:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"redis: nil","time":1653983974018408400}
-2022/05/31 15:59:34 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"fan count flash end","time":1653983974311666800}
-2022/05/31 16:11:46 {"callers":["D:/WorkSpace/GoWorks/src/repository/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653984706991390900}
-2022/05/30 22:40:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653921643559788900}
-2022/05/30 22:40:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921659449360300}
-2022/05/30 22:40:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921659449360300}
-2022/05/30 22:41:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921668984570200}
-2022/05/30 22:41:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921668984570200}
-2022/05/30 22:41:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921668997530400}
-2022/05/30 22:41:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1653921668997530400}
-2022/05/30 22:41:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653921681837953600}
-2022/05/30 22:41:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653921681838462700}
-2022/05/30 22:41:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653921681844357900}
-2022/05/30 22:41:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653921681844864200}
-2022/05/30 22:42:02 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"用户名/密码错误","time":1653921722011541500}
-2022/05/30 22:42:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653921726273717900}
-2022/05/30 22:42:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653921741160269400}
-2022/05/30 22:58:31 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653922711417870300}
-2022/05/30 22:58:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653922718513229500}
-2022/05/30 22:58:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653922718513229500}
-2022/05/30 22:58:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653922719636920400}
-2022/05/30 22:58:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653922721602964500}
-2022/05/30 22:58:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653922721603382600}
-2022/05/30 22:58:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653922721610123300}
-2022/05/30 22:58:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653922721611210500}
-2022/05/30 22:59:06 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653922746846554100}
-2022/05/30 22:59:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653922759974958300}
-2022/05/30 23:04:50 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653923090405252300}
-2022/05/30 23:05:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1653923107649239500}
-2022/05/30 23:05:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1653923107649239500}
-2022/05/30 23:05:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653923107789205400}
-2022/05/30 23:05:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923109655376300}
-2022/05/30 23:05:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923109656423900}
-2022/05/30 23:05:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923109656423900}
-2022/05/30 23:05:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923109663562500}
-2022/05/30 23:05:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653923119966482800}
-2022/05/30 23:05:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923141270510200}
-2022/05/30 23:05:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923141273680800}
-2022/05/30 23:05:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923141274795200}
-2022/05/30 23:05:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923141274795200}
-2022/05/30 23:05:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653923156478940700}
-2022/05/30 23:06:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653923168656637500}
-2022/06/04 13:31:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654320684303841400}
-2022/06/04 13:31:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320700806722600}
-2022/06/04 13:31:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320700806811700}
-2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704714962600}
-2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704714962600}
-2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704720345900}
-2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704720345900}
-2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707177515300}
-2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707179210600}
-2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707188953300}
-2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707189462300}
-2022/06/04 13:39:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321144864384400}
-2022/06/04 13:41:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321264507931600}
-2022/06/04 13:42:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321329953574200}
-2022/06/04 13:45:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321540728409800}
-2022/06/04 13:46:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321583601097700}
-2022/06/04 13:48:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321724911578700}
-2022/06/04 13:49:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321796199545400}
-2022/06/04 13:51:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321871492135500}
-2022/06/04 13:52:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: Error 1062: Duplicate entry '717052740@qq.com' for key 'douyin_user.douyin_user_UN'","time":1654321924805578800}
-2022/06/04 14:02:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322524203185100}
-2022/06/04 14:02:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322535560902500}
-2022/06/04 14:02:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322543000070600}
-2022/06/04 14:02:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322565154778400}
-2022/06/04 14:02:54 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322574215776700}
-2022/06/04 14:02:58 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322578537989600}
-2022/06/04 14:04:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322661719912200}
-2022/06/04 14:04:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322670532237200}
-2022/06/04 14:04:33 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322673711532600}
-2022/06/04 14:04:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322675321085100}
-2022/06/04 14:04:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322679148187700}
-2022/06/04 14:04:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322680091192400}
-2022/06/04 14:04:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322680829827300}
-2022/06/04 14:05:00 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322700307873700}
-2022/06/04 14:05:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322708199943300}
-2022/06/04 14:06:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322768644087100}
-2022/06/04 14:06:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322775033321400}
-2022/06/04 14:06:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322805588084100}
-2022/06/04 14:06:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322812400895800}
-2022/06/04 14:07:33 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322853138432200}
-2022/06/04 14:07:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322868195307600}
-2022/06/04 14:08:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322889194361200}
-2022/06/04 14:08:27 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322907848682600}
-2022/06/04 14:09:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322941265543700}
-2022/06/04 14:09:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654322947515944100}
-2022/06/04 14:10:00 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323000204554100}
-2022/06/04 14:10:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323007935727200}
-2022/06/04 14:10:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323009819477000}
-2022/06/04 14:10:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323011189289200}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012184219600}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012340961700}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012486100700}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012646334800}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012762762400}
-2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012911297100}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013045610900}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013207699700}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013370405600}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013522975600}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013680773100}
-2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013847447000}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014012491700}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014166668900}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014329145100}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014484398000}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014637186100}
-2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014777829800}
-2022/06/04 14:14:36 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323276145688600}
-2022/06/04 14:15:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323330678660300}
-2022/06/04 14:16:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323369366130000}
-2022/06/04 14:16:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323413145217300}
+2022/05/29 17:03:48 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653815028032989700}
+2022/05/30 19:38:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653910738493551000}
+2022/05/30 19:39:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: Error 1062: Duplicate entry '502725171@qq.com' for key 'douyin_user.douyin_user_UN'","time":1653910760469661300}
+2022/05/30 19:40:27 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1653910827563625200}
+2022/05/30 19:42:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653910979581531500}
+2022/05/30 19:42:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653910979581531500}
+2022/05/30 19:42:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653910979591666600}
+2022/05/30 19:42:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653910979593105900}
+2022/05/30 19:45:09 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911109' for column 'created_at' at row 1","time":1653911109897001000}
+2022/05/30 19:45:10 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911110' for column 'created_at' at row 1","time":1653911110805883500}
+2022/05/30 19:45:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911111' for column 'created_at' at row 1","time":1653911111446659900}
+2022/05/30 19:45:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911111' for column 'created_at' at row 1","time":1653911111614556500}
+2022/05/30 19:45:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911111' for column 'created_at' at row 1","time":1653911111778240000}
+2022/05/30 19:45:12 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911112' for column 'created_at' at row 1","time":1653911112282400400}
+2022/05/30 19:45:12 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1653911112' for column 'created_at' at row 1","time":1653911112448793700}
+2022/05/30 19:45:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911129486390500}
+2022/05/30 19:45:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911129486390500}
+2022/05/30 19:45:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911129491789000}
+2022/05/30 19:45:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911129504408700}
+2022/05/30 19:45:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911131555196600}
+2022/05/30 19:45:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911131555196600}
+2022/05/30 19:45:32 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911132221846300}
+2022/05/30 19:45:32 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911132221846300}
+2022/05/30 19:46:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911184510924900}
+2022/05/30 19:46:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911184518624500}
+2022/05/30 19:46:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911185483096800}
+2022/05/30 19:46:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911185483475900}
+2022/05/30 19:46:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911186402546100}
+2022/05/30 19:46:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911186403093400}
+2022/05/30 19:46:27 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911187421114100}
+2022/05/30 19:46:27 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911187421114100}
+2022/05/30 19:46:28 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911188274181800}
+2022/05/30 19:46:28 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911188274887900}
+2022/05/30 19:46:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911189761341700}
+2022/05/30 19:46:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911189761341700}
+2022/05/30 19:46:30 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911190550216800}
+2022/05/30 19:46:30 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911190550216800}
+2022/05/30 19:46:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911191480120100}
+2022/05/30 19:46:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911191480120100}
+2022/05/30 19:46:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911193077273700}
+2022/05/30 19:46:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653911193077587500}
+2022/06/04 19:42:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654342978639640200}
+2022/06/04 19:43:05 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342985291600400}
+2022/06/04 19:43:05 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342985291600400}
+2022/06/04 19:43:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342987246763400}
+2022/06/04 19:43:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342987246763400}
+2022/06/04 19:43:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342987251253700}
+2022/06/04 19:43:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654342987251253700}
+2022/06/04 19:43:15 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342995202833900}
+2022/06/04 19:43:15 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342995202833900}
+2022/06/04 19:43:18 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342998063774000}
+2022/06/04 19:43:18 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342998065965000}
+2022/06/04 19:43:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342999445982500}
+2022/06/04 19:43:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654342999455239700}
+2022/06/04 19:43:46 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343026708475800}
+2022/06/04 19:43:46 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343026708475800}
+2022/06/04 19:43:55 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343035599618300}
+2022/06/04 19:43:55 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343035599618300}
+2022/06/04 19:43:56 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343036254496300}
+2022/06/04 19:43:56 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343036254496300}
+2022/06/04 19:43:57 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1654343037' for column 'created_at' at row 1","time":1654343037998745800}
+2022/06/04 19:43:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1654343039' for column 'created_at' at row 1","time":1654343039267518200}
+2022/06/04 19:45:12 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654343112816241100}
+2022/06/04 19:45:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343133573748900}
+2022/06/04 19:45:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343133573886800}
+2022/06/04 19:45:46 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343146374962000}
+2022/06/04 19:45:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343152806700100}
+2022/06/04 19:45:57 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343157380512200}
+2022/06/04 19:45:57 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343157380512200}
+2022/06/04 19:48:22 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654343302115465400}
+2022/06/04 19:48:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1654343318705559600}
+2022/06/04 19:49:18 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343358174070600}
+2022/06/04 19:49:18 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343358174070600}
+2022/06/04 19:49:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343360023216300}
+2022/06/04 19:49:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343360023216300}
+2022/06/04 19:49:21 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343361207269900}
+2022/06/04 19:49:21 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343361212667700}
+2022/06/04 19:49:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343365415997000}
+2022/06/04 19:49:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343365415997000}
+2022/06/04 19:49:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343371100340100}
+2022/06/04 19:49:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343371100340100}
+2022/06/04 19:49:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343371908144800}
+2022/06/04 19:49:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343371918281700}
+2022/06/04 19:49:34 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343374740563400}
+2022/06/04 19:49:34 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343374740563400}
+2022/06/04 19:49:35 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343375538776000}
+2022/06/04 19:49:35 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343375538776000}
+2022/06/04 19:49:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343377171202700}
+2022/06/04 19:49:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343377171202700}
+2022/06/04 19:49:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343378454734600}
+2022/06/04 19:49:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343378454734600}
+2022/06/04 19:49:39 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343379932832300}
+2022/06/04 19:49:39 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343379932832300}
+2022/06/04 19:49:40 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343380763211800}
+2022/06/04 19:49:40 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654343380763211800}
+2022/06/04 19:51:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654343484568839900}
+2022/06/04 19:51:44 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343504517089900}
+2022/06/04 19:52:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343546168353800}
+2022/06/04 19:52:28 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343548490536300}
+2022/06/04 19:52:51 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343571354477800}
+2022/06/04 19:52:51 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343571679947800}
+2022/06/04 19:53:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.FollowAction errs: Error 1292: Incorrect datetime value: '1654343582' for column 'created_at' at row 1","time":1654343582667045600}
+2022/06/04 19:56:09 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343769946614400}
+2022/06/04 19:56:12 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343772674308500}
+2022/06/04 19:56:13 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343773380473300}
+2022/06/04 19:56:14 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343774098338700}
+2022/06/04 19:56:16 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343776684931400}
+2022/06/04 19:56:18 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343778047599800}
+2022/06/04 19:56:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343779203631700}
+2022/06/04 19:56:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343780592544200}
+2022/06/04 19:56:23 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654343783146192000}
+2022/06/04 19:56:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343786278941700}
+2022/06/04 19:56:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343786278941700}
+2022/06/04 19:56:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343786291737600}
+2022/06/04 19:56:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343786298066600}
+2022/06/04 19:58:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654343918795983300}
+2022/06/04 19:58:45 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343925156257600}
+2022/06/04 19:58:45 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654343925163083300}
+2022/06/04 20:00:39 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344039512126200}
+2022/06/04 20:00:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344047271779600}
+2022/06/04 20:00:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344047271779600}
+2022/06/04 20:00:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654344047280923600}
+2022/06/04 20:02:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344127238494800}
+2022/06/04 20:02:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654344139510587700}
+2022/06/04 20:02:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344139516001400}
+2022/06/04 20:02:19 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344139516001400}
+2022/06/04 20:04:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344294691517200}
+2022/06/04 20:04:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344294691556700}
+2022/06/04 20:04:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654344294691556700}
+2022/06/04 20:05:48 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344348817849900}
+2022/06/04 20:05:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654344358380562900}
+2022/06/04 20:05:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344358387717900}
+2022/06/04 20:05:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344358387717900}
+2022/06/04 20:08:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344532547848500}
+2022/06/04 20:09:01 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654344541091460500}
+2022/06/04 20:13:22 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344802259590200}
+2022/06/04 20:13:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344818534424900}
+2022/06/04 20:13:38 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344818534424900}
+2022/06/04 20:13:44 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344824891522000}
+2022/06/04 20:13:44 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344824892039500}
+2022/06/04 20:14:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344842317100300}
+2022/06/04 20:14:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344847617023800}
+2022/06/04 20:14:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344847617023800}
+2022/06/04 20:14:48 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344888216386100}
+2022/06/04 20:14:48 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000001, 错误信息：入参错误","time":1654344888221456500}
+2022/06/04 20:15:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654344931985344100}
+2022/06/04 20:20:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654345252631926500}
+2022/06/04 20:22:17 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345337543482700}
+2022/06/04 20:22:40 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345360543475000}
+2022/06/04 20:22:40 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345360543475000}
+2022/06/04 20:22:42 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345362373045800}
+2022/06/04 20:22:42 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345362373045800}
+2022/06/04 20:22:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345367066811700}
+2022/06/04 20:22:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345367066811700}
+2022/06/04 20:22:48 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345368205716600}
+2022/06/04 20:22:51 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345371307568000}
+2022/06/04 20:22:53 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345373193413100}
+2022/06/04 20:22:53 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345373193413100}
+2022/06/04 20:22:55 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345375112303400}
+2022/06/04 20:22:55 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345375121571600}
+2022/06/04 20:23:06 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345386680148300}
+2022/06/04 20:23:06 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345386680148300}
+2022/06/04 20:24:21 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345461122715200}
+2022/06/04 20:24:21 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345461122715200}
+2022/06/04 20:25:10 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345510373394500}
+2022/06/04 20:25:14 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345514145202300}
+2022/06/04 20:25:16 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345516476111400}
+2022/06/04 20:25:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345524781159500}
+2022/06/04 20:25:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345552038462500}
+2022/06/04 20:27:26 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345646371302400}
+2022/06/04 20:27:29 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345649805556700}
+2022/06/04 20:27:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345651552717900}
+2022/06/04 20:27:31 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345651563996200}
+2022/06/04 20:27:32 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345652613719400}
+2022/06/04 20:27:34 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345654140072600}
+2022/06/04 20:27:34 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345654140072600}
+2022/06/04 20:27:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345657303575600}
+2022/06/04 20:27:46 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345666973749800}
+2022/06/04 20:30:07 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345807182023700}
+2022/06/04 20:30:10 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345810508550500}
+2022/06/04 20:30:14 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345814120214800}
+2022/06/04 20:30:21 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345821634545600}
+2022/06/04 20:30:22 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345822755011200}
+2022/06/04 20:30:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345824512160200}
+2022/06/04 20:31:00 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345860935545900}
+2022/06/04 20:32:08 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345928056045000}
+2022/06/04 20:32:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345931296533400}
+2022/06/04 20:32:13 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345933986684700}
+2022/06/04 20:32:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345940444568000}
+2022/06/04 20:32:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345945764724400}
+2022/06/04 20:32:36 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345956171785100}
+2022/06/04 20:32:46 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345966587001100}
+2022/06/04 20:32:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345967800389800}
+2022/06/04 20:32:47 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345967800389800}
+2022/06/04 20:32:49 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345969573432000}
+2022/06/04 20:32:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345974014601500}
+2022/06/04 20:32:56 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345976422798100}
+2022/06/04 20:32:57 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345977626493500}
+2022/06/04 20:32:57 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345977627120600}
+2022/06/04 20:32:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345978495413700}
+2022/06/04 20:32:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345979272161800}
+2022/06/04 20:33:01 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345981316219700}
+2022/06/04 20:33:01 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345981316663700}
+2022/06/04 20:33:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345982099206700}
+2022/06/04 20:33:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345982530938000}
+2022/06/04 20:33:03 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345983037461100}
+2022/06/04 20:33:03 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345983037784000}
+2022/06/04 20:33:03 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345983590610500}
+2022/06/04 20:33:04 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345984221537900}
+2022/06/04 20:33:06 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1654345986443673400}
+2022/06/04 20:33:10 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345990263059800}
+2022/06/04 20:33:10 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654345990263395900}
+2022/06/04 20:33:53 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346033300957700}
+2022/06/04 20:33:53 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346033301636900}
+2022/06/04 20:33:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346034177287400}
+2022/06/04 20:33:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346034177287400}
+2022/06/04 20:33:56 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346036394039600}
+2022/06/04 20:33:56 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346036395009000}
+2022/06/04 20:33:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346038020492200}
+2022/06/04 20:33:58 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346038020492200}
+2022/06/04 20:34:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346051223265900}
+2022/06/04 20:34:11 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346051223621000}
+2022/06/04 20:34:13 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346053093564600}
+2022/06/04 20:34:13 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346053093564600}
+2022/06/04 20:34:15 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346055355693600}
+2022/06/04 20:34:15 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346055355693600}
+2022/06/04 20:34:23 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346063125825500}
+2022/06/04 20:34:23 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346063125825500}
+2022/06/04 20:34:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346064428426500}
+2022/06/04 20:34:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346064428426500}
+2022/06/04 20:34:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346073447903700}
+2022/06/04 20:34:33 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346073447903700}
+2022/06/04 20:34:35 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346075232493900}
+2022/06/04 20:34:35 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346075232493900}
+2022/06/04 20:35:39 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346139898112000}
+2022/06/04 20:35:39 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346139898156200}
+2022/06/04 20:35:42 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346142619167900}
+2022/06/04 20:35:42 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346142619167900}
+2022/06/04 20:39:50 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654346390983939000}
+2022/06/04 20:40:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346402102066600}
+2022/06/04 20:40:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346402103858100}
+2022/06/04 20:40:04 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346404519493200}
+2022/06/04 20:40:04 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346404519493200}
+2022/06/04 20:40:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346420294477800}
+2022/06/04 20:40:20 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346420295521600}
+2022/06/04 20:40:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346424311617300}
+2022/06/04 20:40:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346424319138900}
+2022/06/04 20:40:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346425966111200}
+2022/06/04 20:40:25 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346425966894300}
+2022/06/04 20:40:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346437010386800}
+2022/06/04 20:40:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346437010559700}
+2022/06/04 20:41:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346497233382400}
+2022/06/04 20:41:37 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346497233382400}
+2022/06/04 20:41:43 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346503223394700}
+2022/06/04 20:41:43 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346503223394700}
+2022/06/04 20:41:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346514693369200}
+2022/06/04 20:41:54 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346514702151400}
+2022/06/04 20:42:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346544574117600}
+2022/06/04 20:42:24 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346544574117600}
+2022/06/04 20:43:50 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346630630344900}
+2022/06/04 20:43:50 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346630630344900}
+2022/06/04 20:43:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346632881418700}
+2022/06/04 20:43:52 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346632881418700}
+2022/06/04 20:43:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346639328214200}
+2022/06/04 20:43:59 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346639332054800}
+2022/06/04 20:44:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346642411429500}
+2022/06/04 20:44:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346642411429500}
