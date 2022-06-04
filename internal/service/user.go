@@ -32,6 +32,10 @@ type GetUserInfoResponse struct {
 	User *UserInfo `json:"user" binding:"required"`
 }
 
+type GetUserByEmailRequest struct {
+	UserName string   `form:"user_name"  binding:"required"`
+}
+
 type UpdateIPRequest struct {
 	ID      uint   `form:"id"`
 	LoginIP string `form:"login_ip"`
@@ -51,4 +55,8 @@ func (svc *Service) GetUserById(param *GetUserInfoRequest) (model.User, error) {
 
 func (svc *Service) GetUsersByIds(userIds []uint) ([]model.User, error) {
 	return svc.dao.GetUsersByIds(userIds)
+}
+
+func (svc *Service) GetUserByEmail(param *GetUserByEmailRequest) (model.User, error) {
+	return svc.dao.GetUserByEmail(param.UserName)
 }

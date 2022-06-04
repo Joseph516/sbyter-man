@@ -2,6 +2,7 @@ package v1
 
 import (
 	"douyin_service/global"
+	"douyin_service/internal/kafka"
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
@@ -50,7 +51,7 @@ func (co Comment) List(c *gin.Context) {
 //评论操作接口，发布或者删除评论
 
 func (co Comment) CommentAction(c *gin.Context) {
-	param := service.CommentActionRequest{}
+	param := kafka.CommentActionRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
@@ -77,12 +78,13 @@ func (co Comment) CommentAction(c *gin.Context) {
 	//提交评论
 	var resp service.PublishListResponse
 	svc := service.New(c.Request.Context())
-	err = svc.CommentAction(&param)
-	if err != nil {
-		global.Logger.Errorf("svc.CommentAction err: %v", err)
-		response.ToErrorResponse(errcode.ErrorActionCommentFail)
-		return
-	}
+	svc.Kafka.Producer(global.KafkaSetting.TopicComment, param.String(), 1) // 向kafka生产一条消息
+	// err = svc.CommentAction(&param)
+	// if err != nil {
+	// 	global.Logger.Errorf("svc.CommentAction err: %v", err)
+	// 	response.ToErrorResponse(errcode.ErrorActionCommentFail)
+	// 	return
+	// }
 	resp.StatusCode = 0
 	resp.StatusMsg = "操作评论成功"
 	response.ToResponse(resp)

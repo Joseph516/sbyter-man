@@ -43,6 +43,7 @@ func (svc Service) Register(param *RegisterRequest) (uint, bool, error) {
 		Password: hashPassword,
 		LoginIP: param.LoginIP,
 	}
+
 	uid, err := svc.CreateUser(&createUserRequest)
 	if err != nil {
 		return uid, false, err
