@@ -10,14 +10,15 @@ import (
 	"douyin_service/pkg/email"
 	"douyin_service/pkg/logger"
 	setting2 "douyin_service/pkg/setting"
+	"log"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/mattn/go-colorable"
 	"github.com/robfig/cron/v3"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"log"
-	"net/http"
-	"time"
 )
 
 func init() {
@@ -41,10 +42,12 @@ func init() {
 	}
 
 	setupEmail()
+
 	err = setupCron()
 	if err != nil {
 		log.Fatalf("init.setupCron err: %v", err)
 	}
+
 }
 
 // @title 抖音平台
@@ -63,8 +66,10 @@ func main() {
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
+
 	svc := service.New(&gin.Context{})
-	go svc.Kafka.ConsumeEmail() // 开启一个协程监听kafka邮件消息
+	go svc.Kafka.ConsumeEmail()  // 开启一个协程监听kafka邮件消息
+	go svc.Kafka.ConsumComment() // 开启一个协程监听kafka评论消息
 	err := s.ListenAndServe()
 	if err != nil {
 		log.Fatalln(err)
@@ -172,13 +177,24 @@ func setupCron() error {
 	c := cron.New(cron.WithSeconds())
 	// 生成chain
 	favorSkipChain1 := cronjob.SkipIfStillRunningChain()
+	followSkipChain1 := cronjob.SkipIfStillRunningChain()
 
 	// 生成job
 	favorCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashFavorCnt)
+	followCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFollowCnt)
+	fanCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFanCnt)
 	global.Logger.Info("启动点赞数量定时刷新任务")
 
 	//向cron注册经过对应chain修饰的job
 	_, err := c.AddJob(cronjob.FAVORCNTTIME, favorCntFlashJob)
+	if err != nil {
+		return err
+	}
+	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, followCntFlashJob)
+	if err != nil {
+		return err
+	}
+	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, fanCntFlashJob)
 	if err != nil {
 		return err
 	}

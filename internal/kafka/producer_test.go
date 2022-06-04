@@ -3,8 +3,6 @@ package kafka
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model/message"
-	"douyin_service/internal/service"
-	"github.com/gin-gonic/gin"
 	"testing"
 )
 

@@ -8,6 +8,10 @@ import (
 	"time"
 )
 
+var(
+	FOLLOWCOUNTLIFE = time.Hour*48
+)
+
 // FollowAction userId给关注指定的up
 // 必须保证此时缓存中有对应的数据
 func (r *Redis) FollowAction(upId uint, fanId uint) (bool, string, error) {
@@ -66,6 +70,7 @@ func (r *Redis) QueryFollowCnt(userId uint) (bool, int64, error) {
 func (r *Redis) IncrFollowCnt(userId uint) int64 {
 	key := util.FollowCountKey(userId)
 	result := r.redis.Incr(key).Val()
+	r.redis.Expire(key, FOLLOWCOUNTLIFE)
 	return result
 }
 
@@ -73,6 +78,7 @@ func (r *Redis) IncrFollowCnt(userId uint) int64 {
 func (r *Redis) DecrFollowCnt(userId uint) int64 {
 	key := util.FollowCountKey(userId)
 	result := r.redis.Decr(key).Val()
+	r.redis.Expire(key, FOLLOWCOUNTLIFE)
 	return result
 }
 
@@ -98,7 +104,7 @@ func (r *Redis) QueryFanCnt(userId uint) (bool, int64, error) {
 func (r *Redis) IncrFanCnt(userId uint) int64 {
 	key := util.FanCountKey(userId)
 	result := r.redis.Incr(key).Val()
-	r.redis.Expire(key, time.Hour*24)
+	r.redis.Expire(key, FOLLOWCOUNTLIFE)
 	return result
 }
 
@@ -106,24 +112,28 @@ func (r *Redis) IncrFanCnt(userId uint) int64 {
 func (r *Redis) DecrFanCnt(userId uint) int64 {
 	key := util.FanCountKey(userId)
 	result := r.redis.Decr(key).Val()
-	r.redis.Expire(key, time.Hour*24)
+	r.redis.Expire(key, FOLLOWCOUNTLIFE)
 	return result
 }
 
 // SetFollowInfo 如果没有key，就赋值，返回true，否则，不赋值，返回false
 func (r *Redis) SetFollowInfo(key string, val int64) bool{
 	// 使用set If not exist，保证赋值只进行一次
-	return r.SetIfNotExist(key, val, time.Hour*24)
+	return r.SetIfNotExist(key, val, FOLLOWCOUNTLIFE)
 }
 
-func (r *Redis) SetIfNotExist(key string, val int64, time2 time.Duration) bool{
-	return r.redis.SetNX(key, val, time2).Val()
+func (r *Redis) SetIfNotExist(key string, val int64, expire time.Duration) bool{
+	return r.redis.SetNX(key, val, expire).Val()
 }
 
-func (r *Redis) Output(){
-	vals, _ :=r.redis.Keys("*_COUNT").Result()
-	for i:=range vals{
-		k := vals[i]
+func (r *Redis) OutputFollow(){
+	keys, _ :=r.redis.Keys(util.FOLLOWCOUNTFREFIX+"*").Result()
+	for _, k:=range keys{
+		v := r.redis.Get(k)
+		fmt.Println(k,":",v)
+	}
+	keys, _ =r.redis.Keys(util.FANCOUNTFREFIX+"*").Result()
+	for _, k:=range keys{
 		v := r.redis.Get(k)
 		fmt.Println(k,":",v)
 	}
