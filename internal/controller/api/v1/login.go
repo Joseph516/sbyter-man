@@ -5,6 +5,7 @@ import (
 	"douyin_service/internal/model/message"
 	"douyin_service/internal/service"
 	"douyin_service/pkg/app"
+	"douyin_service/pkg/email"
 	"douyin_service/pkg/errcode"
 	"strconv"
 
@@ -21,35 +22,51 @@ func (u User) Register(c *gin.Context) {
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
-	param.LoginIP = c.ClientIP() // 注册ip
-	svc := service.New(c)
-	userId, flag, err := svc.Register(&param)
-	if err != nil {
-		global.Logger.Errorf("svc.Login err: %v", err)
-		response.ToErrorResponse(errcode.ErrorRegisterFail)
+	if ok := email.VerifyEmailFormat(param.UserName); !ok {
+		res := &service.RegisterResponse{
+			UserID: errcode.ErrorUserID,
+			Token:  "",
+		}
+		res.StatusCode = errcode.ErrorEmail.Code()
+		res.StatusMsg = errcode.ErrorEmail.Msg()
+		response.ToResponse(res)
 		return
 	}
 
-	if !flag {
-		global.Logger.Error("创建失败")
-		response.ToErrorResponse(errcode.ErrorRegisterFail)
-		return
-	}
-	idStr := strconv.Itoa(int(userId))
-	token, err := app.GenerateToken(global.JWTSetting.Key, global.JWTSetting.Secret, idStr)
+	param.LoginIP = c.ClientIP() // 注册ip
+	svc := service.New(c)
+
+	user, err := svc.GetUserByEmail(&service.GetUserByEmailRequest{UserName: param.UserName})
 	if err != nil {
-		global.Logger.Errorf("app.GenerateToken err: %v", err)
+		global.Logger.Errorf("svc.GetUserByEmail err: %v", err)
 		response.ToErrorResponse(errcode.ErrorRegisterFail)
 		return
 	}
-	res := &service.RegisterResponse{
-		UserID: userId,
-		Token:  token,
+	if user.ID != errcode.ErrorUserID {
+		global.Logger.Errorf("svc.GetUserByEmail err: %v", err)
+		res := &service.RegisterResponse{
+			UserID: errcode.ErrorUserID,
+			Token:  "",
+		}
+		res.StatusCode = errcode.ErrorRegisterAgain.Code()
+		res.StatusMsg = errcode.ErrorRegisterAgain.Msg()
+		response.ToResponse(res)
+		return
 	}
-	res.StatusCode = 0
-	res.StatusMsg = "注册成功"
+	email := message.Email{
+		UserName: []string{param.UserName},
+		Password: param.Password,
+		LoginIP:  param.LoginIP,
+		Type:     1,
+	}
+	svc.Kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
+	res := &service.RegisterResponse{
+		UserID: errcode.ErrorUserID,
+		Token:  "",
+	}
+	res.StatusCode = errcode.ErrorRegisterVerify.Code()
+	res.StatusMsg = errcode.ErrorRegisterVerify.Msg()
 	response.ToResponse(res)
-	//return	//多余的return
 }
 
 // Login 登录
@@ -63,7 +80,7 @@ func (u User) Login(c *gin.Context) {
 		return
 	}
 	param.LoginIP = c.ClientIP()
-	svc := service.New(c.Request.Context(),)
+	svc := service.New(c.Request.Context())
 	userId, flag, err := svc.Login(&param)
 	res := &service.LoginResponse{
 		UserID: userId,
@@ -88,6 +105,7 @@ func (u User) Login(c *gin.Context) {
 				UserId:   userId,
 				LoginIP:  param.LoginIP,
 				Token:    token,
+				Type:     2,
 			}
 			svc.Kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
 		}

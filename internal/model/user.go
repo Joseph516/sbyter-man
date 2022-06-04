@@ -90,6 +90,14 @@ func (u User) GetUsersByIds(userIds []uint, db *gorm.DB) ([]User, error) {
 	return users, nil
 }
 
+func (u User) GetUserByEmail(db *gorm.DB) (User, error) {
+	var user User
+	if err := db.Where("user_name = ?", u.UserName).Find(&user).Error; err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
 func (u User) UpdateIP(db *gorm.DB) error {
 	err := db.Model(&User{}).Where("id = ?", u.ID).Update("login_ip", u.LoginIP).Error
 	fmt.Println("err: ", err)

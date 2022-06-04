@@ -33,9 +33,18 @@ func (k *Kafka) ConsumeEmail() {
 	for msg := range partitionConsumer.Messages() {
 		data := message.Email{}
 		_ = json.Unmarshal(msg.Value, &data)
-		err := util.SendVerifiedEmail(data.UserName, data.UserId, data.LoginIP, data.Token) // 消费kafka消息
-		if err != nil {
-			global.Logger.Errorf("util.SendVerifiedEmail: %v", err)
+		switch data.Type {
+		case 1:
+			err := util.SendRegisterEmail(data.UserName, data.Password, data.LoginIP, data.Token)
+			if err != nil {
+				global.Logger.Errorf("util.SendRegisterEmail: %v", err)
+			}
+		case 2:
+			err := util.SendVerifiedEmail(data.UserName, data.UserId, data.LoginIP, data.Token) // 消费kafka消息
+			if err != nil {
+				global.Logger.Errorf("util.SendVerifiedEmail: %v", err)
+			}
 		}
+
 	}
 }
