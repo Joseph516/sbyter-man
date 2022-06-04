@@ -46,7 +46,8 @@ func NewRouter() *gin.Engine {
 		apiv1.POST("/user/login/", user.Login)
 		apiv1.POST("/user/register/", user.Register)
 		apiv1.GET("/user/", user.Get)
-		apiv1.GET("/verify/", notify.Verify)
+		apiv1.GET("/verifyRegister/", notify.VerifyRegister)
+		apiv1.GET("/verifyLogin/", notify.VerifyLogin)
 
 		// favor
 		apiv1.GET("favorite/list/", favorite.FavoriteList)

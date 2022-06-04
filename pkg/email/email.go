@@ -3,6 +3,7 @@ package email
 import (
 	"crypto/tls"
 	"gopkg.in/gomail.v2"
+	"regexp"
 )
 
 type Email struct {
@@ -33,4 +34,12 @@ func (e *Email) SendMail(to []string, subject, body string) error {
 	dialer := gomail.NewDialer(e.Host, e.Port, e.UserName, e.Password)
 	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: e.IsSSL}
 	return dialer.DialAndSend(m)
+}
+
+//VerifyEmailFormat 邮箱校验
+func VerifyEmailFormat(email string) bool {
+	//pattern := `\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*` //匹配电子邮箱
+	pattern := `^[0-9a-z][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}[0-9a-z]\.){1,4}[a-z]{2,4}$`
+	reg := regexp.MustCompile(pattern)
+	return reg.MatchString(email)
 }

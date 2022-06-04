@@ -985,3 +985,74 @@
 2022/05/30 23:05:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1653923141274795200}
 2022/05/30 23:05:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: 错误码：10010004, 错误信息：登录IP异常, 请验证邮箱邮件","time":1653923156478940700}
 2022/05/30 23:06:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserById err: redis: nil","time":1653923168656637500}
+2022/06/04 13:31:24 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654320684303841400}
+2022/06/04 13:31:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320700806722600}
+2022/06/04 13:31:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320700806811700}
+2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704714962600}
+2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704714962600}
+2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704720345900}
+2022/06/04 13:31:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000005, 错误信息：鉴权失败，Token超时","time":1654320704720345900}
+2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707177515300}
+2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707179210600}
+2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707188953300}
+2022/06/04 13:31:47 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654320707189462300}
+2022/06/04 13:39:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321144864384400}
+2022/06/04 13:41:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321264507931600}
+2022/06/04 13:42:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321329953574200}
+2022/06/04 13:45:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321540728409800}
+2022/06/04 13:46:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321583601097700}
+2022/06/04 13:48:44 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321724911578700}
+2022/06/04 13:49:56 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321796199545400}
+2022/06/04 13:51:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654321871492135500}
+2022/06/04 13:52:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: Error 1062: Duplicate entry '717052740@qq.com' for key 'douyin_user.douyin_user_UN'","time":1654321924805578800}
+2022/06/04 14:02:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322524203185100}
+2022/06/04 14:02:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322535560902500}
+2022/06/04 14:02:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322543000070600}
+2022/06/04 14:02:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322565154778400}
+2022/06/04 14:02:54 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322574215776700}
+2022/06/04 14:02:58 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322578537989600}
+2022/06/04 14:04:21 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322661719912200}
+2022/06/04 14:04:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322670532237200}
+2022/06/04 14:04:33 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322673711532600}
+2022/06/04 14:04:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322675321085100}
+2022/06/04 14:04:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322679148187700}
+2022/06/04 14:04:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322680091192400}
+2022/06/04 14:04:40 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322680829827300}
+2022/06/04 14:05:00 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322700307873700}
+2022/06/04 14:05:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322708199943300}
+2022/06/04 14:06:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322768644087100}
+2022/06/04 14:06:15 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322775033321400}
+2022/06/04 14:06:45 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322805588084100}
+2022/06/04 14:06:52 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322812400895800}
+2022/06/04 14:07:33 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322853138432200}
+2022/06/04 14:07:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322868195307600}
+2022/06/04 14:08:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322889194361200}
+2022/06/04 14:08:27 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.Login err: \u003cnil\u003e","time":1654322907848682600}
+2022/06/04 14:09:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654322941265543700}
+2022/06/04 14:09:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654322947515944100}
+2022/06/04 14:10:00 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323000204554100}
+2022/06/04 14:10:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323007935727200}
+2022/06/04 14:10:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323009819477000}
+2022/06/04 14:10:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323011189289200}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012184219600}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012340961700}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012486100700}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012646334800}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012762762400}
+2022/06/04 14:10:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323012911297100}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013045610900}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013207699700}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013370405600}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013522975600}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013680773100}
+2022/06/04 14:10:13 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323013847447000}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014012491700}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014166668900}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014329145100}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014484398000}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014637186100}
+2022/06/04 14:10:14 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654323014777829800}
+2022/06/04 14:14:36 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323276145688600}
+2022/06/04 14:15:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323330678660300}
+2022/06/04 14:16:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323369366130000}
+2022/06/04 14:16:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323413145217300}

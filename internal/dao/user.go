@@ -60,6 +60,13 @@ func (d *Dao) GetUsersByIds(userIds []uint) ([]model.User, error) {
 	return users, nil
 }
 
+func (d *Dao) GetUserByEmail(username string) (model.User, error) {
+	user := model.User{
+		UserName: username,
+	}
+	return user.GetUserByEmail(d.engine)
+}
+
 func (d Dao) UpdateUserLoginIP(userId uint, loginIP string) error {
 	user := model.User{
 		Model: &model.Model{
