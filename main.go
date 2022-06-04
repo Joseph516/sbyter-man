@@ -47,7 +47,6 @@ func init() {
 		log.Fatalf("init.setupCron err: %v", err)
 	}
 
-
 }
 
 // @title 抖音平台
@@ -191,11 +190,11 @@ func setupCron() error {
 		return err
 	}
 	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, followCntFlashJob)
-	if err!= nil{
+	if err != nil {
 		return err
 	}
 	_, err = c.AddJob(cronjob.FOLLOWCNTTIME, fanCntFlashJob)
-	if err!= nil{
+	if err != nil {
 		return err
 	}
 	//开启
