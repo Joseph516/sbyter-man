@@ -78,7 +78,10 @@ func (d Dao) UpdateUserLoginIP(userId uint, loginIP string) error {
 }
 
 func (d Dao) UpdateById(userId uint, data map[string]interface{}) error {
-	var user model.User
-	user.ID = userId
+	user := model.User{
+		Model: &model.Model{
+			ID: userId,
+		},
+	}
 	return user.UpdateById(d.engine, data)
 }
