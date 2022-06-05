@@ -7,6 +7,7 @@ import (
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/email"
 	"douyin_service/pkg/errcode"
+	"fmt"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -42,8 +43,8 @@ func (u User) Register(c *gin.Context) {
 		response.ToErrorResponse(errcode.ErrorRegisterFail)
 		return
 	}
-
-	if user.ID != errcode.ErrorUserID {
+	fmt.Println(user, err)
+	if user.UserName != "" {
 		global.Logger.Errorf("svc.GetUserByEmail err: %v", err)
 		res := &service.RegisterResponse{
 			UserID: errcode.ErrorUserID,
