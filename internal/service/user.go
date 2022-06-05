@@ -61,6 +61,7 @@ func (svc *Service) GetUserByEmail(param *GetUserByEmailRequest) (model.User, er
 	return svc.dao.GetUserByEmail(param.UserName)
 }
 
+// GetTotalFavoritedById 查询用户获赞数量接口
 func (svc *Service) GetTotalFavoritedById(userId uint) (int64, error) {
 	exist, cnt, err := svc.redis.QueryUserFavoritedCount(userId)
 	if err != nil {
@@ -77,6 +78,7 @@ func (svc *Service) GetTotalFavoritedById(userId uint) (int64, error) {
 	return cnt, nil
 }
 
+// GetFavoriteCountById 查询用户点赞数量接口
 func (svc *Service) GetFavoriteCountById(userId uint) (int64, error) {
 	exist, cnt, err := svc.redis.QueryUserFavoriteCount(userId)
 	if err != nil {
