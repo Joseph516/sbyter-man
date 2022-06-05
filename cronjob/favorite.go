@@ -9,9 +9,9 @@ import (
 
 const (
 	//"0 30 2 1/2 * ?"
-	FlashFavorCnt         = "0/10 * * * * ? " //每两日的凌晨2点半执行一次
-	FlashUserFavoritedCnt = "0/10 * * * * ? " //每两日的凌晨3点半执行一次
-	FlashUserFavoriteCnt  = "0/15 * * * * ? "
+	FlashFavorCnt         = "0 30 2 1/2 * ?" //每两日的凌晨2点半执行一次
+	FlashUserFavoritedCnt = "0 30 3 1/2 * ?" //每两日的凌晨3点半执行一次
+	FlashUserFavoriteCnt  = "0 0 4 1/2 * ?"
 )
 
 // FlashFavorCnt 定时把视频点赞数量刷新到mysql中，并在此时清除redis缓存
@@ -86,7 +86,6 @@ func (dc DouyinCron) FlashUserFavoritedCnt() {
 	for index, _ := range favoritedKey {
 		uId, err := strconv.Atoi(favoritedKey[index][len(util.USERTOTALFAVORITEDCNT):])
 		userId := uint(uId)
-		global.Logger.Infof("FlashUserFavoritedCnt,userId=%d\n", userId)
 		if err != nil {
 			global.Logger.Error(err)
 			return
