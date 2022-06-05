@@ -39,6 +39,11 @@ func (u User) Update(db *gorm.DB) error {
 	return db.Model(&User{}).Where("user_name = ?", u.UserName).Updates(u).Error
 }
 
+func (u User) UpdateById(db *gorm.DB, data map[string]interface{}) error {
+	//修改多列的时候传入结构体会导致0值无法修改，利用map传参即可
+	//Model里的参数中的主键会自动作为查询条件
+	return db.Model(&u).Updates(data).Error
+}
 func (u User) Delete(db *gorm.DB) error {
 	return db.Where("user_name = ?", u.UserName).Delete(&u).Error
 }

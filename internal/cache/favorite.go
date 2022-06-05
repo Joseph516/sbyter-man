@@ -40,6 +40,42 @@ func (r *Redis) QueryFavorCnt(videoId uint) (bool, int64, error) {
 	return true, int64(cnt), nil
 }
 
+// QueryUserFavoritedCount 查询用户userId被赞总数量
+func (r *Redis) QueryUserFavoritedCount(userId uint) (bool, int64, error) {
+	key := util.UserFavoritedCntKey(userId)
+	exist, err := r.IsExist(key)
+	if err != nil {
+		return false, 0, err
+	}
+	if !exist {
+		return false, 0, nil
+	}
+	result, err := r.redis.Get(key).Result()
+	if err != nil {
+		return false, 0, err
+	}
+	cnt, _ := strconv.Atoi(result)
+	return true, int64(cnt), nil
+}
+
+// QueryUserFavoriteCount 查询用户userId点赞总数量
+func (r *Redis) QueryUserFavoriteCount(userId uint) (bool, int64, error) {
+	key := util.UserFavoriteCntKey(userId)
+	exist, err := r.IsExist(key)
+	if err != nil {
+		return false, 0, err
+	}
+	if !exist {
+		return false, 0, nil
+	}
+	result, err := r.redis.Get(key).Result()
+	if err != nil {
+		return false, 0, err
+	}
+	cnt, _ := strconv.Atoi(result)
+	return true, int64(cnt), nil
+}
+
 // IncrFavorCnt 增加video的点赞数量
 func (r *Redis) IncrFavorCnt(videoId uint) int64 {
 	key := util.VideoFavorCntKey(videoId)
@@ -47,9 +83,37 @@ func (r *Redis) IncrFavorCnt(videoId uint) int64 {
 	return result
 }
 
+// IncrUserFavoritedCnt 增加userId的被赞数量
+func (r *Redis) IncrUserFavoritedCnt(userId uint) int64 {
+	key := util.UserFavoritedCntKey(userId)
+	result := r.redis.Incr(key).Val()
+	return result
+}
+
+// IncrUserFavoriteCnt 增加userId的点赞数量
+func (r *Redis) IncrUserFavoriteCnt(userId uint) int64 {
+	key := util.UserFavoriteCntKey(userId)
+	result := r.redis.Incr(key).Val()
+	return result
+}
+
 // DecrFavorCnt 减少video的点赞数量
 func (r *Redis) DecrFavorCnt(videoId uint) int64 {
 	key := util.VideoFavorCntKey(videoId)
+	result := r.redis.Decr(key).Val()
+	return result
+}
+
+// DecrUserFavoritedCnt 减少userId的被赞数量
+func (r *Redis) DecrUserFavoritedCnt(userId uint) int64 {
+	key := util.UserFavoritedCntKey(userId)
+	result := r.redis.Decr(key).Val()
+	return result
+}
+
+// DecrUserFavoriteCnt 减少userId的点赞数量
+func (r *Redis) DecrUserFavoriteCnt(userId uint) int64 {
+	key := util.UserFavoriteCntKey(userId)
 	result := r.redis.Decr(key).Val()
 	return result
 }

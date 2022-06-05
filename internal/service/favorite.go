@@ -26,33 +26,59 @@ type FavoriteListResponse struct {
 	VideoList []VideoInfo `json:"video_list"`
 }
 
-var lock sync.Mutex
+var lock sync.Mutex //用于双重检查
 
 // Action 点赞
+// 总体逻辑：
+// 1.点赞/取消点赞
+// 2.修改视频的点赞数量
+// 3.修改视频作者的获赞数量
+// 4.修改用户的点赞数量
 func (svc *Service) Action(param *ActionRequest, userId uint) error {
 	user := userId
-	video := param.VideoId
+	videoId := param.VideoId
+	//查询video的作者id
+	authorId, err := svc.QueryAuthorIdByVideoId(videoId)
+	if err != nil {
+		return err
+	}
 	action := param.ActionType
-	ok, err := svc.IsFavor(user, video)
+	ok, err := svc.IsFavor(user, videoId)
 	if err != nil {
 		return err
 	}
 	//点赞
 	if action == 1 && !ok {
-		err := svc.redis.FavorAction(user, video)
+		err := svc.redis.FavorAction(user, videoId)
 		if err != nil {
 			return err
 		}
-		err = svc.afterFavoriteAction(video, action)
+		err = svc.changeVideoFavoriteCount(videoId, action)
+		if err != nil {
+			return err
+		}
+		err = svc.changeUserFavoritedCount(authorId, action)
+		if err != nil {
+			return err
+		}
+		err = svc.changeUserFavoriteCount(userId, action)
 		return err
 	}
 	//取消点赞
 	if action == 2 && ok {
-		err := svc.redis.CancelFavorAction(user, video)
+		err := svc.redis.CancelFavorAction(user, videoId)
 		if err != nil {
 			return err
 		}
-		err = svc.afterFavoriteAction(video, action)
+		err = svc.changeVideoFavoriteCount(videoId, action)
+		if err != nil {
+			return err
+		}
+		err = svc.changeUserFavoritedCount(authorId, action)
+		if err != nil {
+			return err
+		}
+		err = svc.changeUserFavoriteCount(userId, action)
 		return err
 	}
 	return nil
@@ -150,8 +176,8 @@ func (svc *Service) QueryFavorCnt(videoId uint) (int64, error) {
 	return cnt, nil
 }
 
-// afterFavoriteAction 执行favoriteAction之后更改缓存和数据库中favorite_count的操作
-func (svc *Service) afterFavoriteAction(videoId uint, action int) error {
+// changeVideoFavoriteCount 执行favoriteAction之后更改缓存和数据库中视频的favorite_count的操作
+func (svc *Service) changeVideoFavoriteCount(videoId uint, action int) error {
 	//先在缓存中尝试查找
 	var (
 		err   error
@@ -167,6 +193,7 @@ func (svc *Service) afterFavoriteAction(videoId uint, action int) error {
 	if !exist {
 		//保证只有一个请求是数据库的
 		lock.Lock()
+		defer lock.Unlock()
 		//再查一次缓存
 		exist, cnt, err = svc.redis.QueryFavorCnt(videoId)
 		if err != nil {
@@ -195,7 +222,6 @@ func (svc *Service) afterFavoriteAction(videoId uint, action int) error {
 				cnt = svc.redis.DecrFavorCnt(videoId)
 			}
 		}
-		lock.Unlock()
 	} else {
 		if action == 1 {
 			cnt = svc.redis.IncrFavorCnt(videoId)
@@ -203,11 +229,123 @@ func (svc *Service) afterFavoriteAction(videoId uint, action int) error {
 			cnt = svc.redis.DecrFavorCnt(videoId)
 		}
 	}
+	return nil
+}
 
-	var newVideo model.Video
-	newVideo.ID = uint(videoId)
-	newVideo.FavoriteCount = cnt
-	//更新数据库，已经交给定时任务
+// changeUserFavoritedCount 执行favoriteAction之后更改缓存和数据库中用户的total_favorited的操作
+func (svc *Service) changeUserFavoritedCount(userId uint, action int) error {
+	//先在缓存中尝试查找
+	var (
+		err   error
+		exist bool
+		user  model.User
+		cnt   int64
+		key   string
+	)
+	key = util.UserFavoritedCntKey(userId)
+	exist, cnt, err = svc.redis.QueryUserFavoritedCount(userId)
+	if err != nil {
+		return err
+	}
+	if !exist {
+		//保证只有一个请求是数据库的
+		lock.Lock()
+		//再查一次缓存
+		exist, cnt, err = svc.redis.QueryUserFavoritedCount(userId)
+		if err != nil {
+			return err
+		}
+		if !exist {
+			//走数据库
+			user, err = svc.dao.GetUserById(userId)
+			if err != nil {
+				return err
+			}
+			cnt = user.TotalFavorited
+			if action == 1 {
+				cnt++
+			} else {
+				cnt--
+			}
+			err = svc.redis.Set(key, cnt, 0)
+			if err != nil {
+				return err
+			}
+		} else {
+			//走缓存
+			if action == 1 {
+				cnt = svc.redis.IncrUserFavoritedCnt(userId)
+			} else {
+				cnt = svc.redis.DecrUserFavoritedCnt(userId)
+			}
+		}
+		lock.Unlock()
+	} else {
+		if action == 1 {
+			cnt = svc.redis.IncrUserFavoritedCnt(userId)
+		} else {
+			cnt = svc.redis.DecrUserFavoritedCnt(userId)
+		}
+	}
+	//缓存刷新数据库交给定时完成
+	return nil
+}
 
+// changeUserFavoriteCount 执行favoriteAction之后更改缓存和数据库中用户的favorite_count的操作
+func (svc *Service) changeUserFavoriteCount(userId uint, action int) error {
+	//先在缓存中尝试查找
+	var (
+		err   error
+		exist bool
+		user  model.User
+		cnt   int64
+		key   string
+	)
+	key = util.UserFavoriteCntKey(userId)
+	exist, cnt, err = svc.redis.QueryUserFavoriteCount(userId)
+	if err != nil {
+		return err
+	}
+	if !exist {
+		//保证只有一个请求是数据库的
+		lock.Lock()
+		//再查一次缓存
+		exist, cnt, err = svc.redis.QueryUserFavoriteCount(userId)
+		if err != nil {
+			return err
+		}
+		if !exist {
+			//走数据库
+			user, err = svc.dao.GetUserById(userId)
+			if err != nil {
+				return err
+			}
+			cnt = user.TotalFavorited
+			if action == 1 {
+				cnt++
+			} else {
+				cnt--
+			}
+			err = svc.redis.Set(key, cnt, 0)
+			if err != nil {
+				return err
+			}
+		} else {
+			//走缓存
+			if action == 1 {
+				cnt = svc.redis.IncrUserFavoriteCnt(userId)
+			} else {
+				cnt = svc.redis.DecrUserFavoriteCnt(userId)
+			}
+		}
+		lock.Unlock()
+	} else {
+		if action == 1 {
+			cnt = svc.redis.IncrUserFavoriteCnt(userId)
+		} else {
+			cnt = svc.redis.DecrUserFavoriteCnt(userId)
+		}
+	}
+	//缓存刷新数据库交给定时完成
 	return nil
 }

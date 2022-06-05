@@ -57,6 +57,6 @@ func (d *Dao) UpdateFavoriteCnt(video model.Video) error {
 // QueryFavorCntById 根据Id查询点赞数量
 func (d *Dao) QueryFavorCntById(videoId uint) (int64, error) {
 	var video model.Video
-	video.ID = uint(videoId)
+	video.ID = videoId
 	return video.QueryFavorCntById(d.engine)
 }

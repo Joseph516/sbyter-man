@@ -42,6 +42,7 @@ func (u User) Register(c *gin.Context) {
 		response.ToErrorResponse(errcode.ErrorRegisterFail)
 		return
 	}
+
 	if user.ID != errcode.ErrorUserID {
 		global.Logger.Errorf("svc.GetUserByEmail err: %v", err)
 		res := &service.RegisterResponse{
