@@ -17,7 +17,7 @@ func NewComment() Comment {
 	return Comment{}
 }
 
-//查看视频的评论，直接列出改视频的所有评论
+// List 查看视频的评论，直接列出改视频的所有评论
 func (co Comment) List(c *gin.Context) {
 	param := service.CommentListRequest{}
 	response := app.NewResponse(c)

@@ -60,17 +60,18 @@ func (svc *Service) Feed(uid uint, lastTime int64) (pubResp FeedResponse, err er
 	for i, video := range videos {
 		isFavor := false
 		if uid != 0 {
-			isFavor, err = svc.dao.IsFavor(uid, video.ID)
+			isFavor, err = svc.IsFavor(uid, video.ID)
 			if err != nil {
 				return
 			}
 		}
+		favoriteCount, _ := svc.QueryFavorCnt(video.ID)
 		pubResp.VideoList[i] = VideoInfo{
 			Id:            video.ID,
 			Author:        map_user[video.AuthorId],
 			PlayUrl:       video.PlayUrl,
 			CoverUrl:      video.CoverUrl,
-			FavoriteCount: video.FavoriteCount,
+			FavoriteCount: favoriteCount,
 			CommentCount:  video.CommentCount,
 			IsFavorite:    isFavor,
 			Title:         video.Title,
