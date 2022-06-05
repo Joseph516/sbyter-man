@@ -1056,3 +1056,16 @@
 2022/06/04 14:15:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323330678660300}
 2022/06/04 14:16:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323369366130000}
 2022/06/04 14:16:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654323413145217300}
+2022/06/05 16:53:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654419202808967900}
+2022/06/05 16:53:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'PublishListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654419223237312300}
+2022/06/05 16:53:43 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'FavoriteListRequest.Token' Error:Field validation for 'Token' failed on the 'required' tag","time":1654419223248900800}
+2022/06/05 16:54:50 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654419290967942900}
+2022/06/05 16:56:41 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654419401417089100}
+2022/06/05 16:56:42 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654419402679453900}
+2022/06/05 17:12:07 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654420327396036700}
+2022/06/05 17:13:23 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654420403550933000}
+2022/06/05 17:15:33 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654420533610668100}
+2022/06/05 17:16:17 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654420577724540700}
+2022/06/05 17:16:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654420579061275800}
+2022/06/05 17:16:19 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"svc.GetUserByEmail err: \u003cnil\u003e","time":1654420579667175400}
+2022/06/05 17:19:03 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654420743915040600}
