@@ -16,14 +16,14 @@ func (d *Dao) CreateUser(userName, password, loginIP string) (uint, error) {
 		return errcode.ErrorUserID, err
 	}
 	user := model.User{
-		UserName:      userName,
-		Password:      password,
-		FollowCount:   0,
-		FollowerCount: 0,
+		UserName:        userName,
+		Password:        password,
+		FollowCount:     0,
+		FollowerCount:   0,
 		Avatar:          util.RandomAvatar(userName),
 		Signature:       sign,
 		BackgroundImage: img,
-		LoginIP: loginIP,
+		LoginIP:         loginIP,
 	}
 	err = user.Create(d.engine)
 	if err != nil {
@@ -37,7 +37,7 @@ func (d *Dao) CheckUser(username, password, loginIP string) (uint, bool, error) 
 	user := model.User{
 		UserName: username,
 		Password: password,
-		LoginIP: loginIP,
+		LoginIP:  loginIP,
 	}
 	return user.CheckUser(d.engine)
 }
@@ -75,4 +75,13 @@ func (d Dao) UpdateUserLoginIP(userId uint, loginIP string) error {
 		LoginIP: loginIP,
 	}
 	return user.UpdateIP(d.engine)
+}
+
+func (d Dao) UpdateById(userId uint, data map[string]interface{}) error {
+	user := model.User{
+		Model: &model.Model{
+			ID: userId,
+		},
+	}
+	return user.UpdateById(d.engine, data)
 }

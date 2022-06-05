@@ -175,6 +175,7 @@ func setupEmail() {
 func setupCron() error {
 	dc := cronjob.New()
 	c := cron.New(cron.WithSeconds())
+	//TODO:定时刷新用户点赞数量和被赞数量
 	// 生成chain
 	favorSkipChain1 := cronjob.SkipIfStillRunningChain()
 	followSkipChain1 := cronjob.SkipIfStillRunningChain()
@@ -182,11 +183,23 @@ func setupCron() error {
 	// 生成job
 	favorCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashFavorCnt)
 	followCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFollowCnt)
+
+	userFavoritedCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashUserFavoritedCnt)
+	userFavoriteCntFlashJob := cronjob.GenerateJob(&favorSkipChain1, dc.FlashUserFavoriteCnt)
+
 	fanCntFlashJob := cronjob.GenerateJob(&followSkipChain1, dc.FlashFanCnt)
 	global.Logger.Info("启动点赞数量定时刷新任务")
 
 	//向cron注册经过对应chain修饰的job
-	_, err := c.AddJob(cronjob.FAVORCNTTIME, favorCntFlashJob)
+	_, err := c.AddJob(cronjob.FlashFavorCnt, favorCntFlashJob)
+	if err != nil {
+		return err
+	}
+	_, err = c.AddJob(cronjob.FlashUserFavoritedCnt, userFavoritedCntFlashJob)
+	if err != nil {
+		return err
+	}
+	_, err = c.AddJob(cronjob.FlashUserFavoriteCnt, userFavoriteCntFlashJob)
 	if err != nil {
 		return err
 	}

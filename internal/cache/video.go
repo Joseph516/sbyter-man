@@ -4,6 +4,7 @@ import (
 	"douyin_service/internal/model"
 	"douyin_service/pkg/util"
 	"encoding/json"
+	"strconv"
 )
 
 //video 的缓存操作
@@ -29,4 +30,21 @@ func (r *Redis) QueryVideoByVideoId(videoId uint) (bool, string, model.Video, er
 		return false, "", video, err
 	}
 	return true, key, video, nil
+}
+
+func (r *Redis) QueryAuthorIdByVideoId(videoId uint) (bool, uint, error) {
+	key := util.VideoAuthorKey(videoId)
+	exist, err := r.IsExist(key)
+	if err != nil {
+		return false, 0, err
+	}
+	if !exist {
+		return false, 0, nil
+	}
+	result, err := r.redis.Get(key).Result()
+	if err != nil {
+		return false, 0, err
+	}
+	cnt, _ := strconv.Atoi(result)
+	return true, uint(cnt), nil
 }

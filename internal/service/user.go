@@ -33,7 +33,7 @@ type GetUserInfoResponse struct {
 }
 
 type GetUserByEmailRequest struct {
-	UserName string   `form:"user_name"  binding:"required"`
+	UserName string `form:"user_name"  binding:"required"`
 }
 
 type UpdateIPRequest struct {
@@ -59,4 +59,36 @@ func (svc *Service) GetUsersByIds(userIds []uint) ([]model.User, error) {
 
 func (svc *Service) GetUserByEmail(param *GetUserByEmailRequest) (model.User, error) {
 	return svc.dao.GetUserByEmail(param.UserName)
+}
+
+func (svc *Service) GetTotalFavoritedById(userId uint) (int64, error) {
+	exist, cnt, err := svc.redis.QueryUserFavoritedCount(userId)
+	if err != nil {
+		return 0, err
+	}
+	if exist {
+		return cnt, nil
+	}
+	user, err := svc.dao.GetUserById(userId)
+	if err != nil {
+		return 0, err
+	}
+	cnt = user.TotalFavorited
+	return cnt, nil
+}
+
+func (svc *Service) GetFavoriteCountById(userId uint) (int64, error) {
+	exist, cnt, err := svc.redis.QueryUserFavoriteCount(userId)
+	if err != nil {
+		return 0, err
+	}
+	if exist {
+		return cnt, nil
+	}
+	user, err := svc.dao.GetUserById(userId)
+	if err != nil {
+		return 0, err
+	}
+	cnt = user.FavoriteCount
+	return cnt, nil
 }

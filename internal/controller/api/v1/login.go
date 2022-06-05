@@ -55,13 +55,13 @@ func (u User) Register(c *gin.Context) {
 		response.ToResponse(res)
 		return
 	}
-	email := message.Email{
+	newEmail := message.Email{
 		UserName: []string{param.UserName},
 		Password: param.Password,
 		LoginIP:  param.LoginIP,
 		Type:     1,
 	}
-	svc.Kafka.Producer(global.KafkaSetting.TopicEmail, email.String(), 1) // 向kafka生产一条消息
+	svc.Kafka.Producer(global.KafkaSetting.TopicEmail, newEmail.String(), 1) // 向kafka生产一条消息
 	res := &service.RegisterResponse{
 		UserID: errcode.ErrorUserID,
 		Token:  "",
