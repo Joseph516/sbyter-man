@@ -35,3 +35,8 @@ func (f Follow) QueryFollowList(db *gorm.DB, userId uint) (follows []Follow, err
 	err = db.Where("follower_id = ?", userId).Find(&follows).Error
 	return
 }
+
+func (f Follow) QueryFollowerList(db *gorm.DB, userId uint) (follows []Follow, err error) {
+	err = db.Where("followed_id = ?", userId).Find(&follows).Error
+	return
+}

@@ -123,6 +123,32 @@ func (svc *Service) FollowList(userId uint) (res FollowListResponse, err error) 
 		userInfo.FollowCount = userM.FollowerCount
 		userInfo.FollowerCount = userM.FollowerCount
 		userInfo.Name = userM.UserName
+		userInfo.IsFollow = true
+		res.UserList = append(res.UserList, userInfo)
+	}
+	res.StatusCode = 0
+	res.StatusMsg = "success"
+	return
+}
+
+func (svc *Service) FollowerList(userId uint) (res FollowListResponse, err error) {
+	follows, err := svc.dao.FollowerList(userId)
+	if err != nil {
+		return
+	}
+	for i := range follows {
+		f := follows[i]
+		id := f.FollowedId
+		var userInfo UserInfo
+		userM, UserErr := svc.dao.GetUserById(uint(id))
+		if UserErr != nil {
+			err = UserErr
+			return
+		}
+		userInfo.ID = userM.ID
+		userInfo.FollowCount = userM.FollowerCount
+		userInfo.FollowerCount = userM.FollowerCount
+		userInfo.Name = userM.UserName
 		res.UserList = append(res.UserList, userInfo)
 	}
 	res.StatusCode = 0

@@ -13,6 +13,8 @@ import (
 	"path"
 	"strconv"
 	"strings"
+	"sync"
+	"time"
 )
 
 type PublishListRequest struct {
@@ -41,6 +43,8 @@ type PublishActionRequest struct {
 	Token string                `form:"token" binding:"required"`
 	Title string                `form:"title" binding:"required"`
 }
+
+var video_lock sync.Mutex
 
 func (svc *Service) PublishList(userId uint) (pubResp PublishListResponse, err error) {
 	// 根据用户id获取发布视频信息
@@ -130,4 +134,36 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 
 func (svc *Service) QueryBatchVdieoById(favorList []uint) ([]model.Video, error) {
 	return svc.dao.QueryBatchVideoById(favorList)
+}
+
+// QueryAuthorIdByVideoId 根据videoId查询authorId的缓存查找方法
+func (svc *Service) QueryAuthorIdByVideoId(videoId uint) (uint, error) {
+	exist, authorId, err := svc.redis.QueryAuthorIdByVideoId(videoId)
+	if err != nil {
+		return 0, err
+	}
+	if exist {
+		return authorId, nil
+	}
+	key := util.VideoAuthorKey(videoId)
+	video_lock.Lock()
+	defer video_lock.Unlock()
+	exist, authorId, err = svc.redis.QueryAuthorIdByVideoId(videoId)
+	if err != nil {
+		return 0, err
+	}
+	if exist {
+		return authorId, nil
+	} else {
+		video, err := svc.dao.QueryVideoById(videoId)
+		if err != nil {
+			return 0, err
+		}
+		authorId = video.AuthorId
+		err = svc.redis.Set(key, authorId, time.Hour*12)
+		if err != nil {
+			return 0, err
+		}
+		return authorId, nil
+	}
 }
