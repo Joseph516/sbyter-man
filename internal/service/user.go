@@ -20,6 +20,8 @@ type UserInfo struct {
 	Signature       string `json:"signature"`        // 个性签名
 	BackgroundImage string `json:"background_image"` // 背景图片
 	LoginIP         string `json:"login_ip"`         // 登录IP
+	TotalFavorited  int64    `json:"total_favorited"`  // 被赞的总次数
+	FavoriteCount   int64    `json:"favorite_count"`   //喜欢总数量
 }
 
 type GetUserInfoRequest struct {
@@ -36,14 +38,22 @@ type GetUserByEmailRequest struct {
 	UserName string `form:"user_name"  binding:"required"`
 }
 
+
 type UpdateIPRequest struct {
 	ID      uint   `form:"id"`
 	LoginIP string `form:"login_ip"`
 }
 
+// UpdateByIdRequest redis更新Mysql用户信息请求
+type UpdateByIdRequest struct {
+	UserId uint
+	Data map[string]interface{}
+}
+
 func (svc *Service) CreateUser(param *CreateUserRequest) (uint, error) {
 	return svc.dao.CreateUser(param.UserName, param.Password, param.LoginIP)
 }
+
 
 func (svc *Service) UpdateUserLoginIP(param *UpdateIPRequest) error {
 	return svc.dao.UpdateUserLoginIP(param.ID, param.LoginIP)
@@ -59,6 +69,10 @@ func (svc *Service) GetUsersByIds(userIds []uint) ([]model.User, error) {
 
 func (svc *Service) GetUserByEmail(param *GetUserByEmailRequest) (model.User, error) {
 	return svc.dao.GetUserByEmail(param.UserName)
+}
+
+func (svc *Service) UpdateById(param *UpdateByIdRequest) error {
+	return svc.dao.UpdateById(param.UserId, param.Data)
 }
 
 // GetTotalFavoritedById 查询用户获赞数量接口

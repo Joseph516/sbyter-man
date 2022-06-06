@@ -23,6 +23,12 @@ type FollowListResponse struct {
 	UserList []UserInfo `json:"user_list" binding:"required"`
 }
 
+// IsFollowRequest 判断A是否关注B
+type IsFollowRequest struct {
+	A uint
+	B uint
+}
+
 func (svc *Service) LoadFanCount(userId uint) (int64, error) {
 	upKey := util.FanCountKey(userId)
 	if exist, _:= svc.redis.IsExist(upKey);!exist{
@@ -162,4 +168,8 @@ func (svc *Service) QueryFanCntRedis(userId uint) (bool, int64, error){
 
 func (svc *Service) QueryFollowCntRedis(userId uint) (bool, int64, error){
 	return svc.redis.QueryFollowCnt(userId)
+}
+
+func (svc *Service) IsFollow(param IsFollowRequest) (bool, error) {
+	return svc.dao.IsFollow(param.A, param.B)
 }
