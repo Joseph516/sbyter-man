@@ -1339,3 +1339,32 @@
 2022/06/04 20:44:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"CheckToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346642411429500}
 2022/06/04 20:44:02 {"callers":["F:/goproject/sbyter-man/main.go: 28 main.init.0"],"level":"error","message":"app.ValidToken errs: 错误码：10000007, 错误信息：非法Token","time":1654346642411429500}
 >>>>>>> 141d91bd835aae4a41471726b40a863345ed06d7
+2022/06/06 10:24:38 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482278022748100}
+2022/06/06 10:26:37 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482397212309200}
+2022/06/06 10:28:22 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482502877726500}
+2022/06/06 10:28:49 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482529095468100}
+2022/06/06 10:29:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482551169093100}
+2022/06/06 10:30:11 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482611162097400}
+2022/06/06 10:36:08 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654482968834021100}
+2022/06/06 10:37:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483021524000200}
+2022/06/06 10:37:53 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483073841535800}
+2022/06/06 10:42:05 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483325276371700}
+2022/06/06 10:43:25 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483405260938600}
+2022/06/06 10:45:31 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483531185631800}
+2022/06/06 10:51:59 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654483919836179100}
+2022/06/06 10:53:31 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654484011501114000}
+2022/06/06 10:57:12 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654484232513273200}
+2022/06/06 10:57:51 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 29 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654484271511838800}
+2022/06/06 11:01:28 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654484488301891600}
+2022/06/06 11:11:32 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485092081278600}
+2022/06/06 11:12:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485155029857900}
+2022/06/06 11:13:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485228933420600}
+2022/06/06 11:18:04 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485484941839200}
+2022/06/06 11:18:09 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485489982323400}
+2022/06/06 11:19:30 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485570903571800}
+2022/06/06 11:22:01 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485721083056900}
+2022/06/06 11:22:51 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485771869196900}
+2022/06/06 11:23:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485828572191600}
+2022/06/06 11:24:48 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654485888838081100}
+2022/06/06 14:59:35 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"info","message":"启动点赞数量定时刷新任务","time":1654498775577719900}
+2022/06/06 15:00:39 {"callers":["F:/Workspace/Go/src/sbyter-man/main.go: 30 main.init.0"],"level":"error","message":"util.SendVerifiedEmail: gomail: could not send email 1: gomail: invalid address \"123456\": mail: missing '@' or angle-addr","time":1654498839589183700}

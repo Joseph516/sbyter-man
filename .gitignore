@@ -29,3 +29,4 @@ go.work
 .idea
 # custom
 /storage/
+./douyin-docker
