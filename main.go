@@ -68,6 +68,7 @@ func main() {
 	}
 
 	svc := service.New(&gin.Context{})
+
 	go svc.Kafka.ConsumeEmail()  // 开启一个协程监听kafka邮件消息
 	go svc.Kafka.ConsumComment() // 开启一个协程监听kafka评论消息
 	err := s.ListenAndServe()

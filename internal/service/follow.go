@@ -123,6 +123,7 @@ func (svc *Service) FollowList(userId uint) (res FollowListResponse, err error) 
 		userInfo.FollowCount = userM.FollowerCount
 		userInfo.FollowerCount = userM.FollowerCount
 		userInfo.Name = userM.UserName
+		userInfo.IsFollow = true
 		res.UserList = append(res.UserList, userInfo)
 	}
 	res.StatusCode = 0
