@@ -62,6 +62,21 @@ func (u User) Get(c *gin.Context) {
 	if !exist{
 		fanCnt = user.FollowerCount
 	}
+
+	// 获取新增的点赞字段
+	totalFavorited, err := svc.GetTotalFavoritedById(user.ID)
+	if err ==nil {
+		user.TotalFavorited = totalFavorited // 更新数据库次数
+	} else {
+		global.Logger.Errorf("svc.GetTotalFavoritedById err: %v", err)
+	}
+
+	favoriteCount, err := svc.GetFavoriteCountById(user.ID)
+	if err ==nil {
+		user.FavoriteCount = favoriteCount // 更新数据库次数
+	} else {
+		global.Logger.Errorf("svc.GetFavoriteCountById err: %v", err)
+	}
 	res = service.GetUserInfoResponse{
 		User: &service.UserInfo{
 			ID:              user.ID,
@@ -72,10 +87,35 @@ func (u User) Get(c *gin.Context) {
 			Avatar:          user.Avatar,
 			Signature:       user.Signature,
 			BackgroundImage: user.BackgroundImage,
+			TotalFavorited: user.TotalFavorited,
+			FavoriteCount: user.FavoriteCount,
 		},
 	}
 	res.StatusCode = 0
 	res.StatusMsg = "获取信息成功"
 	response.ToResponse(res)
+
+	// 更新redis数据到mysql
+	if totalFavorited == user.TotalFavorited {
+		req := &service.UpdateByIdRequest{
+			UserId: user.ID,
+			Data:   map[string]interface{}{"total_favorited": user.TotalFavorited},
+		}
+		err = svc.UpdateById(req)
+		if err != nil {
+			global.Logger.Errorf("svc.UpdateById err: %v", err)
+		}
+	}
+
+	if favoriteCount == user.FavoriteCount {
+		req := &service.UpdateByIdRequest{
+			UserId: user.ID,
+			Data:   map[string]interface{}{"favorite_count": user.FavoriteCount},
+		}
+		err = svc.UpdateById(req)
+		if err != nil {
+			global.Logger.Errorf("svc.UpdateById err: %v", err)
+		}
+	}
 	//return	//多余的return
 }
