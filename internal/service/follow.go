@@ -138,7 +138,7 @@ func (svc *Service) FollowerList(userId uint) (res FollowListResponse, err error
 	}
 	for i := range follows {
 		f := follows[i]
-		id := f.FollowedId
+		id := f.FollowerId
 		var userInfo UserInfo
 		userM, UserErr := svc.dao.GetUserById(uint(id))
 		if UserErr != nil {
