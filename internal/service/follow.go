@@ -155,3 +155,11 @@ func (svc *Service) FollowerList(userId uint) (res FollowListResponse, err error
 	res.StatusMsg = "success"
 	return
 }
+
+func (svc *Service) QueryFanCntRedis(userId uint) (bool, int64, error){
+	return svc.redis.QueryFanCnt(userId)
+}
+
+func (svc *Service) QueryFollowCntRedis(userId uint) (bool, int64, error){
+	return svc.redis.QueryFollowCnt(userId)
+}

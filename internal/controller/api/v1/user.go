@@ -44,13 +44,30 @@ func (u User) Get(c *gin.Context) {
 		response.ToResponse(errcode.ErrorGetUserInfoFail)
 		return
 	}
-
+	exist, followCnt, err := svc.QueryFollowCntRedis(user.ID)
+	if err !=nil{
+		global.Logger.Errorf("svc.QueryFollowCntRedis err: %v", err)
+		response.ToResponse(errcode.ErrorGetUserInfoFail)
+		return
+	}
+	if !exist{
+		followCnt = user.FollowCount
+	}
+	exist, fanCnt, err := svc.QueryFanCntRedis(user.ID)
+	if err !=nil{
+		global.Logger.Errorf("svc.QueryFanCntRedis err: %v", err)
+		response.ToResponse(errcode.ErrorGetUserInfoFail)
+		return
+	}
+	if !exist{
+		fanCnt = user.FollowerCount
+	}
 	res = service.GetUserInfoResponse{
 		User: &service.UserInfo{
 			ID:              user.ID,
 			Name:            user.UserName,
-			FollowCount:     user.FollowCount,
-			FollowerCount:   user.FollowerCount,
+			FollowCount:     followCnt,
+			FollowerCount:   fanCnt,
 			IsFollow:        false,
 			Avatar:          user.Avatar,
 			Signature:       user.Signature,
