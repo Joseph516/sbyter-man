@@ -67,6 +67,7 @@ func NewRouter() *gin.Engine {
 		//follow
 		apiv1.POST("/relation/action/", fol.Action)
 		apiv1.GET("/relation/follower/list/", fol.FollowerList)
+		apiv1.GET("/relation/follow/list/", fol.FollowList)
 	}
 
 

@@ -52,3 +52,9 @@ func (d *Dao) FollowList(userId uint) ([]model.Follow, error) {
 	follows, err := model.Follow{}.QueryFollowList(d.engine, userId)
 	return follows, err
 }
+
+
+func (d *Dao) FollowerList(userId uint) ([]model.Follow, error) {
+	follows, err := model.Follow{}.QueryFollowerList(d.engine, userId)
+	return follows, err
+}
