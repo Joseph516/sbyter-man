@@ -23,6 +23,14 @@ type AppSettingS struct {
 	UploadVideoAllowExts []string
 }
 
+// OSSSettingS 阿里云OSS设置
+type OSSSettingS struct {
+	Endpoint        string
+	AccessKeyId     string
+	AccessKeySecret string
+	Bucket          string
+}
+
 type DatabaseSettingS struct {
 	DBType       string
 	UserName     string

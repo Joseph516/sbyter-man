@@ -3,6 +3,7 @@ package service
 import (
 	"douyin_service/global"
 	"douyin_service/internal/model"
+	"douyin_service/pkg/oss"
 	"douyin_service/pkg/upload"
 	"douyin_service/pkg/util"
 	"errors"
@@ -126,8 +127,21 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 		coverUrl = util.UrlJoin(global.AppSetting.UploadServerUrl, global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), coverName)
 	}
 
-	// 更新数据库
-	err := svc.dao.PublishVideo(userId, playUrl, coverUrl, title)
+	// 更新数据库, 检查一下底下两个路径是否正确
+	imgPath := util.UrlJoin(global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), coverName)
+	videoPath := util.UrlJoin(global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), fileName)
+	pre := "https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/" // OSS地址前缀
+	err := oss.UploadOSS(videoPath, "video/" + fileName) // 上传视频
+	if err == nil {
+		playUrl = pre + fileName
+	}
+	err = oss.UploadOSS(imgPath, "img/" + coverName)  //上传封面
+	if err == nil {
+		coverUrl = pre + coverName
+	}
+
+	// 下面的playUrl和coverUrl换成OSS地址
+	err = svc.dao.PublishVideo(userId, playUrl, coverUrl, title)
 
 	return err
 }

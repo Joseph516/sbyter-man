@@ -92,6 +92,11 @@ func setupSetting() error {
 		return err
 	}
 
+	err = setting.ReadSection("OSS", &global.OSSSetting)
+	if err != nil {
+		return err
+	}
+
 	err = setting.ReadSection("Database", &global.DatabaseSetting)
 	if err != nil {
 		return err
