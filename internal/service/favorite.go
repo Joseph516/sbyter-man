@@ -136,7 +136,7 @@ func (svc *Service) FavoriteList(param *FavoriteListRequest) ([]VideoInfo, error
 		if err != nil {
 			return nil, err
 		}
-		if !ok {
+		if ok {
 			favoriteCnt = cnt
 		}
 		videoInfo := VideoInfo{
