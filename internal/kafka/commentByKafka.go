@@ -27,6 +27,16 @@ const PUBCOMMENT int64 = 1
 func (param *CommentActionRequest) CommentAction() error {
 	dao := dao.New(global.DBEngine)
 	if param.ActionType == PUBCOMMENT {
+		//根据视频id更新video表中的comment_count字段
+		video, err := dao.QueryVideoById(uint(param.VideoId))
+		if err != nil {
+			return err
+		}
+		video.CommentCount += 1
+		err = dao.UpdateCommentCnt(video)
+		if err != nil {
+			return err
+		}
 		return dao.PublishComment(param.VideoId, param.UserId, param.CommentText)
 	}
 	return dao.DeleteComment(param.CommentId)

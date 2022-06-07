@@ -54,6 +54,11 @@ func (d *Dao) UpdateFavoriteCnt(video model.Video) error {
 	return video.UpdateFavoriteCnt(d.engine)
 }
 
+// UpdateCommentCnt 更新video的comment_count
+func (d *Dao) UpdateCommentCnt(video model.Video) error {
+	return video.UpdateCommentCnt(d.engine)
+}
+
 // QueryFavorCntById 根据Id查询点赞数量
 func (d *Dao) QueryFavorCntById(videoId uint) (int64, error) {
 	var video model.Video
