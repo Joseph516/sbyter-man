@@ -24,7 +24,7 @@ https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/file_v2_09cbcc8a-8ef9-486d-
 
 ```go
 //安装项目所需模块 
-go tidy
+go mod tidy
 ```
 
 #### 使用说明
