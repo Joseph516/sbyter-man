@@ -44,6 +44,14 @@ func (svc *Service) Feed(uid uint, lastTime int64) (pubResp FeedResponse, err er
 				return
 			}
 		}
+		exist, followCnt, _ := svc.QueryFollowCntRedis(user.ID)
+		if exist{
+			user.FollowCount = followCnt
+		}
+		exist, fanCnt, _ := svc.QueryFanCntRedis(user.ID)
+		if exist{
+			user.FollowerCount = fanCnt
+		}
 		map_user[user.ID] = UserInfo{
 			ID:            user.ID,
 			Name:          user.UserName,

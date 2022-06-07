@@ -57,7 +57,7 @@ func (u User) Get(c *gin.Context) {
 		return
 	}
 	if exist{
-		user.FollowCount = fanCnt
+		user.FollowerCount = fanCnt
 	}
 
 	// 获取新增的点赞字段
