@@ -7,14 +7,14 @@ import (
 )
 
 type FollowActionRequest struct {
-	//UserId uint   `form:"user_id"  binding:"required"`
+	UserId uint   `form:"user_id"  binding:"required"`
 	Token      string `form:"token" binding:"required"`
 	ToUserId   uint   `form:"to_user_id" binding:"required"`
 	ActionType int64  `form:"action_type" binding:"required"`
 }
 
 type FollowListRequest struct {
-	//UserId uint   `form:"user_id"  binding:"required"`
+	UserId uint   `form:"user_id"  binding:"required"`
 	Token string `form:"token" binding:"required"`
 }
 
