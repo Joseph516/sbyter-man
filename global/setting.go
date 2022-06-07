@@ -8,6 +8,7 @@ import (
 var (
 	ServerSetting   *setting.ServerSettingS
 	AppSetting      *setting.AppSettingS
+	OSSSetting      *setting.OSSSettingS
 	DatabaseSetting *setting.DatabaseSettingS
 	KafkaSetting    *setting.KafkaSettings
 	RedisSetting    *setting.RedisSettingS
