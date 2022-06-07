@@ -36,19 +36,17 @@ func (f *Follow) Action(c *gin.Context) {
 		response.ToResponse(res)
 		return
 	}
-	//// 从token中获取user_id
-	//claims, err := app.ParseToken(param.Token)
-	//if err != nil {
-	//	global.Logger.Errorf("app.ParseToken: %v", err)
-	//	response.ToErrorResponse(errcode.ErrorActionFail)
-	//	return
-	//}
-	//userId, _ := strconv.Atoi(claims.Audience)
-	userId := param.UserId
-
+	// 从token中获取user_id
+	claims, err := app.ParseToken(param.Token)
+	if err != nil {
+		global.Logger.Errorf("app.ParseToken: %v", err)
+		response.ToErrorResponse(errcode.ErrorActionFail)
+		return
+	}
+	userId, _ := strconv.Atoi(claims.Audience)
 	//更新数据库
 	svc := service.New(c.Request.Context())
-	_, err := svc.FollowAction(&param, uint(userId))
+	_, err = svc.FollowAction(&param, uint(userId))
 	if err != nil {
 		global.Logger.Errorf("svc.FollowAction errs: %v", err)
 		response.ToErrorResponse(errcode.ErrorFollowActionFail)
@@ -123,16 +121,18 @@ func (f Follow) FollowerList(c *gin.Context) {
 		return
 	}
 	// 从token中获取user_id
-	claims, err := app.ParseToken(param.Token)
-	if err != nil {
-		global.Logger.Errorf("app.ParseToken: %v", err)
-		response.ToErrorResponse(errcode.ErrorActionFail)
-		return
-	}
-	userId, _ := strconv.Atoi(claims.Audience)
+	//claims, err := app.ParseToken(param.Token)
+	//if err != nil {
+	//	global.Logger.Errorf("app.ParseToken: %v", err)
+	//	response.ToErrorResponse(errcode.ErrorActionFail)
+	//	return
+	//}
+	//userId, _ := strconv.Atoi(claims.Audience)
+
+	userId := param.UserId
 	//访问数据库
 	svc := service.New(c.Request.Context())
-	res, err = svc.FollowerList(uint(userId))
+	res, err := svc.FollowerList(uint(userId))
 	if err != nil {
 		global.Logger.Errorf("FollowList errs: %v", err.Error())
 		res.StatusCode = -1
