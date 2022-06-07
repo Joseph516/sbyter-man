@@ -73,7 +73,7 @@ func (u User) CheckUser(db *gorm.DB) (uint, bool, error) {
 		return errcode.ErrorUserID, false, err
 	}
 	if u.LoginIP != user.LoginIP {
-		//return user.ID, false, errcode.ErrorLoginDanger
+		return user.ID, false, errcode.ErrorLoginDanger
 	}
 	return user.ID, true, nil
 }
