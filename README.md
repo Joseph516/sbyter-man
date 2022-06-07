@@ -18,7 +18,8 @@ kakfa的异步任务等。
 
 #### 软件架构说明
 ![img.png](img.png)
-
+#### 演示视频
+https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/file_v2_09cbcc8a-8ef9-486d-900f-7514bca3b53g_2033260184.mp4
 #### 安装教程
 
 ```go

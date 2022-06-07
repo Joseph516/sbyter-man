@@ -130,14 +130,15 @@ func (svc *Service) PublishAction(data *multipart.FileHeader, token, title strin
 	// 更新数据库, 检查一下底下两个路径是否正确
 	imgPath := util.UrlJoin(global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), coverName)
 	videoPath := util.UrlJoin(global.AppSetting.UploadSavePath, strconv.Itoa(int(userId)), fileName)
-	pre := "https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/" // OSS地址前缀
+	pre := "https://sbyterman.oss-cn-hangzhou.aliyuncs.com/" // OSS地址前缀
 	err := oss.UploadOSS(videoPath, "video/" + fileName) // 上传视频
 	if err == nil {
-		playUrl = pre + fileName
+		playUrl = pre + "video/" + fileName
+
 	}
 	err = oss.UploadOSS(imgPath, "img/" + coverName)  //上传封面
 	if err == nil {
-		coverUrl = pre + coverName
+		coverUrl = pre + "img/"+ coverName
 	}
 
 	// 下面的playUrl和coverUrl换成OSS地址

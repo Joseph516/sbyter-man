@@ -41,7 +41,8 @@ func (r *Response) ToResponseList(list interface{}, totalRows int64)  {
 }
 
 func (r *Response) ToErrorResponse(err *errcode.Error)  {
-	response := gin.H{"status_code": err.Code(), "status_msg": err.Msg()}
+	//response := gin.H{"status_code": err.Code(), "status_msg": err.Msg()}
+	response := gin.H{"status_code": 0, "status_msg": err.Msg()} // 由于前端设计，这里只能用0
 	details := err.Details()
 	if len(details) > 0 {
 		response["details"] = details
