@@ -78,6 +78,7 @@ https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/file_v2_09cbcc8a-8ef9-486d-
 
 ```go
 //安装项目所需模块 
+<<<<<<< HEAD
 go tidy
 
 安装如下所有模块
@@ -101,6 +102,9 @@ go tidy
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v1.3.4
 	gorm.io/gorm v1.23.5
+=======
+go mod tidy
+>>>>>>> 062cc5b2c4c31a6fc51c56405c86d4b73d1b783b
 ```
 
 ## 七、 使用说明
