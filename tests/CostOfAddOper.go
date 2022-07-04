@@ -14,9 +14,6 @@ import (
 	"time"
 )
 
-
-
-
 func setupSetting() error {
 	setting, err := setting2.NewSetting()
 	if err != nil {
@@ -46,8 +43,8 @@ func setupSetting() error {
 		Password: global.RedisSetting.Password,
 		DB:       0,
 	})
-	_,err = global.Rd.Ping().Result()
-	if err!=nil{
+	_, err = global.Rd.Ping().Result()
+	if err != nil {
 		return err
 	}
 	err = setting.ReadSection("JWT", &global.JWTSetting)
@@ -101,22 +98,21 @@ func init() {
 	}
 }
 
-
 type Num struct {
 	gorm.Model
-	Count int64
+	Count   int64
 	KeyWord string
 }
 
-func (num Num)TableName() string {
+func (num Num) TableName() string {
 	return "test_table"
 }
 
-func (num Num) AddBySql(db *gorm.DB, key string, wg *sync.WaitGroup, mux *sync.Mutex)(err error)  {
+func (num Num) AddBySql(db *gorm.DB, key string, wg *sync.WaitGroup, mux *sync.Mutex) (err error) {
 	defer wg.Done()
 	var n Num
 	mux.Lock()
-	db.Where("Key_word = ?",key).Debug().First(&n)
+	db.Where("Key_word = ?", key).Debug().First(&n)
 	fmt.Println(n)
 	db.Model(&n).Update("count", n.Count+1)
 	mux.Unlock()
@@ -124,30 +120,30 @@ func (num Num) AddBySql(db *gorm.DB, key string, wg *sync.WaitGroup, mux *sync.M
 
 }
 
-func (num Num) AddByRedis(rd *redis.Client, key string, wg *sync.WaitGroup)(err error)  {
+func (num Num) AddByRedis(rd *redis.Client, key string, wg *sync.WaitGroup) (err error) {
 	defer wg.Done()
 	rd.IncrBy(key, 1)
 	return nil
 }
-func AddBySql()  {
+func AddBySql() {
 	mux := sync.Mutex{}
 	k := "video"
 	var n Num
 	wg := sync.WaitGroup{}
 
-	for i:=0;i<10;i++ {
+	for i := 0; i < 10; i++ {
 		wg.Add(1)
 		go n.AddBySql(global.DBEngine, k, &wg, &mux)
 	}
 	wg.Wait()
 }
 
-func AddByRedis(k string)  {
+func AddByRedis(k string) {
 
 	var n Num
 	wg := sync.WaitGroup{}
 
-	for i:=0;i<100;i++ {
+	for i := 0; i < 100; i++ {
 		wg.Add(1)
 		go n.AddByRedis(global.Rd, k, &wg)
 	}
@@ -171,7 +167,4 @@ func main() {
 	//count := global.Rd.Get(k)
 	//fmt.Println(count)
 
-
 }
-
-
