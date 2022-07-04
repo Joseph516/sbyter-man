@@ -30,3 +30,6 @@ go.work
 # custom
 /storage/
 ./douyin-docker
+
+# video
+*.mp4

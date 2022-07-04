@@ -4,7 +4,7 @@
 本项目设计技术包括：Golang，Gin，Gorm，MySQL，Redis，Kafka，Cron。实现了”简约版“抖音的基本功能，包括的扩展功能有：登录注册的邮箱验证、
 kakfa的异步任务等。
 
-![img.png](img.png)
+![img.png](assets/img.png)
 
 ## 二、数据库定义语句
 
