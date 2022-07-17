@@ -3,7 +3,6 @@ package main
 import (
 	"douyin_service/cronjob"
 	"douyin_service/global"
-	"douyin_service/internal/controller"
 	"douyin_service/internal/kafka"
 	"douyin_service/internal/model"
 	"douyin_service/internal/service"

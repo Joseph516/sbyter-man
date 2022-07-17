@@ -6,12 +6,14 @@ import (
 	"github.com/spf13/viper"
 	"time"
 )
+
 type Setting struct {
 	vp *viper.Viper
 }
+
 func NewSetting() (*Setting, error) {
 	vp := viper.New()
-	vp.AddConfigPath("../../configs/")
+	vp.AddConfigPath("../../config/")
 	vp.SetConfigName("config")
 	vp.SetConfigType("yaml")
 	err := vp.ReadInConfig()
@@ -56,9 +58,9 @@ func SetupSetting() error {
 		return err
 	}
 	global.Rd = redis.NewClient(&redis.Options{
-		Addr:               global.RedisSetting.Addr,
-		Password:           global.RedisSetting.Password,
-		DB:                 0,
+		Addr:     global.RedisSetting.Addr,
+		Password: global.RedisSetting.Password,
+		DB:       0,
 	})
 	err = setting.ReadSection("JWT", &global.JWTSetting)
 	if err != nil {

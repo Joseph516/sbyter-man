@@ -1,10 +1,10 @@
-package controller
+package main
 
 import (
 	"douyin_service/global"
-	v1 "douyin_service/internal/controller/api/v1"
 	"douyin_service/internal/middleware"
 	"douyin_service/pkg/limiter"
+	v1 "douyin_service/services/api/v1"
 	"net/http"
 	"time"
 
@@ -69,7 +69,6 @@ func NewRouter() *gin.Engine {
 		apiv1.GET("/relation/follower/list/", fol.FollowerList)
 		apiv1.GET("/relation/follow/list/", fol.FollowList)
 	}
-
 
 	return r
 }

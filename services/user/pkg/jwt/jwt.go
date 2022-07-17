@@ -1,9 +1,9 @@
-package app
+package jwt
 
 import (
-	"douyin_service/global"
 	"douyin_service/pkg/errcode"
 	"douyin_service/pkg/util"
+	"douyin_service/services/user/config"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
@@ -15,19 +15,21 @@ type Claims struct {
 }
 
 func GetJWTSecret() []byte {
-	return []byte(global.JWTSetting.Secret)
+	return []byte(config.JwtCfg.Secret)
 }
 
-func GenerateToken(appKey, appSecret, aud string) (string, error) {
+func GenerateToken(aud string) (string, error) {
+	appKey := config.JwtCfg.Key
+	appSecret := config.JwtCfg.Secret
 	nowTime := time.Now()
-	expireTime := nowTime.Add(global.JWTSetting.Expire)
+	expireTime := nowTime.Add(config.JwtCfg.Expire * time.Second)
 	claims := Claims{
 		AppKey:    util.EncodeMD5(appKey),
 		AppSecret: util.EncodeMD5(appSecret),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
-			Issuer:    global.JWTSetting.Issuer,
-			Audience: aud, // token的受众
+			Issuer:    config.JwtCfg.Issuer,
+			Audience:  aud, // token的受众
 		},
 	}
 

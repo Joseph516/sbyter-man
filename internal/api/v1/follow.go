@@ -100,7 +100,6 @@ func (f Follow) FollowList(c *gin.Context) {
 	response.ToResponse(res)
 }
 
-
 func (f Follow) FollowerList(c *gin.Context) {
 	param := service.FollowListRequest{}
 	response := app.NewResponse(c)

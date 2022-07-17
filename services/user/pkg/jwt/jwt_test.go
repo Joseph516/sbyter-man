@@ -1,4 +1,4 @@
-package app
+package jwt
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func init()  {
+func init() {
 	err := SetupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)

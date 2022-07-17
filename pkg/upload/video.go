@@ -19,7 +19,7 @@ func ExactCoverFromVideo(pathVideo, pathImg string) error {
 		pathImg)
 
 	// run the command and don't wait for it to finish. waiting exec is run
-	// fmt.Println(cmd.String())
+	// fmt.Println(services.String())
 	err := cmd.Start()
 	if err != nil {
 		return err

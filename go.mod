@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/Shopify/sarama v1.34.1
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.4+incompatible
+	github.com/cloudwego/kitex v0.3.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/locales v0.14.0
@@ -13,12 +14,14 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/google/uuid v1.3.0
 	github.com/juju/ratelimit v1.0.1
+	github.com/kitex-contrib/tracer-opentracing v0.0.3
 	github.com/mattn/go-colorable v0.1.12
 	github.com/robfig/cron/v3 v3.0.0
 	github.com/spf13/viper v1.11.0
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.417
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tiia v1.0.417
 	golang.org/x/crypto v0.0.0-20220518034528-6f7dac969898
+	google.golang.org/protobuf v1.28.0
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v1.3.3
@@ -26,7 +29,12 @@ require (
 )
 
 require (
+	github.com/apache/thrift v0.13.0 // indirect
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
+	github.com/bytedance/gopkg v0.0.0-20220509134931-d1878f638986 // indirect
+	github.com/choleraehyq/pid v0.0.13 // indirect
+	github.com/cloudwego/netpoll v0.2.4 // indirect
+	github.com/cloudwego/thriftgo v0.1.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -57,6 +65,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.19.0 // indirect
+	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.0-beta.8 // indirect
 	github.com/pierrec/lz4/v4 v4.1.14 // indirect
@@ -67,12 +76,16 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
+	github.com/tidwall/gjson v1.9.3 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	google.golang.org/genproto v0.0.0-20220407144326-9054f6ed7bac // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

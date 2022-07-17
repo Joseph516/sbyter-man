@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-type Notify struct {}
+type Notify struct{}
 
 func NewNotify() Notify {
 	return Notify{}
@@ -58,7 +58,7 @@ func (n Notify) VerifyLogin(c *gin.Context) {
 }
 
 //VerifyRegister 验证注册
-func (n Notify) VerifyRegister(c *gin.Context)  {
+func (n Notify) VerifyRegister(c *gin.Context) {
 	param := service.RegisterRequest{}
 	response := app.NewResponse(c)
 	var res service.VerifyResponse

@@ -27,8 +27,10 @@ go.work
 .LSOverride
 .vscode/*
 .idea
+
 # custom
 /storage/
+/services/api/storage/
 /douyin-docker/
 *config.yml
 
