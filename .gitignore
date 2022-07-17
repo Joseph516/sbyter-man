@@ -29,7 +29,8 @@ go.work
 .idea
 # custom
 /storage/
-./douyin-docker
+/douyin-docker/
+*config.yml
 
 # video
 *.mp4
