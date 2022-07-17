@@ -3,12 +3,13 @@ package errcode
 import (
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 type Error struct {
-	code   int      `json:"code"`
-	msg    string   `json:"msg"`
-	details []string `json:"details"`
+	code    int    `json:"code"`
+	msg     string `json:"msg"`
+	details string `json:"details"`
 }
 
 var codes = map[int]string{}
@@ -35,16 +36,13 @@ func (e *Error) Msgf(args []interface{}) string {
 	return fmt.Sprintf(e.msg, args...)
 }
 
-func (e *Error) Details() []string {
-	return e.details
+func (e *Error) Details() string {
+	return e.Msg() + ": " + e.details
 }
 
 func (e *Error) WithDetails(details ...string) *Error {
 	newError := *e
-	newError.details = []string{}
-	for _, d := range details {
-		newError.details = append(newError.details, d)
-	}
+	newError.details = strings.Join(details, ";")
 
 	return &newError
 }
@@ -70,4 +68,3 @@ func (e *Error) StatusCode() int {
 	}
 	return http.StatusInternalServerError
 }
-

@@ -27,9 +27,12 @@ go.work
 .LSOverride
 .vscode/*
 .idea
+
 # custom
 /storage/
-./douyin-docker
+/services/api/storage/
+/douyin-docker/
+*config.yml
 
 # video
 *.mp4
