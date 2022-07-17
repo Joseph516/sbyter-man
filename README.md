@@ -8,102 +8,7 @@ kakfa的异步任务等。
 
 ## 二、数据库定义语句
 
-```
--- douyin.douyin_comment definition
-
-CREATE TABLE `douyin_comment` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `video_id` int NOT NULL,
-  `content` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- douyin.douyin_favorite definition
-
-CREATE TABLE `douyin_favorite` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `video_id` int NOT NULL,
-  `created_at` int NOT NULL,
-  `updated_at` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_video_un` (`user_id`,`video_id`),
-  KEY `video_id_index` (`video_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- douyin.douyin_tag definition
-
-CREATE TABLE `douyin_tag` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '标签id',
-  `name` varchar(100) NOT NULL COMMENT '标签名',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `douyin_tag_UN` (`name`),
-  KEY `douyin_tag_name_IDX` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='视频的一些标签类别';
-
-
--- douyin.douyin_user definition
-
-CREATE TABLE `douyin_user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `follow_count` int NOT NULL,
-  `follower_count` int NOT NULL,
-  `created_at` int NOT NULL,
-  `updated_at` int NOT NULL,
-  `avatar` varchar(100) NOT NULL,
-  `signature` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `background_image` varchar(100) NOT NULL,
-  `login_ip` varchar(100) DEFAULT NULL COMMENT '最近登录的ip',
-  `total_favorited` bigint NOT NULL DEFAULT '0' COMMENT '被赞总次数',
-  `favorite_count` bigint NOT NULL DEFAULT '0' COMMENT '喜欢的总数量',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `douyin_user_UN` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- douyin.douyin_video definition
-
-CREATE TABLE `douyin_video` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '编号id',
-  `author_id` int NOT NULL COMMENT '作者id',
-  `play_url` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频播放地址',
-  `cover_url` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频封面地址',
-  `favorite_count` int DEFAULT '0' COMMENT '视频的点赞总数',
-  `comment_count` int DEFAULT '0' COMMENT '视频的评论总数',
-  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频标题',
-  `tags` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频标签（解析自标题）',
-  `publish_date` timestamp NULL DEFAULT NULL COMMENT '发布时期',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
--- douyin.douyin_follow definition
-
-CREATE TABLE `douyin_follow` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` int DEFAULT NULL,
-  `updated_at` int DEFAULT NULL,
-  `followed_id` int DEFAULT NULL,
-  `follower_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `uniq_idx` (`follower_id`,`followed_id`) USING BTREE,
-  KEY `followed_id` (`followed_id`),
-  CONSTRAINT `douyin_follow_ibfk_1` FOREIGN KEY (`followed_id`) REFERENCES `douyin_user` (`id`),
-  CONSTRAINT `douyin_follow_ibfk_2` FOREIGN KEY (`follower_id`) REFERENCES `douyin_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
-```
-
+见[数据库ddl文件](ddl)
 
 ## 三、目录介绍
 
@@ -173,38 +78,14 @@ type ResponseCommon struct {
 
 ## 六、 演示视频
 https://sbyterman.oss-cn-hangzhou.aliyuncs.com/video/file_v2_09cbcc8a-8ef9-486d-900f-7514bca3b53g_2033260184.mp4
+
 ##  七、安装教程
 
-```go
-//安装项目所需模块 
+```shell
+# 安装项目所需模块 
 go mod tidy
 
-安装如下所有模块
-	github.com/Shopify/sarama v1.34.0
-	github.com/aliyun/aliyun-oss-go-sdk v2.2.4+incompatible
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/gin-gonic/gin v1.8.0
-	github.com/go-playground/locales v0.14.0
-	github.com/go-playground/universal-translator v0.18.0
-	github.com/go-playground/validator/v10 v10.11.0
-	github.com/go-redis/redis v6.15.9+incompatible
-	github.com/google/uuid v1.3.0
-	github.com/juju/ratelimit v1.0.1
-	github.com/mattn/go-colorable v0.1.12
-	github.com/robfig/cron/v3 v3.0.1
-	github.com/spf13/viper v1.12.0
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.409
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tiia v1.0.409
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
-	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gorm.io/driver/mysql v1.3.4
-	gorm.io/gorm v1.23.5
-```
-
-## 八、 使用说明
-
-```go
+# 运行
 go run main.go
 ```
 
