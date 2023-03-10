@@ -1,1 +1,103 @@
-package idl
+syntax = "proto3";
+option go_package = "video";
+import public "user.proto";
+
+service VideoService {
+  rpc PublishAction(publish_action_request) returns (publish_action_response);
+  rpc PublishList(publish_list_request) returns (publish_list_response);
+  rpc Feed(feed_request) returns (feed_response);
+  rpc FavoriteAction(favorite_action_request) returns (favorite_action_response);
+  rpc FavoriteList(favorite_list_request) returns (favorite_list_response);
+  rpc CommentAction(comment_action_request) returns (comment_action_response);
+  rpc CommentList(comment_list_request) returns (comment_list_response);
+}
+
+// 视频投稿与发布
+message publish_action_request {
+  string title = 1;
+  string play_url = 2;
+  string cover_url = 3;
+  int64 user_id = 4;
+}
+
+message publish_action_response {
+}
+
+message publish_list_request {
+  int64 user_id = 1;
+}
+
+message publish_list_response {
+  repeated Video video_list = 1; // 用户发布的视频列表
+}
+
+message feed_request {
+  optional int64 latest_time = 1; // 限制返回视频的最新投稿时间戳，精确到秒，不填表示当前时间
+}
+
+message feed_response {
+  repeated Video video_list = 1;
+  optional int64 next_time = 2;
+}
+
+message Video {
+  int64 id = 1;
+  User author = 2;
+  string play_url = 3;
+  string cover_url = 4;
+  int64 favorite_count = 5;
+  int64 comment_count = 6;
+  bool is_favorite = 7; // true-已点赞，false-未点赞
+  string title = 8;
+  int64 publish_date = 9;
+}
+
+// 点赞操作
+message favorite_action_request {
+  int64 user_id = 1;
+  string token = 2;
+  int64 video_id = 3;
+  int32 action_type = 4; // 1-点赞，2-取消点赞
+}
+
+message favorite_action_response {
+}
+
+message favorite_list_request {
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message favorite_list_response {
+  repeated Video video_list = 1;
+}
+
+// 评论
+message comment_action_request {
+  int64 user_id = 1;
+  string token = 2;
+  int64 video_id = 3;
+  int32 action_type = 4; // 1-发布评论，2-删除评论
+  optional string comment_text = 5;
+  optional int64 comment_id = 6; // 要删除评论的id，在action_type为2的时候使用
+}
+
+message comment_action_response {
+  optional Comment comment = 1; // 评论成功返回的内容，不需要拉取整个列表
+}
+
+message comment_list_request {
+  string token = 1;
+  int64 video_id = 2;
+}
+
+message comment_list_response {
+  repeated Comment comment_list = 1; // 评论成功返回的内容，不需要拉取整个列表
+}
+
+message Comment {
+  int64 id = 1;
+  User user = 2;
+  string content = 3;
+  string create_date = 4; // 评论发布日期，格式 mm-dd
+}

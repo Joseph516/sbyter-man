@@ -1,7 +1,6 @@
 package app
 
 import (
-	"douyin_service/global"
 	"douyin_service/pkg/convert"
 	"github.com/gin-gonic/gin"
 )
@@ -15,13 +14,13 @@ func GetPage(c *gin.Context) int {
 	return page
 }
 
-func GetPageSize(c *gin.Context) int {
+func GetPageSize(c *gin.Context, maxPageSize int) int {
 	pageSize := convert.StrTo(c.Query("page_size")).MustInt()
 	if pageSize <= 0 {
-		return global.AppSetting.DefaultPageSize
+		return 10
 	}
-	if pageSize > global.AppSetting.MaxPageSize {
-		return global.AppSetting.MaxPageSize
+	if pageSize > maxPageSize {
+		return maxPageSize
 	}
 
 	return pageSize

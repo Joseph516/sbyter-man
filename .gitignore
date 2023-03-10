@@ -33,6 +33,8 @@ go.work
 /services/api/storage/
 /douyin-docker/
 *config.yml
+*config.yaml
+/services/api/default.etcd/
 
 # video
 *.mp4

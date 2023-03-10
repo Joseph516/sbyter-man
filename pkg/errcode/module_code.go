@@ -14,6 +14,9 @@ var (
 	ErrorListPublishFail   = NewError(10020001, "获取用户的视频发布列表错误")
 	ErrorActionPublishFail = NewError(10020002, "发布视频错误")
 
+	// feed
+	ErrorFeedFail = NewError(10020003, "获取视频流列表错误")
+
 	ErrorActionFail     = NewError(10050001, "点赞失败")
 	ErrorActionListFail = NewError(10050002, "查询点赞作品失败")
 

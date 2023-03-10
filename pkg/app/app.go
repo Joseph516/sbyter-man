@@ -11,8 +11,8 @@ type Response struct {
 }
 
 type Pager struct {
-	Page int `json:"page"`
-	PageSize int `json:"page_size"`
+	Page      int   `json:"page"`
+	PageSize  int   `json:"page_size"`
 	TotalRows int64 `json:"total_rows"`
 }
 
@@ -20,28 +20,28 @@ func NewResponse(ctx *gin.Context) *Response {
 	return &Response{Ctx: ctx}
 }
 
-func (r *Response) ToResponse(data interface{})  {
+func (r *Response) ToResponse(data interface{}) {
 	if data == nil {
 		data = gin.H{}
 	}
 	r.Ctx.JSON(http.StatusOK, data)
 }
 
-func (r *Response) ToResponseList(list interface{}, totalRows int64)  {
+func (r *Response) ToResponseList(list interface{}, totalRows int64) {
 	r.Ctx.JSON(http.StatusOK, gin.H{
-		"code":http.StatusOK,
+		"code":    http.StatusOK,
 		"message": "获取列表成功",
-		"list": list,
+		"list":    list,
 		"pager": Pager{
-			Page: GetPage(r.Ctx),
-			PageSize: GetPageSize(r.Ctx),
+			Page:      GetPage(r.Ctx),
+			PageSize:  GetPageSize(r.Ctx, 100),
 			TotalRows: totalRows,
 		},
 	})
 }
 
-func (r *Response) ToErrorResponse(err *errcode.Error)  {
-	//response := gin.H{"status_code": err.Code(), "status_msg": err.Msg()}
+func (r *Response) ToErrorResponse(err *errcode.Error) {
+	// response := gin.H{"status_code": err.Code(), "status_msg": err.Msg()}
 	response := gin.H{"status_code": 0, "status_msg": err.Msg()} // 由于前端设计，这里只能用0
 	details := err.Details()
 	if len(details) > 0 {

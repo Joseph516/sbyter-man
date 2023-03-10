@@ -1,7 +1,6 @@
 package upload
 
 import (
-	"douyin_service/global"
 	"douyin_service/pkg/util"
 	"io"
 	"io/ioutil"
@@ -42,25 +41,17 @@ func GetFilenameWithoutExt(name string) string {
 	return fileName
 }
 
-func GetSavePath() string {
-	return global.AppSetting.UploadSavePath
-}
-
-func GetSaveZipsPath() string {
-	return global.AppSetting.UploadZipsPath
-}
-
 func CheckSavePath(dst string) bool {
 	_, err := os.Stat(dst)
 	return os.IsNotExist(err)
 }
 
-func CheckContainExt(t FileType, name string) bool {
+func CheckContainExt(t FileType, name string, uploadVideoAllowExts []string) bool {
 	ext := GetFileExt(name)
 	ext = strings.ToUpper(ext)
 	switch t {
 	case TypeVideo:
-		for _, allowExt := range global.AppSetting.UploadVideoAllowExts {
+		for _, allowExt := range uploadVideoAllowExts {
 			if strings.ToUpper(allowExt) == ext {
 				return true
 			}
@@ -69,22 +60,22 @@ func CheckContainExt(t FileType, name string) bool {
 	return false
 }
 
-func CheckMaxSize(t FileType, f multipart.File) bool {
+func CheckMaxSize(t FileType, f multipart.File, uploadVideoMaxSize int) bool {
 	content, _ := ioutil.ReadAll(f)
 	size := len(content)
 	switch t {
 	case TypeVideo:
-		if size >= global.AppSetting.UploadVideoMaxSize*1024*1024 {
+		if size >= uploadVideoMaxSize*1024*1024 {
 			return true
 		}
 	}
 	return false
 }
 
-func CheckMaxSizeByHeader(t FileType, size int) bool {
+func CheckMaxSizeByHeader(t FileType, size int, uploadVideoMaxSize int) bool {
 	switch t {
 	case TypeVideo:
-		if size >= global.AppSetting.UploadVideoMaxSize*1024*1024 {
+		if size >= uploadVideoMaxSize*1024*1024 {
 			return true
 		}
 	}

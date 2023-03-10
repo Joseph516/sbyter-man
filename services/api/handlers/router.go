@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"douyin_service/global"
-	"douyin_service/internal/middleware"
 	"douyin_service/pkg/limiter"
+	"douyin_service/services/api/config"
 	v1 "douyin_service/services/api/handlers/v1"
+	"douyin_service/services/api/middleware"
 	"net/http"
 	"time"
 
@@ -20,7 +20,7 @@ var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimiterBucket
 
 func NewRouter() *gin.Engine {
 	r := gin.New()
-	if global.ServerSetting.RunMode == "debug" {
+	if config.ServerCfg.RunMode == "debug" {
 		r.Use(gin.Logger())
 		r.Use(gin.Recovery())
 	} else {
@@ -30,14 +30,14 @@ func NewRouter() *gin.Engine {
 	r.Use(middleware.Cors())
 	r.Use(middleware.RateLimiter(methodLimiters))
 	r.Use(middleware.ContextTimeout(60 * time.Second))
-	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
+	r.StaticFS("/static", http.Dir(config.AppCfg.UploadSavePath))
 
 	user := v1.NewUser()
-	// favorite := v1.NewFavorite()
-	// pub := v1.NewPublish()
-	// fol := v1.NewFollow()
-	// com := v1.NewComment()
-	// feed := v1.NewFeed()
+	favorite := v1.NewFavorite()
+	pub := v1.NewPublish()
+	fol := v1.NewFollow()
+	com := v1.NewComment()
+	feed := v1.NewFeed()
 	// notify := v1.NewNotify()
 	apiv1 := r.Group("/douyin/")
 	apiv1.Use()
@@ -49,25 +49,25 @@ func NewRouter() *gin.Engine {
 		// apiv1.GET("/verifyRegister/", notify.VerifyRegister)
 		// apiv1.GET("/verifyLogin/", notify.VerifyLogin)
 
-		// // favor
-		// apiv1.GET("favorite/list/", favorite.FavoriteList)
-		// apiv1.POST("/favorite/action/", favorite.Action)
-		//
-		// // publish
-		// apiv1.GET("/publish/list/", pub.List)
-		// apiv1.POST("/publish/action/", pub.Action)
-		//
-		// // comment
-		// apiv1.GET("/comment/list/", com.List)
-		// apiv1.POST("/comment/action/", com.CommentAction)
-		//
-		// // feed
-		// apiv1.GET("/feed/", feed.Feed)
-		//
-		// // follow
-		// apiv1.POST("/relation/action/", fol.Action)
-		// apiv1.GET("/relation/follower/list/", fol.FollowerList)
-		// apiv1.GET("/relation/follow/list/", fol.FollowList)
+		// favor
+		apiv1.GET("favorite/list/", favorite.List)
+		apiv1.POST("/favorite/action/", favorite.Action)
+
+		// publish
+		apiv1.GET("/publish/list/", pub.List)
+		apiv1.POST("/publish/action/", pub.Action)
+
+		// comment
+		apiv1.GET("/comment/list/", com.List)
+		apiv1.POST("/comment/action/", com.Action)
+
+		// feed
+		apiv1.GET("/feed/", feed.Feed)
+
+		// follow
+		apiv1.POST("/relation/action/", fol.Action)
+		apiv1.GET("/relation/follower/list/", fol.FollowerList)
+		apiv1.GET("/relation/follow/list/", fol.FollowList)
 	}
 
 	return r

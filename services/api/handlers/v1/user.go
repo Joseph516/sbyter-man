@@ -1,11 +1,11 @@
 package v1
 
 import (
-	"douyin_service/global"
 	"douyin_service/pkg/app"
 	"douyin_service/pkg/errcode"
 	"douyin_service/services/api/rpc"
-	"douyin_service/services/user/kitex_gen/user"
+	"douyin_service/services/api/service"
+	"douyin_service/services/kitex_gen/user"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,11 +17,10 @@ func NewUser() User {
 
 // Register 注册用户
 func (u User) Register(c *gin.Context) {
-	param := rpc.RegisterRequest{}
+	param := service.RegisterRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
-		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
 		response.ToErrorResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
@@ -30,7 +29,7 @@ func (u User) Register(c *gin.Context) {
 		Username: param.UserName,
 		Password: param.Password,
 	}
-	res := &rpc.RegisterResponse{}
+	res := &service.RegisterResponse{}
 	resp, err := rpc.Register(c, req)
 	if err != nil {
 		res.StatusCode = errcode.ErrorRegisterFail.Code()
@@ -39,7 +38,7 @@ func (u User) Register(c *gin.Context) {
 		return
 	}
 
-	res = &rpc.RegisterResponse{
+	res = &service.RegisterResponse{
 		UserID: uint(resp.UserId),
 		Token:  resp.Token,
 	}
@@ -50,11 +49,10 @@ func (u User) Register(c *gin.Context) {
 
 // Login 登录
 func (u User) Login(c *gin.Context) {
-	param := rpc.LoginRequest{}
+	param := service.LoginRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
-		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
 		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
@@ -64,14 +62,14 @@ func (u User) Login(c *gin.Context) {
 		Password: param.Password,
 	}
 	resp, err := rpc.Login(c, req)
-	res := &rpc.LoginResponse{}
+	res := &service.LoginResponse{}
 	if err != nil {
 		res.StatusCode = errcode.ErrorLoginFail.Code()
 		res.StatusMsg = errcode.ErrorLoginFail.WithDetails(err.Error()).Details()
 		response.ToResponse(res)
 		return
 	}
-	res = &rpc.LoginResponse{
+	res = &service.LoginResponse{
 		UserID: uint(resp.UserId),
 		Token:  resp.Token,
 	}
@@ -82,11 +80,10 @@ func (u User) Login(c *gin.Context) {
 
 // Get 获取用户信息
 func (u User) Get(c *gin.Context) {
-	param := rpc.GetUserInfoRequest{}
+	param := service.GetUserInfoRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
-		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
 		response.ToResponse(errcode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
@@ -96,18 +93,17 @@ func (u User) Get(c *gin.Context) {
 		Token:  param.Token,
 	}
 	resp, err := rpc.GetUser(c, req)
-	res := &rpc.GetUserInfoResponse{}
+	res := &service.GetUserInfoResponse{}
 	if err != nil {
-		global.Logger.Errorf("svc.GetUserById err: %v", err)
 		res.StatusCode = errcode.ErrorGetUserInfoFail.Code()
 		res.StatusMsg = errcode.ErrorGetUserInfoFail.WithDetails(err.Error()).Details()
 		response.ToResponse(res)
 		return
 	}
 	followerCount := resp.User.GetFollowerCount()
-	res = &rpc.GetUserInfoResponse{
-		User: &rpc.UserInfo{
-			ID:            uint(resp.User.Id),
+	res = &service.GetUserInfoResponse{
+		User: &service.UserInfo{
+			ID:            resp.User.Id,
 			Name:          resp.User.Name,
 			FollowCount:   resp.User.GetFollowCount(),
 			FollowerCount: followerCount,

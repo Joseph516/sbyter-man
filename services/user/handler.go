@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"douyin_service/services/user/kitex_gen/user"
+	"douyin_service/services/kitex_gen/user"
 	"douyin_service/services/user/pkg/jwt"
 	"douyin_service/services/user/repository"
 	"errors"
@@ -87,5 +87,54 @@ func (s *UserServiceImpl) GetUser(ctx context.Context, req *user.UserRequest) (r
 			IsFollow:      userInfo.FollowerCount != 0,
 		},
 	}
+	return
+}
+
+// GetUserByToken implements the UserServiceImpl interface.
+func (s *UserServiceImpl) GetUserByToken(ctx context.Context, req *user.UserTokenRequest) (resp *user.UserResponse, err error) {
+	// 从token中获取用户id
+	var claims *jwt.Claims
+	claims, err = jwt.ParseToken(req.Token)
+	if err != nil {
+		return
+	}
+	userId, err := strconv.Atoi(claims.Audience)
+	if err != nil {
+		return
+	}
+
+	// 读取数据库
+	userInfo, err := repository.NewUserDaoInstance().GetUserById(uint(userId))
+	if err != nil {
+		return
+	}
+	resp = &user.UserResponse{
+		User: &user.User{
+			Id:            int64(userInfo.ID),
+			Name:          userInfo.UserName,
+			FollowCount:   &userInfo.FollowCount,
+			FollowerCount: &userInfo.FollowerCount,
+			IsFollow:      userInfo.FollowerCount != 0,
+		},
+	}
+	return
+}
+
+// CheckValidToken implements the UserServiceImpl interface.
+func (s *UserServiceImpl) CheckValidToken(ctx context.Context, req *user.TokenRequest) (resp *user.TokenResponse, err error) {
+	// TODO: Your code here...
+	// 从token中获取用户id
+	var claims *jwt.Claims
+	claims, err = jwt.ParseToken(req.Token)
+	if err != nil {
+		resp = &user.TokenResponse{IsValid: false}
+		return
+	}
+	_, err = strconv.Atoi(claims.Audience)
+	if err != nil {
+		resp = &user.TokenResponse{IsValid: false}
+		return
+	}
+	resp = &user.TokenResponse{IsValid: true}
 	return
 }

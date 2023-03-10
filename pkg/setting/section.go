@@ -47,7 +47,7 @@ type DatabaseSettingS struct {
 type KafkaSettings struct {
 	Host             string
 	TopicEmail       string // 发送邮件主题
-	TopicComment     string //发送评论主题
+	TopicComment     string // 发送评论主题
 	TopicCompression string
 	DefaultPartition int
 	ConsumerGroupID  string
@@ -59,13 +59,6 @@ type RedisSettingS struct {
 	DB       int
 }
 
-type JWTSettingS struct {
-	Key    string
-	Secret string
-	Issuer string
-	Expire time.Duration
-}
-
 type EmailSettingS struct {
 	Host     string
 	Port     int
@@ -74,13 +67,4 @@ type EmailSettingS struct {
 	IsSSL    bool
 	From     string
 	To       []string
-}
-
-func (s *Setting) ReadSection(k string, v interface{}) error {
-	err := s.vp.UnmarshalKey(k, v)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }

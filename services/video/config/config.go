@@ -1,20 +1,8 @@
 package config
 
-import (
-	"time"
-)
-
 var (
-	JwtCfg      *JwtConfig
 	DatabaseCfg *DatabaseConfig
 )
-
-type JwtConfig struct {
-	Key    string
-	Secret string
-	Issuer string
-	Expire time.Duration
-}
 
 type DatabaseConfig struct {
 	DBType       string

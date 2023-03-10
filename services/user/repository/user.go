@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"douyin_service/internal/model"
 	"douyin_service/pkg/util"
 	"errors"
 	"sync"
@@ -60,7 +59,7 @@ func (*UserDao) CreateUser(username, password, loginIP string) (uint, error) {
 }
 
 func (*UserDao) CheckUser(username, password string) (uint, error) {
-	user := model.User{
+	user := User{
 		UserName: username,
 	}
 
